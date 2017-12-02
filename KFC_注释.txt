@@ -1,0 +1,101 @@
+每一个taskKey 对应一个需要识别的图片, 图片需打包到项目中
+
+
+获取所有的标签数据(没有参数):
+https://www.youbohudong.com/biz/vip/kfc/calendar-2018/api/stamps
+返回的数据:
+
+(
+ {
+     isAvailable = 0;
+     isNew = 1;
+     name = "\U6bd4\U5229\U65f6\U751c\U7b52";
+     note = "12\U670818\U65e5\U8d34\U7eb8\U5f00\U542f\Uff0c\U626b\U626b\U82b1\U7b52\U66f4\U53ef\U83b7\U5f97\U9650\U91cf\U7248\U8d34\U7eb8\Uff01";
+     stamps =         (
+                       {
+                           image = "https://static.youbohudong.com/uploaded/2017/11/14/6870fb7c8eb2a517eb140013bd544fff.png";
+                           note = "\U5b8c\U6210\U4efb\U52a1\U89e3\U9501\U5b8c\U6210\U4efb\U52a1\U89e3\U9501\U5b8c\U6210\U4efb\U52a1\U89e3\U9501\U5b8c\U6210\U4efb\U52a1\U89e3\U9501\U5b8c\U6210\U4efb\U52a1\U89e3\U9501";
+                           taskKey = "belgium_ice_cream_20181218";
+                           thumb = "https://static.youbohudong.com/uploaded/2017/11/14/6870fb7c8eb2a517eb140013bd544fff.png?x-oss-process=image/resize,limit_0,w_180";
+                       },
+                       {
+                           image = "https://static.youbohudong.com/uploaded/2017/11/14/7ce16bfabf54b74bc542fb3b630d203c.png";
+                           taskKey = "belgium_ice_cream_20181218";
+                           thumb = "https://static.youbohudong.com/uploaded/2017/11/14/7ce16bfabf54b74bc542fb3b630d203c.png?x-oss-process=image/resize,limit_0,w_180";
+                       },
+                       {
+                           image = "https://static.youbohudong.com/uploaded/2017/11/14/75cb81bbb24cfe18efac7fc5dd0d74ef.png";
+                           taskKey = "belgium_ice_cream_20181218";
+                           thumb = "https://static.youbohudong.com/uploaded/2017/11/14/75cb81bbb24cfe18efac7fc5dd0d74ef.png?x-oss-process=image/resize,limit_0,w_180";
+                       },
+                       {
+                           image = "https://static.youbohudong.com/uploaded/2017/11/14/b7c16896847ae5db10baba094381655a.png";
+                           taskKey = "belgium_ice_cream_20181218";
+                           thumb = "https://static.youbohudong.com/uploaded/2017/11/14/b7c16896847ae5db10baba094381655a.png?x-oss-process=image/resize,limit_0,w_180";
+                       }
+                       
+                       );
+ }
+ )
+
+也是返回一个数组:
+
+字段注释:
+
+isNew: 是否是最新的, 如果是, 则显示最新的标识
+
+isAvailable : 当前是否可用, 如果是0, 则表示不可用, 标签按钮变虚, 并且该按钮手指按下会有提示语, 手指抬起提示语消失. 该标签下所有图片都不可下载(即不可使用), 同时判断该标签下的图片有无对应的note, 如果有, 手指按下图片的时候显示提示语, 手指抬起提示语消失
+
+如果isAvailable是1 , 则该图片肯定没有对应的note
+
+note 和 taskKey 这两个字段可能有, 也可能没有.
+
+如果有只有 taskkey 就让该图片加个黄边, 按下没有提示语
+既有note 又有 taskKey , 则该图片有黄边, 手指按下显示提示语, 手指抬起提示语消失
+
+note: 所有需要传的参数, 直接 用  /  拼在url 后面即可
+
+
+
+
+
+获取该 设备id 的已完成的任务列表:
+https://www.youbohudong.com/biz/vip/kfc/calendar-2018/api/tasks/设备id
+成功后获取到的数据:
+
+(
+        {
+        completed = 1;
+        taskKey = "belgium_ice_cream_20181218";
+    }
+)
+
+字段注释:
+	返回的数据是一个数组, 即已完成任务的列表. 
+	标签内的带有taskKey的图片, 通过对比返回数据中有无对应的taskKey判断是否可用, 如果有, 才可用
+
+
+
+
+
+AR识别成功后, 即视为完成任务, 将taskKey传到服务器(两个参数: 设备id & taskKey , 参数直接用/拼到链接后面):
+https://www.youbohudong.com/biz/vip/kfc/calendar-2018/api/tasks/设备id/taskKey   
+服务器会返回数据:
+
+{
+    "completionResource": "https://static.youbohudong.com/uploaded/2017/11/14/6870fb7c8eb2a517eb140013bd544fff.png",
+    "completionDescription": "您已经成功收集肯德基比利时巧克力冰激凌限量版贴纸，立即拍照炫耀一下！",
+    "completionUrl": "http://www.apple.com"
+}
+
+字段注释: 
+completionResource  : 识别成功后显示出来的 图片
+completionDescription  : 识别成功后显示的note
+completionUrl  : 识别成功后点击 ‘知道了’ 跳转一个weview页面, 加载的链接
+注意:  点 ‘知道了’ 是进入一个原生的webview页面, 并不是跳到浏览器中
+
+
+
+
+
+
