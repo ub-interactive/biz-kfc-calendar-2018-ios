@@ -13,7 +13,6 @@
 
 @property(strong, nonatomic) WKWebView *webview;
 
-
 @property(nonatomic, copy) NSString *urlStr;
 
 @property(nonatomic, assign) BOOL isFromMisson;

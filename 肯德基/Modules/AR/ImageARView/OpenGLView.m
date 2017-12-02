@@ -8,7 +8,7 @@
 
 #import "OpenGLView.h"
 
-#import "helloar.h"
+#import "ArCore.h"
 
 #import <easyar/engine.oc.h>
 
@@ -57,7 +57,7 @@
         scale = [[UIScreen mainScreen] scale];
     }
 
-    resizeGL(frame.size.width * scale, frame.size.height * scale);
+    resizeGL((int) (frame.size.width * scale), (int) (frame.size.height * scale));
 }
 
 - (void)drawRect:(CGRect)rect {

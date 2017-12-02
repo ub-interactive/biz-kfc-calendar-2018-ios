@@ -14,7 +14,6 @@
 
 @property(nonatomic, assign) int completed;
 
-
 @end
 
 

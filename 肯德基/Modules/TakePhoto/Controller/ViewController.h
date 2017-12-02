@@ -20,7 +20,7 @@
 
 @property(weak, nonatomic) IBOutlet UIImageView *firstStepTipImageView;
 
-@property(nonatomic, strong) NSMutableArray *data;
+@property(nonatomic, strong) NSMutableArray *stampGroups;
 
 @end
 

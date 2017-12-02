@@ -59,7 +59,7 @@
     [self.view bringSubviewToFront:self.navigationView];
 
     // 识别成功后的通知
-    [KFC_NOTIFICATION_CENTER addObserver:self selector:@selector(arRecogniseSuccess:) name:KFC_NOTIFICATION_NAME_AR_RECOGNISE_SUCCEED object:nil];
+    [KFC_NOTIFICATION_CENTER addObserver:self selector:@selector(arScanSuccess:) name:KFC_NOTIFICATION_NAME_AR_RECOGNISE_SUCCEED object:nil];
 
 }
 
@@ -104,9 +104,7 @@
 /*
     识别成功后的处理
  */
-- (void)arRecogniseSuccess:(NSNotification *)noti {
-
-    NSLog(@"arRecogniseSuccess  识别出来的是 ==  %@", noti.object);
+- (void)arScanSuccess:(NSNotification *)noti {
 
     // 如果当前页面不显示， 则不接收 识别成功的回调，但实际上 一直还在后台识别中。。。
     if (self.scanSuccessView) return;

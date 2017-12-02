@@ -10,9 +10,6 @@
 
 @interface KFCScanSuccessModel : NSObject
 
-// 当前是否可用
-//@property(nonatomic,assign) int isAvailable;
-
 // 图片url
 @property(nonatomic, copy) NSString *completionResource;
 
@@ -21,7 +18,6 @@
 
 // 跳转的链接
 @property(nonatomic, copy) NSString *completionUrl;
-
 
 @end
 

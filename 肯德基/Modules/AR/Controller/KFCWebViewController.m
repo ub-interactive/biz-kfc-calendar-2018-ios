@@ -114,10 +114,10 @@
 
             NSLog(@"NSMutableDictionary  ==  %@", dic);
 
-            NSString *type = [dic objectForKey:@"type"];
-            NSString *title = [dic objectForKey:@"title"];
-            NSString *thumb = [dic objectForKey:@"thumb"];
-            NSString *url = [dic objectForKey:@"url"];
+            NSString *type = dic[@"type"];
+            NSString *title = dic[@"title"];
+            NSString *thumb = dic[@"thumb"];
+            NSString *url = dic[@"url"];
 
             if (![WXApi isWXAppInstalled]) {
                 //            [KFCProgressHUD showWithString:@"未检测到分享源" inView:self.view];

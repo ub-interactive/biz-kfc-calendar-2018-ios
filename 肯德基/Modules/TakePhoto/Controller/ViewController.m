@@ -150,18 +150,18 @@
 }
 
 - (void)getStampGroupData {
-
-    [self.data addObjectsFromArray:[self getLocalData]];
+    self.stampGroups = [[NSMutableArray alloc] init];
+    [self.stampGroups addObjectsFromArray:[self getLocalData]];
 
     [[AFHTTPSessionManager manager] GET:KFC_URL_CALENDAR_NEW_STAMPS parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
 
         NSLog(@"JSON: %@", responseObject);
 
-        [self.data removeAllObjects];
+        [self.stampGroups removeAllObjects];
 
-        self.data = [KFCStampGroupModel mj_objectArrayWithKeyValuesArray:responseObject];
+        self.stampGroups = [KFCStampGroupModel mj_objectArrayWithKeyValuesArray:responseObject];
 
-        [self.data addObjectsFromArray:[self getLocalData]];
+        [self.stampGroups addObjectsFromArray:[self getLocalData]];
 
     }                           failure:^(NSURLSessionTask *operation, NSError *error) {
 
@@ -387,6 +387,7 @@
 
     NSUInteger cameraCount = [[AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo] count];
     if (cameraCount > 1) {
+
         NSError *error;
         //给摄像头的切换添加翻转动画
         CATransition *animation = [CATransition animation];
@@ -409,15 +410,15 @@
 
         //生成新的输入
         newInput = [AVCaptureDeviceInput deviceInputWithDevice:newCamera error:nil];
-        [self.previewLayer addAnimation:animation forKey:nil];
+//        [self.previewLayer addAnimation:animation forKey:nil];
 
         if (newInput != nil) {
             [self.captureSession beginConfiguration];
             [self.captureSession removeInput:self.captureDeviceInput];
+
             if ([self.captureSession canAddInput:newInput]) {
                 [self.captureSession addInput:newInput];
                 self.captureDeviceInput = newInput;
-
             } else {
                 [self.captureSession addInput:self.captureDeviceInput];
             }
@@ -532,8 +533,8 @@
 // 添加pasterview
 - (void)autoAddPasterView {
 
-    if (self.data.count && !self.pasterView.data.count) {
-        self.pasterView.data = self.data;
+    if (self.stampGroups.count && !self.pasterView.data.count) {
+        self.pasterView.data = self.stampGroups;
     }
     [self.view addSubview:self.pasterView];
     [UIView animateWithDuration:0.3f animations:^{
@@ -546,9 +547,9 @@
 
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
 
-    NSString *msg = @"保存图片成功! ";
+    NSString *msg = @"图片保存成功! ";
     if (error != NULL) {
-        msg = @"保存图片失败  ";
+        msg = @"图片保存失败  ";
     }
     [KFCProgressHUD showWithString:msg inView:self.view];
 
@@ -874,15 +875,6 @@
 
     }
     return _pasterView;
-}
-
-
-- (NSMutableArray *)data {
-
-    if (!_data) {
-        _data = [NSMutableArray array];
-    }
-    return _data;
 }
 
 /**************     特性页面     **************/

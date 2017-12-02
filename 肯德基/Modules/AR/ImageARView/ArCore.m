@@ -6,10 +6,7 @@
 //
 //=============================================================================================================================
 
-#import "helloar.h"
-
-#import "VideoRenderer.h"
-#import "ARVideo.h"
+#import "ArCore.h"
 
 #import <easyar/camera.oc.h>
 #import <easyar/frame.oc.h>
@@ -17,6 +14,7 @@
 #import <easyar/imagetracker.oc.h>
 #import <easyar/imagetarget.oc.h>
 #import <easyar/renderer.oc.h>
+#import <easyar/vector.oc.h>
 
 #include <OpenGLES/ES2/gl.h>
 
@@ -26,38 +24,19 @@ easyar_CameraDevice *camera = nil;
 easyar_CameraFrameStreamer *streamer = nil;
 NSMutableArray<easyar_ImageTracker *> *trackers = nil;
 easyar_Renderer *videobg_renderer = nil;
-NSMutableArray<VideoRenderer *> *video_renderers = nil;
-VideoRenderer *current_video_renderer = nil;
+
 int tracked_target = 0;
 int active_target = 0;
-ARVideo *video = nil;
+
 bool viewport_changed = false;
 int view_size[] = {0, 0};
 int view_rotation = 0;
 int viewport[] = {0, 0, 1280, 720};
 
-void loadFromImage(easyar_ImageTracker *tracker, NSString *path) {
-    easyar_ImageTarget *target = [easyar_ImageTarget create];
-    NSString *name = [path substringToIndex:[path rangeOfString:@"."].location];
-    NSString *jstr = [@[@"{\n"
-            "  \"images\" :\n"
-            "  [\n"
-            "    {\n"
-            "      \"image\" : \"", path, @"\",\n"
-            "      \"name\" : \"", name, @"\"\n"
-            "    }\n"
-            "  ]\n"
-            "}"] componentsJoinedByString:@""];
-    [target setup:jstr storageType:(easyar_StorageType_Assets | easyar_StorageType_Json) name:@""];
-    [tracker loadTarget:target callback:^(easyar_Target *target, bool status) {
-        NSLog(@"111111load target (%d): %@ (%d)", status, [target name], [target runtimeID]);
-    }];
-}
-
 void loadAllFromJsonFile(easyar_ImageTracker *tracker, NSString *path) {
     for (easyar_ImageTarget *target in [easyar_ImageTarget setupAll:path storageType:easyar_StorageType_Assets]) {
         [tracker loadTarget:target callback:^(easyar_Target *target, bool status) {
-            NSLog(@"2222222load target (%d): %@ (%d)", status, [target name], [target runtimeID]);
+            NSLog(@"loaded target (%d): %@ (%d)", status, [target name], [target runtimeID]);
         }];
     }
 }
@@ -75,7 +54,6 @@ BOOL initialize() {
     easyar_ImageTracker *tracker = [easyar_ImageTracker create];
     [tracker attachStreamer:streamer];
     loadAllFromJsonFile(tracker, @"targets.json");
-    loadFromImage(tracker, @"namecard.jpg");
     trackers = [[NSMutableArray<easyar_ImageTracker *> alloc] init];
     [trackers addObject:tracker];
 
@@ -83,13 +61,10 @@ BOOL initialize() {
 }
 
 void finalize() {
-    video = nil;
     tracked_target = 0;
     active_target = 0;
 
     [trackers removeAllObjects];
-    [video_renderers removeAllObjects];
-    current_video_renderer = nil;
     videobg_renderer = nil;
     streamer = nil;
     camera = nil;
@@ -118,20 +93,11 @@ BOOL stop() {
 
 void initGL() {
     if (active_target != 0) {
-        [video onLost];
-        video = nil;
         tracked_target = 0;
         active_target = 0;
     }
     videobg_renderer = nil;
     videobg_renderer = [easyar_Renderer create];
-    video_renderers = [[NSMutableArray<VideoRenderer *> alloc] init];
-    for (int k = 0; k < 3; k += 1) {
-        VideoRenderer *video_renderer = [[VideoRenderer alloc] init];
-        [video_renderer init_];
-        [video_renderers addObject:video_renderer];
-    }
-    current_video_renderer = nil;
 }
 
 void resizeGL(int width, int height) {
@@ -150,8 +116,8 @@ void updateViewport() {
     if (viewport_changed) {
         int size[] = {1, 1};
         if (camera && [camera isOpened]) {
-            size[0] = [[[camera size].data objectAtIndex:0] intValue];
-            size[1] = [[[camera size].data objectAtIndex:1] intValue];
+            size[0] = [[camera size].data[0] intValue];
+            size[1] = [[camera size].data[1] intValue];
         }
         if (rotation == 90 || rotation == 270) {
             int t = size[0];
@@ -174,7 +140,7 @@ void render() {
 
     if (videobg_renderer != nil) {
         int default_viewport[] = {0, 0, view_size[0], view_size[1]};
-        easyar_Vec4I *oc_default_viewport = [easyar_Vec4I create:@[[NSNumber numberWithInt:default_viewport[0]], [NSNumber numberWithInt:default_viewport[1]], [NSNumber numberWithInt:default_viewport[2]], [NSNumber numberWithInt:default_viewport[3]]]];
+        easyar_Vec4I *oc_default_viewport = [easyar_Vec4I create:@[@(default_viewport[0]), @(default_viewport[1]), @(default_viewport[2]), @(default_viewport[3])]];
         glViewport(default_viewport[0], default_viewport[1], default_viewport[2], default_viewport[3]);
         if ([videobg_renderer renderErrorMessage:oc_default_viewport]) {
             return;
@@ -187,78 +153,25 @@ void render() {
     glViewport(viewport[0], viewport[1], viewport[2], viewport[3]);
 
     if (videobg_renderer != nil) {
-        [videobg_renderer render:frame viewport:[easyar_Vec4I create:@[[NSNumber numberWithInt:viewport[0]], [NSNumber numberWithInt:viewport[1]], [NSNumber numberWithInt:viewport[2]], [NSNumber numberWithInt:viewport[3]]]]];
+        [videobg_renderer render:frame viewport:[easyar_Vec4I create:@[@(viewport[0]), @(viewport[1]), @(viewport[2]), @(viewport[3])]]];
     }
-
-
-
-    //    if (saowuti) {
-    //
-
-    //    }else{
-
-
-
-    //}
-
-//    for (easyar_TargetInstance * targetInstance in [frame targetInstances]) {
-//        easyar_TargetStatus status = [targetInstance status];
-//        if (status == easyar_TargetStatus_Tracked) {
-//            easyar_Target * target = [targetInstance target];
-//
-//            NSLog(@"target name ==  %@", target.name);
-//            NSLog(@"target uid ==  %@", target.uid);
-//
-//            easyar_ObjectTarget * objecttarget = [target isKindOfClass:[easyar_ObjectTarget class]] ? (easyar_ObjectTarget *)target : nil;
-//            if (objecttarget == nil) {
-//                continue;
-//            }
-////            [box_renderer renderBox:[camera projectionGL:0.2f farPlane:500.f] cameraview:[targetInstance poseGL] box:[objecttarget boundingBoxGL]];
-//        }
-//    }
 
     NSArray<easyar_TargetInstance *> *targetInstances = [frame targetInstances];
     if ([targetInstances count] > 0) {
-        easyar_TargetInstance *targetInstance = [targetInstances objectAtIndex:0];
+        easyar_TargetInstance *targetInstance = targetInstances[0];
         easyar_Target *target = [targetInstance target];
         int status = [targetInstance status];
         if (status == easyar_TargetStatus_Tracked) {
             int runtimeID = [target runtimeID];
             if (active_target != 0 && active_target != runtimeID) {
-                [video onLost];
-                video = nil;
                 tracked_target = 0;
                 active_target = 0;
             }
-            if (tracked_target == 0) {
-                if (video == nil && [video_renderers count] > 0) {
-                    NSString *target_name = [target name];
 
-                    NSLog(@"我擦 ， 扫描成功了 target_name ==  %@", target_name);
-
-                    [[NSNotificationCenter defaultCenter] postNotificationName:KFC_NOTIFICATION_NAME_AR_RECOGNISE_SUCCEED object:target_name];
-
-
-                }
-                if (video != nil) {
-                    [video onFound];
-                    tracked_target = runtimeID;
-                    active_target = runtimeID;
-                }
-            }
-            easyar_ImageTarget *imagetarget = [target isKindOfClass:[easyar_ImageTarget class]] ? (easyar_ImageTarget *) target : nil;
-            if (imagetarget != nil) {
-                if (current_video_renderer != nil) {
-                    [video update];
-                    if ([video isRenderTextureAvailable]) {
-                        [current_video_renderer render:[camera projectionGL:0.2f farPlane:500.f] cameraview:[targetInstance poseGL] size:[imagetarget size]];
-                    }
-                }
-            }
+            [[NSNotificationCenter defaultCenter] postNotificationName:KFC_NOTIFICATION_NAME_AR_RECOGNISE_SUCCEED object:[target name]];
         }
     } else {
         if (tracked_target != 0) {
-            [video onLost];
             tracked_target = 0;
         }
     }
