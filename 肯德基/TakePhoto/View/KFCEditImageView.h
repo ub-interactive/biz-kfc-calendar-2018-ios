@@ -21,6 +21,10 @@
 
 @property(nonatomic,strong) CAShapeLayer *border;
 
+@property(nonatomic,strong) UIPanGestureRecognizer *panGesture;
+@property(nonatomic,strong) UIRotationGestureRecognizer *rotateGesture;
+@property(nonatomic,strong) UIPinchGestureRecognizer *pinch;
+
 - (instancetype)initWithImage:(UIImage *)image;
 
 /**

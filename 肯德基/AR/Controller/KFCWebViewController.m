@@ -98,9 +98,12 @@
 
 -(void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message{
     
-    //    NSLog(@"%@", message.body);
+    NSLog(@"%@", message.body);
     
-//    NSString *urlStr = [message.body objectForKey:@"message"];
+    NSString *urlStr = [message.body objectForKey:@"message"];
+    
+    
+    
     
 //    [JXApplication openURL:[NSURL URLWithString:urlStr]];
     

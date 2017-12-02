@@ -29,7 +29,6 @@
 		184417031FBD399700198812 /* targets.json in Resources */ = {isa = PBXBuildFile; fileRef = 184416F31FBD399700198812 /* targets.json */; };
 		184417051FBD399700198812 /* VideoRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 184416F61FBD399700198812 /* VideoRenderer.m */; };
 		184417061FBD399700198812 /* OpenGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 184416F71FBD399700198812 /* OpenGLView.m */; };
-		184417071FBD399700198812 /* helloar.m in Sources */ = {isa = PBXBuildFile; fileRef = 184416F81FBD399700198812 /* helloar.m */; };
 		184417081FBD399700198812 /* argame.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 184416F91FBD399700198812 /* argame.jpg */; };
 		184417091FBD399700198812 /* ARVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 184416FA1FBD399700198812 /* ARVideo.m */; };
 		1844170A1FBD399700198812 /* idback.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 184416FB1FBD399700198812 /* idback.jpg */; };
@@ -57,10 +56,11 @@
 		1844220F1FBD3D0C00198812 /* JXQRButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1844220A1FBD3D0C00198812 /* JXQRButton.m */; };
 		18C3C0AC1FB96C5B00634283 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3C0AB1FB96C5A00634283 /* UIImage+Resize.m */; };
 		18CE45E1F5755E9E60FE6B95 /* libPods-肯德基.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 050CE03F60370E2CDDC9CCC7 /* libPods-肯德基.a */; };
-		B20F7E2F1FC6A20A00376CA0 /* belgium_ice_cream_20181218.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B20F7E2E1FC6A20A00376CA0 /* belgium_ice_cream_20181218.jpg */; };
 		B21158CC1FD15E9D00F93BA4 /* hexagon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B21158C91FD15E9D00F93BA4 /* hexagon.jpg */; };
 		B21158CD1FD15E9D00F93BA4 /* hexagon.mtl in Resources */ = {isa = PBXBuildFile; fileRef = B21158CA1FD15E9D00F93BA4 /* hexagon.mtl */; };
 		B21158CE1FD15E9D00F93BA4 /* hexagon.obj in Resources */ = {isa = PBXBuildFile; fileRef = B21158CB1FD15E9D00F93BA4 /* hexagon.obj */; };
+		B278D5411FD26850000C8FE9 /* belgium_ice_cream_20171218.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B278D5401FD2684F000C8FE9 /* belgium_ice_cream_20171218.jpg */; };
+		B278D5441FD26FDE000C8FE9 /* ARImage.m in Sources */ = {isa = PBXBuildFile; fileRef = B278D5431FD26FDE000C8FE9 /* ARImage.m */; };
 		B27968311FBFEAD8006E5FE4 /* KFCScanSuccessModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B27968301FBFEAD8006E5FE4 /* KFCScanSuccessModel.m */; };
 		B2A2696A1FD2510600BC0823 /* hexagon.obj in Sources */ = {isa = PBXBuildFile; fileRef = B21158CB1FD15E9D00F93BA4 /* hexagon.obj */; };
 		B2A2696B1FD2511700BC0823 /* NSObject+MJClass.h in Sources */ = {isa = PBXBuildFile; fileRef = B2CDE4D31FA9651800D11D78 /* NSObject+MJClass.h */; };
@@ -170,13 +170,11 @@
 		184416EA1FBD399700198812 /* KFCScanNagationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFCScanNagationView.m; sourceTree = "<group>"; };
 		184416EE1FBD399700198812 /* namecard.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = namecard.jpg; sourceTree = "<group>"; };
 		184416EF1FBD399700198812 /* OpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLView.h; sourceTree = "<group>"; };
-		184416F01FBD399700198812 /* helloar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloar.h; sourceTree = "<group>"; };
 		184416F11FBD399700198812 /* VideoRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoRenderer.h; sourceTree = "<group>"; };
 		184416F31FBD399700198812 /* targets.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = targets.json; sourceTree = "<group>"; };
 		184416F41FBD399700198812 /* ARVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARVideo.h; sourceTree = "<group>"; };
 		184416F61FBD399700198812 /* VideoRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoRenderer.m; sourceTree = "<group>"; };
 		184416F71FBD399700198812 /* OpenGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenGLView.m; sourceTree = "<group>"; };
-		184416F81FBD399700198812 /* helloar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = helloar.m; sourceTree = "<group>"; };
 		184416F91FBD399700198812 /* argame.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = argame.jpg; sourceTree = "<group>"; };
 		184416FA1FBD399700198812 /* ARVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARVideo.m; sourceTree = "<group>"; };
 		184416FB1FBD399700198812 /* idback.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = idback.jpg; sourceTree = "<group>"; };
@@ -221,10 +219,12 @@
 		18C3C0AA1FB96C5A00634283 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
 		18C3C0AB1FB96C5A00634283 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		3D61B87AD0E1217CA979DC0F /* Pods-肯德基.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-肯德基.release.xcconfig"; path = "Pods/Target Support Files/Pods-肯德基/Pods-肯德基.release.xcconfig"; sourceTree = "<group>"; };
-		B20F7E2E1FC6A20A00376CA0 /* belgium_ice_cream_20181218.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = belgium_ice_cream_20181218.jpg; sourceTree = "<group>"; };
 		B21158C91FD15E9D00F93BA4 /* hexagon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = hexagon.jpg; sourceTree = "<group>"; };
 		B21158CA1FD15E9D00F93BA4 /* hexagon.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hexagon.mtl; sourceTree = "<group>"; };
 		B21158CB1FD15E9D00F93BA4 /* hexagon.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hexagon.obj; sourceTree = "<group>"; };
+		B278D5401FD2684F000C8FE9 /* belgium_ice_cream_20171218.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = belgium_ice_cream_20171218.jpg; sourceTree = "<group>"; };
+		B278D5421FD26FDE000C8FE9 /* ARImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARImage.h; sourceTree = "<group>"; };
+		B278D5431FD26FDE000C8FE9 /* ARImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARImage.m; sourceTree = "<group>"; };
 		B279682F1FBFEAD8006E5FE4 /* KFCScanSuccessModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFCScanSuccessModel.h; sourceTree = "<group>"; };
 		B27968301FBFEAD8006E5FE4 /* KFCScanSuccessModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFCScanSuccessModel.m; sourceTree = "<group>"; };
 		B2A7F3461FC85A220069F497 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -440,15 +440,15 @@
 		184416ED1FBD399700198812 /* ImageARView */ = {
 			isa = PBXGroup;
 			children = (
-				B20F7E2E1FC6A20A00376CA0 /* belgium_ice_cream_20181218.jpg */,
+				B278D5401FD2684F000C8FE9 /* belgium_ice_cream_20171218.jpg */,
 				184416EE1FBD399700198812 /* namecard.jpg */,
 				184416F91FBD399700198812 /* argame.jpg */,
 				184416FB1FBD399700198812 /* idback.jpg */,
 				184416F31FBD399700198812 /* targets.json */,
+				B278D5421FD26FDE000C8FE9 /* ARImage.h */,
+				B278D5431FD26FDE000C8FE9 /* ARImage.m */,
 				184416EF1FBD399700198812 /* OpenGLView.h */,
 				184416F71FBD399700198812 /* OpenGLView.m */,
-				184416F01FBD399700198812 /* helloar.h */,
-				184416F81FBD399700198812 /* helloar.m */,
 				184416F11FBD399700198812 /* VideoRenderer.h */,
 				184416F61FBD399700198812 /* VideoRenderer.m */,
 				184416F41FBD399700198812 /* ARVideo.h */,
@@ -933,13 +933,13 @@
 				184416FD1FBD399700198812 /* KFCScanNagationView.xib in Resources */,
 				B2CDE4891FA8C22E00D11D78 /* LaunchScreen.storyboard in Resources */,
 				B2CDE5141FA9653500D11D78 /* LICENSE in Resources */,
-				B20F7E2F1FC6A20A00376CA0 /* belgium_ice_cream_20181218.jpg in Resources */,
 				184417011FBD399700198812 /* namecard.jpg in Resources */,
 				184417341FBD39F500198812 /* KFCPasterTableViewCell.xib in Resources */,
 				184417081FBD399700198812 /* argame.jpg in Resources */,
 				184417321FBD39F500198812 /* KFCReTakeView.xib in Resources */,
 				1844170A1FBD399700198812 /* idback.jpg in Resources */,
 				B2CBF8691FCA6422005BA26E /* KFCNewFeatureView.xib in Resources */,
+				B278D5411FD26850000C8FE9 /* belgium_ice_cream_20171218.jpg in Resources */,
 				184417031FBD399700198812 /* targets.json in Resources */,
 				B21158CC1FD15E9D00F93BA4 /* hexagon.jpg in Resources */,
 				180FDC0B1FBD6855002A0DDF /* KFCScanSuccessView.xib in Resources */,
@@ -1076,13 +1076,13 @@
 				B2CDE47B1FA8C22E00D11D78 /* main.m in Sources */,
 				B2CDE4E01FA9651900D11D78 /* MJProperty.m in Sources */,
 				184417381FBD39F500198812 /* KFCProgressHUD.m in Sources */,
-				184417071FBD399700198812 /* helloar.m in Sources */,
 				B2CDE4DE1FA9651900D11D78 /* MJExtensionConst.m in Sources */,
 				B2CDE5541FA9655000D11D78 /* UIImage+MultiFormat.m in Sources */,
 				B2CDE54D1FA9655000D11D78 /* SDWebImageDecoder.m in Sources */,
 				B2CDE51D1FA9653500D11D78 /* UIRefreshControl+AFNetworking.m in Sources */,
 				B2CDE4E41FA9651900D11D78 /* NSObject+MJCoding.m in Sources */,
 				B2CDE5561FA9655000D11D78 /* UIImageView+WebCache.m in Sources */,
+				B278D5441FD26FDE000C8FE9 /* ARImage.m in Sources */,
 				B2CDE5521FA9655000D11D78 /* UIButton+WebCache.m in Sources */,
 				B2CDE4E11FA9651900D11D78 /* MJPropertyKey.m in Sources */,
 				B2CDE5511FA9655000D11D78 /* SDWebImagePrefetcher.m in Sources */,

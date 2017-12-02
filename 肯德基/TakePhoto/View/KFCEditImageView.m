@@ -101,34 +101,29 @@ static const NSUInteger kDeleteBtnSize = 32;
     return self;
 }
 
--(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-
-//    UITouch *touch = [touches anyObject];
-    
-//    NSArray *arr = [touches allObjects];
-//    
-//    NSLog(@"arr  == %@", arr);
-//    
-//    NSLog(@"touches  =   %@", touches);
-    
-}
 
 - (void)initGestures{
     
     self.imageView.userInteractionEnabled = YES;
-    [self.imageView addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(imageDidPan:)]];
+    
+    self.panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(imageDidPan:)];
+    [self.imageView addGestureRecognizer:self.panGesture];
+    
     [self.imageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageDidTap:)]];
+    
     [_scaleBtn addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(scaleBtnDidPan:)]];
     
     // 旋转手势
     UIRotationGestureRecognizer *rotation = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(imageDidRotate:)];
     rotation.delegate = self;
-    [self.imageView addGestureRecognizer:rotation];
+    [self addGestureRecognizer:rotation];
+    self.rotateGesture = rotation;
     
 //     缩放手势
     UIPinchGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(imageDidPinch:)];
     pinch.delegate = self;
-    [self.imageView addGestureRecognizer:pinch];
+    [self addGestureRecognizer:pinch];\
+    self.pinch = pinch;
 
 }
 
@@ -212,23 +207,44 @@ static const NSUInteger kDeleteBtnSize = 32;
 //  旋转手势
 -(void)imageDidRotate:(UIRotationGestureRecognizer *)sender{
     
-    self.imageView.transform = CGAffineTransformRotate(self.imageView.transform, sender.rotation);
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        self.pinch.enabled = NO;
+        self.panGesture.enabled = NO;
+    }
+    
+    sender.view.transform = CGAffineTransformRotate(sender.view.transform, sender.rotation);
     
     [sender setRotation:0];
-
     
+    if (sender.state == UIGestureRecognizerStateEnded) {
+        self.pinch.enabled = YES;
+        self.panGesture.enabled = YES;
+    }
 }
 
 // 缩放手势
 -(void)imageDidPinch:(UIPinchGestureRecognizer *)sender{
 
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        self.rotateGesture.enabled = NO;
+        self.panGesture.enabled = NO;
+    }
+    
 //    self.imageView.transform = CGAffineTransformScale(self.imageView.transform, sender.scale, sender.scale);
 
-    [self setScale:MAX(sender.scale, 0.1)];
-    
-    _scale = sender.scale;
+//    [self setScale:MAX(sender.scale, 0.1)];
+//
+//    _scale = sender.scale;
     
 //    sender.scale = 1;
+    
+    sender.view.transform = CGAffineTransformScale(sender.view.transform, sender.scale, sender.scale);
+    sender.scale = 1;
+    
+    if (sender.state == UIGestureRecognizerStateEnded) {
+        self.rotateGesture.enabled = YES;
+        self.panGesture.enabled = YES;
+    }
 }
 
 -(void)imageDidTap:(UITapGestureRecognizer *)tap{
@@ -292,7 +308,6 @@ static const NSUInteger kDeleteBtnSize = 32;
     _arg   = _initialArg + arg - tmpA; //原始角度+拖动后的角度 - 拖动前的角度
     //放大缩小的值
     [self setScale:MAX(_initialScale * R / tmpR, 0.1)];
-    
     
     [self.border removeFromSuperlayer];
     [self addBorderToLayer:self.imageView];

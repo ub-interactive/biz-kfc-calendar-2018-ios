@@ -1,21 +1,22 @@
 {
-  "images" :
-  [
-    {
-      "image" : "argame.jpg",
-      "name" : "argame"
-    },
-    {
-      "image" : "idback.jpg",
-      "name" : "20181218_belgium_ice_cream",
-      "size" : [8.56, 5.4],
-      "uid" : "uid-string"
-    },
-    {
-    "image" : "belgium_ice_cream_20181218.jpg",
-    "name" : "belgium_ice_cream_20181218"
-    }
-    
-  ]
+    "images": [
+               {
+               "image": "argame.jpg",
+               "name": "argame"
+               },
+               {
+               "image": "idback.jpg",
+               "name": "20171218_belgium_ice_cream"
+               },
+               {
+               "image": "belgium_ice_cream_20171218.jpg",
+               "name": "belgium_ice_cream_20171218"
+               }
+               ],
+    "objects": [
+                {
+                "obj": "hexagon.obj",
+                "name": "hexagon"
+                }
+                ]
 }
-
