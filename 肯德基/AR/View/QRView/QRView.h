@@ -43,4 +43,6 @@
 
 @property (nonatomic, strong) NSTimer *animateTimer;
 
+@property (nonatomic, copy) void(^qrViewScanButtonClickedBlock)(NSInteger tag);
+
 @end

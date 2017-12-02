@@ -60,7 +60,7 @@
 		B21158CD1FD15E9D00F93BA4 /* hexagon.mtl in Resources */ = {isa = PBXBuildFile; fileRef = B21158CA1FD15E9D00F93BA4 /* hexagon.mtl */; };
 		B21158CE1FD15E9D00F93BA4 /* hexagon.obj in Resources */ = {isa = PBXBuildFile; fileRef = B21158CB1FD15E9D00F93BA4 /* hexagon.obj */; };
 		B278D5411FD26850000C8FE9 /* belgium_ice_cream_20171218.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B278D5401FD2684F000C8FE9 /* belgium_ice_cream_20171218.jpg */; };
-		B278D5441FD26FDE000C8FE9 /* ARImage.m in Sources */ = {isa = PBXBuildFile; fileRef = B278D5431FD26FDE000C8FE9 /* ARImage.m */; };
+		B278D54D1FD2A010000C8FE9 /* helloar.m in Sources */ = {isa = PBXBuildFile; fileRef = B278D54C1FD2A010000C8FE9 /* helloar.m */; };
 		B27968311FBFEAD8006E5FE4 /* KFCScanSuccessModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B27968301FBFEAD8006E5FE4 /* KFCScanSuccessModel.m */; };
 		B2A2696A1FD2510600BC0823 /* hexagon.obj in Sources */ = {isa = PBXBuildFile; fileRef = B21158CB1FD15E9D00F93BA4 /* hexagon.obj */; };
 		B2A2696B1FD2511700BC0823 /* NSObject+MJClass.h in Sources */ = {isa = PBXBuildFile; fileRef = B2CDE4D31FA9651800D11D78 /* NSObject+MJClass.h */; };
@@ -223,8 +223,8 @@
 		B21158CA1FD15E9D00F93BA4 /* hexagon.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hexagon.mtl; sourceTree = "<group>"; };
 		B21158CB1FD15E9D00F93BA4 /* hexagon.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hexagon.obj; sourceTree = "<group>"; };
 		B278D5401FD2684F000C8FE9 /* belgium_ice_cream_20171218.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = belgium_ice_cream_20171218.jpg; sourceTree = "<group>"; };
-		B278D5421FD26FDE000C8FE9 /* ARImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARImage.h; sourceTree = "<group>"; };
-		B278D5431FD26FDE000C8FE9 /* ARImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARImage.m; sourceTree = "<group>"; };
+		B278D54B1FD2A010000C8FE9 /* helloar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloar.h; sourceTree = "<group>"; };
+		B278D54C1FD2A010000C8FE9 /* helloar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = helloar.m; sourceTree = "<group>"; };
 		B279682F1FBFEAD8006E5FE4 /* KFCScanSuccessModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFCScanSuccessModel.h; sourceTree = "<group>"; };
 		B27968301FBFEAD8006E5FE4 /* KFCScanSuccessModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFCScanSuccessModel.m; sourceTree = "<group>"; };
 		B2A7F3461FC85A220069F497 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -445,8 +445,8 @@
 				184416F91FBD399700198812 /* argame.jpg */,
 				184416FB1FBD399700198812 /* idback.jpg */,
 				184416F31FBD399700198812 /* targets.json */,
-				B278D5421FD26FDE000C8FE9 /* ARImage.h */,
-				B278D5431FD26FDE000C8FE9 /* ARImage.m */,
+				B278D54B1FD2A010000C8FE9 /* helloar.h */,
+				B278D54C1FD2A010000C8FE9 /* helloar.m */,
 				184416EF1FBD399700198812 /* OpenGLView.h */,
 				184416F71FBD399700198812 /* OpenGLView.m */,
 				184416F11FBD399700198812 /* VideoRenderer.h */,
@@ -1051,6 +1051,7 @@
 				B2CDE5621FA96C1000D11D78 /* UIColor+Hex.m in Sources */,
 				1844220B1FBD3D0C00198812 /* QRItem.m in Sources */,
 				B2CDE5491FA9655000D11D78 /* NSImage+WebCache.m in Sources */,
+				B278D54D1FD2A010000C8FE9 /* helloar.m in Sources */,
 				B2CDE51B1FA9653500D11D78 /* UIImageView+AFNetworking.m in Sources */,
 				B2CDE50E1FA9653500D11D78 /* AFHTTPSessionManager.m in Sources */,
 				B2CDE51C1FA9653500D11D78 /* UIProgressView+AFNetworking.m in Sources */,
@@ -1082,7 +1083,6 @@
 				B2CDE51D1FA9653500D11D78 /* UIRefreshControl+AFNetworking.m in Sources */,
 				B2CDE4E41FA9651900D11D78 /* NSObject+MJCoding.m in Sources */,
 				B2CDE5561FA9655000D11D78 /* UIImageView+WebCache.m in Sources */,
-				B278D5441FD26FDE000C8FE9 /* ARImage.m in Sources */,
 				B2CDE5521FA9655000D11D78 /* UIButton+WebCache.m in Sources */,
 				B2CDE4E11FA9651900D11D78 /* MJPropertyKey.m in Sources */,
 				B2CDE5511FA9655000D11D78 /* SDWebImagePrefetcher.m in Sources */,
@@ -1236,6 +1236,7 @@
 					"$(PROJECT_DIR)/肯德基/AR/View/HongDian/AlipaySDK",
 					"$(PROJECT_DIR)/肯德基/AR/View/HongDian/Rong_Cloud_iOS_IMKit_SDK_v2_7_0_dev",
 				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "肯德基/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1279,6 +1280,7 @@
 					"$(PROJECT_DIR)/肯德基/AR/View/HongDian/AlipaySDK",
 					"$(PROJECT_DIR)/肯德基/AR/View/HongDian/Rong_Cloud_iOS_IMKit_SDK_v2_7_0_dev",
 				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "肯德基/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

@@ -290,22 +290,12 @@ static const NSUInteger kDeleteBtnSize = 32;
         
     }
     
-    // 全是 imageView 的
-//    CGFloat oldWidth = _initialPoint.x - (self.x + 16);
-//    CGFloat oldHeight = _initialPoint.y - (self.y + 16);
-    
-//    CGFloat newWidth = _initialPoint.x + p.x - (self.x + 16);
-//    CGFloat newHeight = _initialPoint.y + p.y - (self.y + 16);
-    
-//    CGFloat scaleX = newWidth / oldWidth;
-//    CGFloat scaleY = newHeight / oldHeight;
-    
     
     p = CGPointMake(_initialPoint.x + p.x - self.center.x, _initialPoint.y + p.y - self.center.y);
     CGFloat R = sqrt(p.x * p.x + p.y * p.y); //拖动后的距离
     CGFloat arg = atan2(p.y, p.x);    // 拖动后的旋转角度
     //旋转角度
-    _arg   = _initialArg + arg - tmpA; //原始角度+拖动后的角度 - 拖动前的角度
+    _arg = _initialArg + arg - tmpA; //原始角度+拖动后的角度 - 拖动前的角度
     //放大缩小的值
     [self setScale:MAX(_initialScale * R / tmpR, 0.1)];
     

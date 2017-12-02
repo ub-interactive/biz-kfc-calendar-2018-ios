@@ -103,9 +103,7 @@
     NSString *urlStr = [message.body objectForKey:@"message"];
     
     
-    
-    
-//    [JXApplication openURL:[NSURL URLWithString:urlStr]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];
     
 }
 

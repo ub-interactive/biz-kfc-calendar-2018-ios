@@ -88,14 +88,16 @@ static NSTimeInterval kQrLineanimateDuration = 0.010;
     [self.scanImageButton setImage:[UIImage imageNamed:@"scanImg"] forState:UIControlStateNormal];
     [self.scanImageButton setImage:[UIImage imageNamed:@"scanImg_red"] forState:UIControlStateSelected];
     self.scanImageButton.selected = YES;
+    self.scanImageButton.tag = 100;
     [self.scanImageButton addTarget:self action:@selector(scanImageButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-//    [self addSubview:self.scanImageButton];
+    [self addSubview:self.scanImageButton];
     
     self.scanObjectButton = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH / 2 + 50 - 25, 100, 50, 50)];
     [self.scanObjectButton setImage:[UIImage imageNamed:@"scanObj_gray"] forState:UIControlStateNormal];
     [self.scanObjectButton setImage:[UIImage imageNamed:@"scanObj"] forState:UIControlStateSelected];
+    self.scanObjectButton.tag = 200;
     [self.scanObjectButton addTarget:self action:@selector(scanObjectButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-//    [self addSubview:self.scanObjectButton];
+    [self addSubview:self.scanObjectButton];
 }
 
 
@@ -277,8 +279,12 @@ static NSTimeInterval kQrLineanimateDuration = 0.010;
     sender.selected = YES;
     self.scanObjectButton.selected = NO;
     
+    [KFC_USER_DEFAULTS setObject:[NSNumber numberWithBool:NO] forKey:KFC_USER_DEFAULT_IS_SCAN_OBJ];
+    [KFC_USER_DEFAULTS synchronize];
     
-    
+    if (self.qrViewScanButtonClickedBlock) {
+        self.qrViewScanButtonClickedBlock(sender.tag);
+    }
 }
 
 
@@ -292,6 +298,13 @@ static NSTimeInterval kQrLineanimateDuration = 0.010;
     
     sender.selected = YES;
     self.scanImageButton.selected = NO;
+    
+    [KFC_USER_DEFAULTS setObject:[NSNumber numberWithBool:YES] forKey:KFC_USER_DEFAULT_IS_SCAN_OBJ];
+    [KFC_USER_DEFAULTS synchronize];
+    
+    if (self.qrViewScanButtonClickedBlock) {
+        self.qrViewScanButtonClickedBlock(sender.tag);
+    }
     
 }
 

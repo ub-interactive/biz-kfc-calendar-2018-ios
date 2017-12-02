@@ -268,6 +268,26 @@
 
 }
 
+-(void)qrviewScanButtonClicked:(NSInteger )tag{
+
+    [UIView animateWithDuration:0.3 animations:^{
+        [self->glView stop];
+    }completion:^(BOOL finished) {
+        if (finished)   [self->glView start];
+    }];
+    
+    if (tag == 100) {       // 点击扫图片
+        
+
+        
+    }else if (tag == 200){      // 点击扫图片
+        
+            
+        
+    }
+    
+}
+
 -(QRView *)qrView {
     
     if (!_qrView) {
@@ -276,6 +296,12 @@
         _qrView.transparentArea = CGSizeMake(KFC_CONST_QRVIEW_TRANSPARENT_AREA_WIDTH, KFC_CONST_QRVIEW_TRANSPARENT_AREA_WIDTH);
         
         WS(weakSelf);
+        
+        [_qrView setQrViewScanButtonClickedBlock:^(NSInteger tag) {
+           
+            [weakSelf qrviewScanButtonClicked:tag];
+            
+        }];
         
         [_qrView setQrViewSureButtonClickedBlock:^(NSString *qrStr) {
             

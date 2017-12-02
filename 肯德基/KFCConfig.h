@@ -58,7 +58,8 @@
 
 #define KFC_USER_DEFAULT_APP_VERSION            @"KFC_USER_DEFAULT_APP_VERSION"
 
-
+// 是否是 扫物体
+#define KFC_USER_DEFAULT_IS_SCAN_OBJ            @"KFC_USER_DEFAULT_IS_SCAN_OBJ"
 
 
 // 已经下载过的图片
