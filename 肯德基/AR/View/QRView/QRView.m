@@ -90,14 +90,14 @@ static NSTimeInterval kQrLineanimateDuration = 0.010;
     self.scanImageButton.selected = YES;
     self.scanImageButton.tag = 100;
     [self.scanImageButton addTarget:self action:@selector(scanImageButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:self.scanImageButton];
+//    [self addSubview:self.scanImageButton];
     
     self.scanObjectButton = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH / 2 + 50 - 25, 100, 50, 50)];
     [self.scanObjectButton setImage:[UIImage imageNamed:@"scanObj_gray"] forState:UIControlStateNormal];
     [self.scanObjectButton setImage:[UIImage imageNamed:@"scanObj"] forState:UIControlStateSelected];
     self.scanObjectButton.tag = 200;
     [self.scanObjectButton addTarget:self action:@selector(scanObjectButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:self.scanObjectButton];
+//    [self addSubview:self.scanObjectButton];
 }
 
 
