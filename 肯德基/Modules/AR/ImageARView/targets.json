@@ -12,11 +12,5 @@
                "image": "belgium_ice_cream_20171218.jpg",
                "name": "belgium_ice_cream_20171218"
                }
-               ],
-    "objects": [
-                {
-                "obj": "hexagon.obj",
-                "name": "hexagon"
-                }
-                ]
+               ]
 }
