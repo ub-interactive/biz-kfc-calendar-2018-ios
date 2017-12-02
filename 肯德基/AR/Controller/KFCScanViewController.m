@@ -41,7 +41,6 @@
     [super viewDidLoad];
     [self->glView setOrientation:self.interfaceOrientation];
     
-    [self.view addSubview:self.qrView];
     
     // 设置naviagtionbar
     [self setupNavigationBar];
@@ -52,7 +51,12 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+    
     [super viewWillAppear:animated];
+    
+    [self.view addSubview:self.qrView];
+    
+    [self.view bringSubviewToFront:self.navigationView];
     
     // 识别成功后的通知
     [KFC_NOTIFICATION_CENTER addObserver:self selector:@selector(arRecogniseSuccess:) name:KFC_NOTIFICATION_NAME_AR_RECOGNISE_SUCCEED object:nil];
@@ -220,6 +224,8 @@
  */
 
 -(void)scanSuccessViewToseeButtonClicked:(UIButton *)sender{
+    
+    [self.scanSuccessView removeFromSuperview];
     
     // 根据后台返回的数据   来决定去哪个页面
     

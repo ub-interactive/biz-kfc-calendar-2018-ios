@@ -22,6 +22,8 @@ static const NSUInteger kDeleteBtnSize = 32;
     CGPoint _initialPoint; //表情的中心点
     CGFloat _initialScale;  //修改前的缩放比例
     CGFloat _initialArg;    //修改前旋转比例
+    
+    CGFloat lastRotation;    //修改前旋转比例
 }
 
 
@@ -212,13 +214,21 @@ static const NSUInteger kDeleteBtnSize = 32;
         self.panGesture.enabled = NO;
     }
     
-    sender.view.transform = CGAffineTransformRotate(sender.view.transform, sender.rotation);
+    NSLog(@"%.2f", sender.rotation );
     
-    [sender setRotation:0];
+    NSLog(@"%.2f", sender.rotation + lastRotation);
+    
+//    sender.view.transform = CGAffineTransformRotate(sender.view.transform, sender.rotation);
+    self.transform = CGAffineTransformMakeRotation(sender.rotation + lastRotation);  // 旋转
+    
+    _initialArg = sender.rotation;
+    
+    
     
     if (sender.state == UIGestureRecognizerStateEnded) {
         self.pinch.enabled = YES;
         self.panGesture.enabled = YES;
+        lastRotation += sender.rotation;
     }
 }
 
@@ -230,15 +240,10 @@ static const NSUInteger kDeleteBtnSize = 32;
         self.panGesture.enabled = NO;
     }
     
-//    self.imageView.transform = CGAffineTransformScale(self.imageView.transform, sender.scale, sender.scale);
-
-//    [self setScale:MAX(sender.scale, 0.1)];
-//
-//    _scale = sender.scale;
-    
-//    sender.scale = 1;
-    
     sender.view.transform = CGAffineTransformScale(sender.view.transform, sender.scale, sender.scale);
+    
+    NSLog(@"%.2f", sender.scale);
+    
     sender.scale = 1;
     
     if (sender.state == UIGestureRecognizerStateEnded) {
@@ -294,7 +299,7 @@ static const NSUInteger kDeleteBtnSize = 32;
     CGFloat R = sqrt(p.x * p.x + p.y * p.y); //拖动后的距离
     CGFloat arg = atan2(p.y, p.x);    // 拖动后的旋转角度
     //旋转角度
-    _arg = _initialArg + arg - tmpA; //原始角度+拖动后的角度 - 拖动前的角度
+    _arg = _initialArg + arg - tmpA + lastRotation; //原始角度+拖动后的角度 - 拖动前的角度
     //放大缩小的值
     [self setScale:MAX(_initialScale * R / tmpR, 0.1)];
     

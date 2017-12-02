@@ -74,6 +74,13 @@ NSString * key = @"VoTEQlrcSv7tiCtztHakUFRWweG2aU5I6I7I0jLBojTvdR6tr48GjRtujGUV9
 
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options {
     
+    if ([url.scheme isEqualToString:@"kc2018"]) {
+        
+        [self handleOpenKfcAPP:url];
+        
+        
+    }
+    
     return [WXApi handleOpenURL:url delegate:self];
     return YES;
 }
@@ -108,26 +115,27 @@ NSString * key = @"VoTEQlrcSv7tiCtztHakUFRWweG2aU5I6I7I0jLBojTvdR6tr48GjRtujGUV9
         
         UINavigationController *nav = (UINavigationController *)self.window.rootViewController;
      
+        for (UIViewController *vc in nav.viewControllers) {
+            
+            if ([vc isKindOfClass:[KFCScanViewController class]]) {
+                [nav pushViewController:vc animated:YES];
+                return;
+            }
+        }
+        
         KFCScanViewController *viewController = [[KFCScanViewController alloc] init];
         
         [nav pushViewController:viewController animated:YES];
         
     }else if ([url.host isEqualToString:@"share"]){
         
-        return;
+//        return;
         
 //        kc2018://share?type=0&url=https://www.apple.com&thumb=http://www.apple.com/apple.png&title=标题
         
         NSMutableDictionary *dic = [self getURLParametersWithUrl:url];
         
         NSLog(@"NSMutableDictionary  ==  %@", dic);
-        
-        //        {
-        //            thumb = "http://www.apple.com/apple.png";
-        //            title = "\U6807\U9898";
-        //            type = 0;
-        //            url = "https://www.apple.com";
-        //        }
         
         NSString *type = [dic objectForKey:@"type"];
         NSString *title = [dic objectForKey:@"title"];

@@ -10,6 +10,7 @@
 #import "KFCConfig.h"
 #import "KFCScanNagationView.h"
 #import "WXApi.h"
+#import "KFCScanViewController.h"
 
 @interface KFCWebViewController ()<WKUIDelegate, WKNavigationDelegate,WKScriptMessageHandler>
 
@@ -87,43 +88,63 @@
     NSString *scheme = [URL scheme];
     
     if ([scheme isEqualToString:@"kc2018"]) {
-//        [[UIApplication sharedApplication] openURL:URL];
         
-//        kc2018://share?type=0&url=https://www.apple.com&thumb=http://www.apple.com/apple.png&title=标题
-        
-        NSMutableDictionary *dic = [self getURLParametersWithUrl:URL];
-        
-        NSLog(@"NSMutableDictionary  ==  %@", dic);
-        
-        NSString *type = [dic objectForKey:@"type"];
-        NSString *title = [dic objectForKey:@"title"];
-        NSString *thumb = [dic objectForKey:@"thumb"];
-        NSString *url = [dic objectForKey:@"url"];
-        
-        if(![WXApi isWXAppInstalled]) {
-            //            [KFCProgressHUD showWithString:@"未检测到分享源" inView:self.view];
-            return;
-        }
-        
-        WXMediaMessage *message = [WXMediaMessage message];
-        message.title = title;
-        [message setThumbImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:thumb]]]];
-        
-        WXWebpageObject *ext = [WXWebpageObject object];
-        ext.webpageUrl = url;
-        message.mediaObject = ext;
-        
-        SendMessageToWXReq *req = [[SendMessageToWXReq alloc] init];
-        req.bText = NO;
-        req.message = message;
-        
-        if (type.intValue == 1) {
-            req.scene = WXSceneSession;      // 好友
+        if ([URL.host isEqualToString:@"scan"]) {
+            UINavigationController *nav = (UINavigationController *)[UIApplication sharedApplication].keyWindow.rootViewController;
+            
+            for (UIViewController *vc in nav.viewControllers) {
+                
+                if ([vc isKindOfClass:[KFCScanViewController class]]) {
+                    [nav popToViewController:vc animated:YES];
+                    decisionHandler(WKNavigationActionPolicyAllow);
+                    return;
+                }
+            }
+            
+            KFCScanViewController *viewController = [[KFCScanViewController alloc] init];
+            
+            [nav pushViewController:viewController animated:YES];
+            
         }else{
-            req.scene = WXSceneTimeline;      // 朋友圈
+            
+            //        [[UIApplication sharedApplication] openURL:URL];
+            
+            //        kc2018://share?type=0&url=https://www.apple.com&thumb=http://www.apple.com/apple.png&title=标题
+            
+            NSMutableDictionary *dic = [self getURLParametersWithUrl:URL];
+            
+            NSLog(@"NSMutableDictionary  ==  %@", dic);
+            
+            NSString *type = [dic objectForKey:@"type"];
+            NSString *title = [dic objectForKey:@"title"];
+            NSString *thumb = [dic objectForKey:@"thumb"];
+            NSString *url = [dic objectForKey:@"url"];
+            
+            if(![WXApi isWXAppInstalled]) {
+                //            [KFCProgressHUD showWithString:@"未检测到分享源" inView:self.view];
+                return;
+            }
+            
+            WXMediaMessage *message = [WXMediaMessage message];
+            message.title = title;
+            [message setThumbImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:thumb]]]];
+            
+            WXWebpageObject *ext = [WXWebpageObject object];
+            ext.webpageUrl = url;
+            message.mediaObject = ext;
+            
+            SendMessageToWXReq *req = [[SendMessageToWXReq alloc] init];
+            req.bText = NO;
+            req.message = message;
+            
+            if (type.intValue == 1) {
+                req.scene = WXSceneSession;      // 好友
+            }else{
+                req.scene = WXSceneTimeline;      // 朋友圈
+            }
+            
+            [WXApi sendReq:req];
         }
-        
-        [WXApi sendReq:req];
         
     }else{
     
