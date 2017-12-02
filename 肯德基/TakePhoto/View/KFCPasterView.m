@@ -254,6 +254,7 @@
         }
     }
     
+    
         [cell.coverImageView sd_setImageWithURL:[NSURL URLWithString:stampsModel.thumb]];
     
     [cell.coverImageView setImageWithURL:[NSURL URLWithString:stampsModel.thumb] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
