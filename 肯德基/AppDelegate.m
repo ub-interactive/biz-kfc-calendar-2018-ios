@@ -72,6 +72,13 @@ NSString * key = @"VoTEQlrcSv7tiCtztHakUFRWweG2aU5I6I7I0jLBojTvdR6tr48GjRtujGUV9
 }
 
 
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options {
+    
+    return [WXApi handleOpenURL:url delegate:self];
+    return YES;
+}
+
+
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
     //跳转到URL scheme中配置的地址
     return [WXApi handleOpenURL:url delegate:self];
@@ -107,6 +114,8 @@ NSString * key = @"VoTEQlrcSv7tiCtztHakUFRWweG2aU5I6I7I0jLBojTvdR6tr48GjRtujGUV9
         
     }else if ([url.host isEqualToString:@"share"]){
         
+        return;
+        
 //        kc2018://share?type=0&url=https://www.apple.com&thumb=http://www.apple.com/apple.png&title=标题
         
         NSMutableDictionary *dic = [self getURLParametersWithUrl:url];
@@ -132,8 +141,7 @@ NSString * key = @"VoTEQlrcSv7tiCtztHakUFRWweG2aU5I6I7I0jLBojTvdR6tr48GjRtujGUV9
         
         WXMediaMessage *message = [WXMediaMessage message];
         message.title = title;
-//        message.description = self.shareDescribe;
-//        [message setThumbImage:];
+        [message setThumbImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:thumb]]]];
         WXWebpageObject *ext = [WXWebpageObject object];
         ext.webpageUrl = url;
         message.mediaObject = ext;

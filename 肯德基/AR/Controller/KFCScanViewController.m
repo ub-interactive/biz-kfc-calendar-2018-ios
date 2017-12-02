@@ -169,7 +169,7 @@
                     style.alignment = NSTextAlignmentLeft;
                     
                     NSDictionary* textFontAttributes = @{NSFontAttributeName: [UIFont systemFontOfSize:14],
-                                                         NSForegroundColorAttributeName: UIColor.redColor,
+                                                         NSForegroundColorAttributeName: UIColor.blackColor,
                                                          NSParagraphStyleAttributeName:style
                                                          };
                     [attributedString addAttributes:textFontAttributes range:NSMakeRange(0, self.successModel.completionDescription.length)];
@@ -202,7 +202,7 @@
     style.alignment = NSTextAlignmentLeft;
     
     NSDictionary* textFontAttributes = @{NSFontAttributeName: [UIFont systemFontOfSize:14],
-                                         NSForegroundColorAttributeName: UIColor.redColor,
+                                         NSForegroundColorAttributeName: UIColor.blackColor,
                                          NSParagraphStyleAttributeName:style
                                          };
     
