@@ -151,7 +151,7 @@ void updateViewport() {
 }
 
 void render() {
-    glClearColor(1.f, 1.f, 1.f, 1.f);
+    glClearColor(0.f, 1.f, 1.f, 1.f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     if (videobg_renderer != nil) {
