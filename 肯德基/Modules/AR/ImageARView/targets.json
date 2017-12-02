@@ -1,16 +1,8 @@
 {
-    "images": [
-               {
-               "image": "argame.jpg",
-               "name": "argame"
-               },
-               {
-               "image": "idback.jpg",
-               "name": "20171218_belgium_ice_cream"
-               },
-               {
-               "image": "belgium_ice_cream_20171218.jpg",
-               "name": "belgium_ice_cream_20171218"
-               }
-               ]
+  "images": [
+    {
+      "image": "belgium_ice_cream_20171218.jpg",
+      "name": "belgium_ice_cream_20171218"
+    }
+  ]
 }

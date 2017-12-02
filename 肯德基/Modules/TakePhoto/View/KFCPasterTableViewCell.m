@@ -13,35 +13,35 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    
+
 //    self.coverImageView.layer.cornerRadius = 3;
 //    self.coverImageView.layer.masksToBounds = YES;
-    
+
 //    self.usedIcon.hidden = YES;
 //    self.usedBgView.hidden = YES;
-    
+
     self.loadingTitleLabel.hidden = YES;
     self.loadingProgressView.hidden = YES;
     self.loadingProgressView.transform = CGAffineTransformMakeScale(1.0f, 4.0f);
     self.loadingProgressView.layer.cornerRadius = 4;
     self.loadingProgressView.layer.masksToBounds = YES;
-    
+
 //    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handelTapImage:)];
-    
+
 //    [self addGestureRecognizer:tap];
-    
+
 }
 
--(void)prepareForReuse{
+- (void)prepareForReuse {
 
     [super prepareForReuse];
-    
+
 //    self.loadingTitleLabel.hidden = YES;
 //    self.loadingProgressView.hidden = YES;
-    
+
 }
 
--(void)handelTapImage:(UITapGestureRecognizer *)sender{
+- (void)handelTapImage:(UITapGestureRecognizer *)sender {
 
 //    if (self.cellLongPressedBlock) {
 //        self.cellLongPressedBlock(sender);
@@ -49,7 +49,7 @@
 }
 
 
--(UIButton *)tipsButton{
+- (UIButton *)tipsButton {
 
     if (!_tipsButton) {
         _tipsButton = [[UIButton alloc] initWithFrame:self.bounds];

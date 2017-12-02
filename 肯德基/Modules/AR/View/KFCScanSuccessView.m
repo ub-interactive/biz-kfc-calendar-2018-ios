@@ -11,25 +11,24 @@
 
 @implementation KFCScanSuccessView
 
--(void)awakeFromNib{
+- (void)awakeFromNib {
 
     [super awakeFromNib];
-    
+
     self.scanSuccessTipsView.layer.cornerRadius = 3;
     self.scanSuccessTipsView.layer.masksToBounds = YES;
-    
+
     self.scanSuccessTipsView.hidden = YES;
     self.scanSuccessImageView.hidden = YES;
-    
+
     self.indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     self.indicator.frame = CGRectMake(SCREEN_WIDTH / 2 - 50, SCREEN_HEIGHT / 2 - 50, 100, 100);
-    
+
     [self.indicator startAnimating];
     [self addSubview:self.indicator];
-    
-    
-}
 
+
+}
 
 
 @end

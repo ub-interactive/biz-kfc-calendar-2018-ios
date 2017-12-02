@@ -11,9 +11,9 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, WXApiDelegate>
 
-@property (strong, nonatomic) UIWindow *window;
+@property(strong, nonatomic) UIWindow *window;
 
-@property (strong, nonatomic) NSArray *taskKeyArray;
+@property(strong, nonatomic) NSArray *taskKeyArray;
 
 @end
 

@@ -30,7 +30,7 @@
 		184417061FBD399700198812 /* OpenGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 184416F71FBD399700198812 /* OpenGLView.m */; };
 		184417091FBD399700198812 /* ARVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 184416FA1FBD399700198812 /* ARVideo.m */; };
 		1844172B1FBD39F500198812 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1844170D1FBD39F500198812 /* ViewController.m */; };
-		1844172C1FBD39F500198812 /* KFCPasterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 184417121FBD39F500198812 /* KFCPasterModel.m */; };
+		1844172C1FBD39F500198812 /* KFCStampGroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 184417121FBD39F500198812 /* KFCStampGroupModel.m */; };
 		1844172D1FBD39F500198812 /* KFCStampsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 184417131FBD39F500198812 /* KFCStampsModel.m */; };
 		1844172E1FBD39F500198812 /* KFCEditImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 184417151FBD39F500198812 /* KFCEditImageView.m */; };
 		1844172F1FBD39F500198812 /* KFCPasterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 184417161FBD39F500198812 /* KFCPasterTableViewCell.m */; };
@@ -61,11 +61,8 @@
 		B2A2696D1FD2511700BC0823 /* NSObject+MJKeyValue.h in Sources */ = {isa = PBXBuildFile; fileRef = B2CDE4D71FA9651900D11D78 /* NSObject+MJKeyValue.h */; };
 		B2A2696E1FD2511700BC0823 /* NSObject+MJProperty.h in Sources */ = {isa = PBXBuildFile; fileRef = B2CDE4D91FA9651900D11D78 /* NSObject+MJProperty.h */; };
 		B2A7F3471FC85A220069F497 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2A7F3461FC85A220069F497 /* GoogleService-Info.plist */; };
-		B2CBF8641FCA63F5005BA26E /* KFCNewFeatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CBF8631FCA63F5005BA26E /* KFCNewFeatureViewController.m */; };
-		B2CBF8671FCA6407005BA26E /* KFCNewFeatureView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CBF8661FCA6407005BA26E /* KFCNewFeatureView.m */; };
-		B2CBF8691FCA6422005BA26E /* KFCNewFeatureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2CBF8681FCA6422005BA26E /* KFCNewFeatureView.xib */; };
-		B2CBF86B1FCA7478005BA26E /* newfeature_0.MP4 in Sources */ = {isa = PBXBuildFile; fileRef = B2CBF86A1FCA7285005BA26E /* newfeature_0.MP4 */; };
-		B2CBF86C1FCA7493005BA26E /* newfeature_0.MP4 in Resources */ = {isa = PBXBuildFile; fileRef = B2CBF86A1FCA7285005BA26E /* newfeature_0.MP4 */; };
+		B2CBF86B1FCA7478005BA26E /* feature.mp4 in Sources */ = {isa = PBXBuildFile; fileRef = B2CBF86A1FCA7285005BA26E /* feature.mp4 */; };
+		B2CBF86C1FCA7493005BA26E /* feature.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B2CBF86A1FCA7285005BA26E /* feature.mp4 */; };
 		B2CDE47B1FA8C22E00D11D78 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CDE47A1FA8C22E00D11D78 /* main.m */; };
 		B2CDE47E1FA8C22E00D11D78 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CDE47D1FA8C22E00D11D78 /* AppDelegate.m */; };
 		B2CDE4841FA8C22E00D11D78 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2CDE4821FA8C22E00D11D78 /* Main.storyboard */; };
@@ -134,6 +131,8 @@
 		B2D461A31FA996B400BACA55 /* WXApiObject.h in Sources */ = {isa = PBXBuildFile; fileRef = B2CDE55D1FA9658800D11D78 /* WXApiObject.h */; };
 		B2D461AF1FA996E700BACA55 /* KFCConfig.h in Sources */ = {isa = PBXBuildFile; fileRef = B2CDE49C1FA8D3F100D11D78 /* KFCConfig.h */; };
 		B2FDAC921FCFC59500815668 /* UIImageView+UIActivityIndicatorForSDWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = B2FDAC911FCFC59500815668 /* UIImageView+UIActivityIndicatorForSDWebImage.m */; };
+		F509E29A19DAF54D02B79C69 /* KFCFeatureView.m in Sources */ = {isa = PBXBuildFile; fileRef = F509E6E9FC21408243A57204 /* KFCFeatureView.m */; };
+		F509E718D4171BEF35CC9FB5 /* KFCFeatureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F509EB6460E3C630A0678418 /* KFCFeatureView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -171,8 +170,8 @@
 		1844170D1FBD39F500198812 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		1844170E1FBD39F500198812 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		184417101FBD39F500198812 /* KFCStampsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFCStampsModel.h; sourceTree = "<group>"; };
-		184417111FBD39F500198812 /* KFCPasterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFCPasterModel.h; sourceTree = "<group>"; };
-		184417121FBD39F500198812 /* KFCPasterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFCPasterModel.m; sourceTree = "<group>"; };
+		184417111FBD39F500198812 /* KFCStampGroupModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFCStampGroupModel.h; sourceTree = "<group>"; };
+		184417121FBD39F500198812 /* KFCStampGroupModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFCStampGroupModel.m; sourceTree = "<group>"; };
 		184417131FBD39F500198812 /* KFCStampsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFCStampsModel.m; sourceTree = "<group>"; };
 		184417151FBD39F500198812 /* KFCEditImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFCEditImageView.m; sourceTree = "<group>"; };
 		184417161FBD39F500198812 /* KFCPasterTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFCPasterTableViewCell.m; sourceTree = "<group>"; };
@@ -215,12 +214,7 @@
 		B279682F1FBFEAD8006E5FE4 /* KFCScanSuccessModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFCScanSuccessModel.h; sourceTree = "<group>"; };
 		B27968301FBFEAD8006E5FE4 /* KFCScanSuccessModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFCScanSuccessModel.m; sourceTree = "<group>"; };
 		B2A7F3461FC85A220069F497 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		B2CBF8621FCA63F5005BA26E /* KFCNewFeatureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFCNewFeatureViewController.h; sourceTree = "<group>"; };
-		B2CBF8631FCA63F5005BA26E /* KFCNewFeatureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFCNewFeatureViewController.m; sourceTree = "<group>"; };
-		B2CBF8651FCA6407005BA26E /* KFCNewFeatureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFCNewFeatureView.h; sourceTree = "<group>"; };
-		B2CBF8661FCA6407005BA26E /* KFCNewFeatureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFCNewFeatureView.m; sourceTree = "<group>"; };
-		B2CBF8681FCA6422005BA26E /* KFCNewFeatureView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KFCNewFeatureView.xib; sourceTree = "<group>"; };
-		B2CBF86A1FCA7285005BA26E /* newfeature_0.MP4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = newfeature_0.MP4; sourceTree = "<group>"; };
+		B2CBF86A1FCA7285005BA26E /* feature.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = feature.mp4; sourceTree = "<group>"; };
 		B2CDE4761FA8C22E00D11D78 /* 肯德基.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "肯德基.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2CDE47A1FA8C22E00D11D78 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B2CDE47C1FA8C22E00D11D78 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -344,6 +338,9 @@
 		B2FDAC901FCFC59500815668 /* UIImageView+UIActivityIndicatorForSDWebImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+UIActivityIndicatorForSDWebImage.h"; sourceTree = "<group>"; };
 		B2FDAC911FCFC59500815668 /* UIImageView+UIActivityIndicatorForSDWebImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+UIActivityIndicatorForSDWebImage.m"; sourceTree = "<group>"; };
 		D1EB75111B0439E35291D20D /* Pods-肯德基.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-肯德基.debug.xcconfig"; path = "Pods/Target Support Files/Pods-肯德基/Pods-肯德基.debug.xcconfig"; sourceTree = "<group>"; };
+		F509E3BD890DCEA00A6B12B5 /* KFCFeatureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFCFeatureView.h; sourceTree = "<group>"; };
+		F509E6E9FC21408243A57204 /* KFCFeatureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFCFeatureView.m; sourceTree = "<group>"; };
+		F509EB6460E3C630A0678418 /* KFCFeatureView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KFCFeatureView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -467,8 +464,8 @@
 		1844170F1FBD39F500198812 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				184417111FBD39F500198812 /* KFCPasterModel.h */,
-				184417121FBD39F500198812 /* KFCPasterModel.m */,
+				184417111FBD39F500198812 /* KFCStampGroupModel.h */,
+				184417121FBD39F500198812 /* KFCStampGroupModel.m */,
 				184417101FBD39F500198812 /* KFCStampsModel.h */,
 				184417131FBD39F500198812 /* KFCStampsModel.m */,
 			);
@@ -500,6 +497,9 @@
 				1844172A1FBD39F500198812 /* KFCOneMoreView.h */,
 				1844171D1FBD39F500198812 /* KFCOneMoreView.m */,
 				184417221FBD39F500198812 /* KFCOneMoreView.xib */,
+				F509E3BD890DCEA00A6B12B5 /* KFCFeatureView.h */,
+				F509EB6460E3C630A0678418 /* KFCFeatureView.xib */,
+				F509E6E9FC21408243A57204 /* KFCFeatureView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -528,34 +528,6 @@
 				B27968301FBFEAD8006E5FE4 /* KFCScanSuccessModel.m */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		B2CBF85E1FCA636D005BA26E /* NewFeature */ = {
-			isa = PBXGroup;
-			children = (
-				B2CBF85F1FCA636D005BA26E /* Controller */,
-				B2CBF8611FCA636D005BA26E /* View */,
-			);
-			path = NewFeature;
-			sourceTree = "<group>";
-		};
-		B2CBF85F1FCA636D005BA26E /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				B2CBF8621FCA63F5005BA26E /* KFCNewFeatureViewController.h */,
-				B2CBF8631FCA63F5005BA26E /* KFCNewFeatureViewController.m */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		B2CBF8611FCA636D005BA26E /* View */ = {
-			isa = PBXGroup;
-			children = (
-				B2CBF8651FCA6407005BA26E /* KFCNewFeatureView.h */,
-				B2CBF8661FCA6407005BA26E /* KFCNewFeatureView.m */,
-				B2CBF8681FCA6422005BA26E /* KFCNewFeatureView.xib */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		B2CDE46D1FA8C22E00D11D78 = {
@@ -804,7 +776,6 @@
 		F624272B1FD2FE2E00DB82FE /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				B2CBF85E1FCA636D005BA26E /* NewFeature */,
 				184416E21FBD399700198812 /* AR */,
 				1844170B1FBD39F500198812 /* TakePhoto */,
 			);
@@ -814,9 +785,9 @@
 		F624272C1FD2FEDD00DB82FE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				B2CBF86A1FCA7285005BA26E /* newfeature_0.MP4 */,
-				B2CDE4821FA8C22E00D11D78 /* Main.storyboard */,
+				B2CBF86A1FCA7285005BA26E /* feature.mp4 */,
 				B2CDE4851FA8C22E00D11D78 /* Assets.xcassets */,
+				B2CDE4821FA8C22E00D11D78 /* Main.storyboard */,
 				B2CDE4871FA8C22E00D11D78 /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
@@ -885,13 +856,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2CBF86C1FCA7493005BA26E /* newfeature_0.MP4 in Resources */,
+				B2CBF86C1FCA7493005BA26E /* feature.mp4 in Resources */,
 				184416FD1FBD399700198812 /* KFCScanNagationView.xib in Resources */,
 				B2CDE4891FA8C22E00D11D78 /* LaunchScreen.storyboard in Resources */,
 				B2CDE5141FA9653500D11D78 /* LICENSE in Resources */,
 				184417341FBD39F500198812 /* KFCPasterTableViewCell.xib in Resources */,
 				184417321FBD39F500198812 /* KFCReTakeView.xib in Resources */,
-				B2CBF8691FCA6422005BA26E /* KFCNewFeatureView.xib in Resources */,
 				B278D5411FD26850000C8FE9 /* belgium_ice_cream_20171218.jpg in Resources */,
 				184417031FBD399700198812 /* targets.json in Resources */,
 				180FDC0B1FBD6855002A0DDF /* KFCScanSuccessView.xib in Resources */,
@@ -905,6 +875,7 @@
 				B2CDE4DD1FA9651900D11D78 /* Info.plist in Resources */,
 				184417361FBD39F500198812 /* KFCShareView.xib in Resources */,
 				B2A7F3471FC85A220069F497 /* GoogleService-Info.plist in Resources */,
+				F509E718D4171BEF35CC9FB5 /* KFCFeatureView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -970,9 +941,8 @@
 				B2A2696C1FD2511700BC0823 /* NSObject+MJCoding.h in Sources */,
 				B2A2696D1FD2511700BC0823 /* NSObject+MJKeyValue.h in Sources */,
 				B2A2696E1FD2511700BC0823 /* NSObject+MJProperty.h in Sources */,
-				B2CBF86B1FCA7478005BA26E /* newfeature_0.MP4 in Sources */,
+				B2CBF86B1FCA7478005BA26E /* feature.mp4 in Sources */,
 				1844220C1FBD3D0C00198812 /* QRMenu.m in Sources */,
-				B2CBF8671FCA6407005BA26E /* KFCNewFeatureView.m in Sources */,
 				B2D461AF1FA996E700BACA55 /* KFCConfig.h in Sources */,
 				B2D461A31FA996B400BACA55 /* WXApiObject.h in Sources */,
 				B2D461A21FA996AF00BACA55 /* WXApi.h in Sources */,
@@ -990,7 +960,6 @@
 				184417371FBD39F500198812 /* KFCPasterView.m in Sources */,
 				B2CDE5191FA9653500D11D78 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				B2CDE4E31FA9651900D11D78 /* NSObject+MJClass.m in Sources */,
-				B2CBF8641FCA63F5005BA26E /* KFCNewFeatureViewController.m in Sources */,
 				B2CDE4E71FA9651900D11D78 /* NSString+MJExtension.m in Sources */,
 				1844173B1FBD39F500198812 /* KFCReTakeView.m in Sources */,
 				180FDC401FBD8FA3002A0DDF /* KFCWebViewController.m in Sources */,
@@ -1018,7 +987,7 @@
 				B2CDE4E21FA9651900D11D78 /* MJPropertyType.m in Sources */,
 				B2CDE54F1FA9655000D11D78 /* SDWebImageDownloaderOperation.m in Sources */,
 				B2CDE50F1FA9653500D11D78 /* AFNetworkReachabilityManager.m in Sources */,
-				1844172C1FBD39F500198812 /* KFCPasterModel.m in Sources */,
+				1844172C1FBD39F500198812 /* KFCStampGroupModel.m in Sources */,
 				B2CDE4E51FA9651900D11D78 /* NSObject+MJKeyValue.m in Sources */,
 				B2CDE4BA1FA954D700D11D78 /* UIView+Frame.m in Sources */,
 				B2CDE54E1FA9655000D11D78 /* SDWebImageDownloader.m in Sources */,
@@ -1053,6 +1022,7 @@
 				18C3C0AC1FB96C5B00634283 /* UIImage+Resize.m in Sources */,
 				184417331FBD39F500198812 /* KFCOneMoreView.m in Sources */,
 				1844220E1FBD3D0C00198812 /* QRView.m in Sources */,
+				F509E29A19DAF54D02B79C69 /* KFCFeatureView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

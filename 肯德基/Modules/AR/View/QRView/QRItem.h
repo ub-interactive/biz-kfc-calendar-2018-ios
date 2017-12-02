@@ -17,7 +17,7 @@ typedef NS_ENUM(NSUInteger, QRItemType) {
 
 @interface QRItem : UIButton
 
-@property (nonatomic, assign) QRItemType type;
+@property(nonatomic, assign) QRItemType type;
 
 - (instancetype)initWithFrame:(CGRect)frame
                        titile:(NSString *)titile;

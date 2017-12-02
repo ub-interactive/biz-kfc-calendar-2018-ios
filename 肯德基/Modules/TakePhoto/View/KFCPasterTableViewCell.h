@@ -13,21 +13,21 @@ static NSString *KFCPasterTableViewCellReusedId = @"KFCPasterTableViewCell";
 
 @interface KFCPasterTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UIView *coverImageBgView;
+@property(weak, nonatomic) IBOutlet UIView *coverImageBgView;
 
-@property (weak, nonatomic) IBOutlet UIImageView *coverImageView;
+@property(weak, nonatomic) IBOutlet UIImageView *coverImageView;
 
 //@property (weak, nonatomic) IBOutlet UIImageView *usedIcon;
 
 //@property (weak, nonatomic) IBOutlet UIView *usedBgView;
 
-@property (weak, nonatomic) IBOutlet UILabel *loadingTitleLabel;
+@property(weak, nonatomic) IBOutlet UILabel *loadingTitleLabel;
 
-@property (weak, nonatomic) IBOutlet UIProgressView *loadingProgressView;
+@property(weak, nonatomic) IBOutlet UIProgressView *loadingProgressView;
 
 
-@property(nonatomic,strong) KFCStampsModel *stampsModel;
+@property(nonatomic, strong) KFCStampsModel *stampsModel;
 
-@property(nonatomic,strong) UIButton *tipsButton;
+@property(nonatomic, strong) UIButton *tipsButton;
 
 @end

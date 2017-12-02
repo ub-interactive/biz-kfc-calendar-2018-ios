@@ -10,25 +10,25 @@
 
 @protocol KFCReTakeViewButtonClickDelegate <NSObject>
 
--(void)reTakeViewButtonClicked:(NSInteger)buttonTag;
+- (void)retakeViewButtonClicked:(NSInteger)buttonTag;
 
 @end
 
 @interface KFCReTakeView : UIView
 
 
-@property (weak, nonatomic) IBOutlet UIButton *pasterButton;
+@property(weak, nonatomic) IBOutlet UIButton *pasterButton;
 
 //@property (weak, nonatomic) IBOutlet UIView *retakeBgView;
 
-@property(nonatomic,weak) IBOutlet UIButton *retakeButton;
+@property(nonatomic, weak) IBOutlet UIButton *retakeButton;
 
 //@property (weak, nonatomic) IBOutlet UIView *saveBgView;
-@property(nonatomic,weak) IBOutlet UIButton *saveButton;
+@property(nonatomic, weak) IBOutlet UIButton *saveButton;
 
-@property (weak, nonatomic) IBOutlet UIImageView *secondStepImageView;
+@property(weak, nonatomic) IBOutlet UIImageView *secondStepImageView;
 
-@property(nonatomic,weak) id<KFCReTakeViewButtonClickDelegate> delegate;
+@property(nonatomic, weak) id <KFCReTakeViewButtonClickDelegate> delegate;
 
 
 @end

@@ -11,28 +11,21 @@
 @implementation KFCShareView
 
 
--(void)awakeFromNib{
+- (void)awakeFromNib {
 
     [super awakeFromNib];
-    
-    
-    
-    
-    
-    
-    
-    
+
+
 }
 
 
 - (IBAction)weichatFriendButtonClicked:(UIButton *)sender {
-    
+
     if ([self.delegate respondsToSelector:@selector(shareViewButtonClicked:)]) {
         [self.delegate shareViewButtonClicked:sender];
     }
-    
-    
-    
+
+
 }
 
 

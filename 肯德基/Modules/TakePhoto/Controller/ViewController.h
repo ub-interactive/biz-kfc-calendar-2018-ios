@@ -10,18 +10,17 @@
 
 @interface ViewController : UIViewController
 
-@property(nonatomic,weak) IBOutlet UIButton *takePhotoButton;
+@property(weak, nonatomic) IBOutlet UIButton *scanButton;
 
-@property(nonatomic,weak) IBOutlet UIButton *addPicButton;
+@property(nonatomic, weak) IBOutlet UIButton *takePhotoButton;
 
-@property(nonatomic,weak) IBOutlet UIButton *chageCameraButton;
+@property(nonatomic, weak) IBOutlet UIButton *switchCameraButton;
 
-@property(nonatomic,weak) IBOutlet UIButton *albumButton;
+@property(nonatomic, weak) IBOutlet UIButton *importFromAlbumButton;
 
-@property (weak, nonatomic) IBOutlet UIButton *scanButton;
-@property (weak, nonatomic) IBOutlet UIImageView *firstStepImageView;
+@property(weak, nonatomic) IBOutlet UIImageView *firstStepTipImageView;
 
-@property(nonatomic,strong) NSMutableArray *data;
+@property(nonatomic, strong) NSMutableArray *data;
 
 @end
 

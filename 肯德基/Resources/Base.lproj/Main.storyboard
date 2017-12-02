@@ -33,14 +33,14 @@
                                 <rect key="frame" x="301" y="104" width="44" height="54"/>
                                 <state key="normal" image="chageCamera"/>
                                 <connections>
-                                    <action selector="changeCameraButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YcA-sZ-bOU"/>
+                                    <action selector="switchCameraButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YcA-sZ-bOU"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5sZ-At-xNI">
                                 <rect key="frame" x="301" y="173" width="44" height="54"/>
                                 <state key="normal" image="album"/>
                                 <connections>
-                                    <action selector="albumButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="d2P-hs-7b4"/>
+                                    <action selector="importFromAlbumButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="d2P-hs-7b4"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pIs-Pi-LyF" userLabel="scanButton">
@@ -55,7 +55,7 @@
                                 <rect key="frame" x="170.5" y="501" width="114" height="33"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="NhC-jo-iYS" firstAttribute="top" secondItem="pIs-Pi-LyF" secondAttribute="top" id="26O-dz-DfF"/>
                             <constraint firstItem="b13-Jj-fql" firstAttribute="top" secondItem="20L-Jb-Hyp" secondAttribute="bottom" constant="8" id="5Yr-WV-Ouo"/>
@@ -71,10 +71,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="IBm-Zp-3Lu"/>
                     <connections>
-                        <outlet property="albumButton" destination="5sZ-At-xNI" id="hwF-Jt-WHa"/>
-                        <outlet property="chageCameraButton" destination="NhC-jo-iYS" id="dgA-BA-Ir3"/>
-                        <outlet property="firstStepImageView" destination="20L-Jb-Hyp" id="dxl-9T-ehd"/>
+                        <outlet property="firstStepTipImageView" destination="20L-Jb-Hyp" id="dxl-9T-ehd"/>
+                        <outlet property="importFromAlbumButton" destination="5sZ-At-xNI" id="hwF-Jt-WHa"/>
                         <outlet property="scanButton" destination="pIs-Pi-LyF" id="Ivf-KK-tAx"/>
+                        <outlet property="switchCameraButton" destination="NhC-jo-iYS" id="dgA-BA-Ir3"/>
                         <outlet property="takePhotoButton" destination="b13-Jj-fql" id="bef-sy-tw9"/>
                     </connections>
                 </viewController>
@@ -82,10 +82,10 @@
             </objects>
             <point key="canvasLocation" x="264.80000000000001" y="116.49175412293854"/>
         </scene>
-        <!--New Feature View Controller-->
+        <!--Feature View Controller-->
         <scene sceneID="aMW-wd-cAk">
             <objects>
-                <viewController storyboardIdentifier="KFCNewFeatureViewController" id="B9l-Cw-9rZ" customClass="KFCNewFeatureViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="KFCNewFeatureViewController" id="B9l-Cw-9rZ" customClass="KFCFeatureViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1pn-QQ-7cU"/>
                         <viewControllerLayoutGuide type="bottom" id="NG6-SM-BlQ"/>
@@ -107,7 +107,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="newfeatureScrollView" destination="lFm-1i-Iis" id="Ai6-ZU-2rj"/>
+                        <outlet property="featureScrollView" destination="lFm-1i-Iis" id="Ai6-ZU-2rj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MAi-DP-Sib" userLabel="First Responder" sceneMemberID="firstResponder"/>

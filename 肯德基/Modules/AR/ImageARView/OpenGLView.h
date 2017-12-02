@@ -11,8 +11,11 @@
 @interface OpenGLView : GLKView
 
 - (void)start;
+
 - (void)stop;
+
 - (void)resize:(CGRect)frame orientation:(UIInterfaceOrientation)orientation;
+
 - (void)setOrientation:(UIInterfaceOrientation)orientation;
 
 @end

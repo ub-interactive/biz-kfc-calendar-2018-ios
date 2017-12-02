@@ -14,36 +14,32 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
- 
+
     self.oneMoreButton.layer.cornerRadius = 3;
     self.oneMoreButton.layer.masksToBounds = YES;
-    
+
 }
 
 // 分享
 - (IBAction)shareButtonClicked:(UIButton *)sender {
-    
-    
 
-    
-    
-    
+
 }
 
 // 再拍一张  && share
 - (IBAction)oneMoreButtonClicked:(UIButton *)sender {
-    
+
     if (sender.tag == 10) {         // 分享  分享按钮的tag是10
         self.shareTipsImageView.hidden = YES;
         [[NSUserDefaults standardUserDefaults] setObject:@"1" forKey:KFC_USER_DEFAULT_FIRST_SHARE];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
-    
+
     if ([self.delegate respondsToSelector:@selector(oneMoreViewButtonClicked:)]) {
-        
+
         [self.delegate oneMoreViewButtonClicked:sender];
     }
-    
+
 }
 
 /*

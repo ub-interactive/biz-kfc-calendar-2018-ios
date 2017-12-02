@@ -14,16 +14,13 @@
 //@property(nonatomic,assign) int isAvailable;
 
 // 图片url
-@property(nonatomic,copy) NSString *completionResource;
+@property(nonatomic, copy) NSString *completionResource;
 
 // 提示框中的文字
-@property(nonatomic,copy) NSString *completionDescription;
+@property(nonatomic, copy) NSString *completionDescription;
 
 // 跳转的链接
-@property(nonatomic,copy) NSString *completionUrl;
-
-
-
+@property(nonatomic, copy) NSString *completionUrl;
 
 
 @end

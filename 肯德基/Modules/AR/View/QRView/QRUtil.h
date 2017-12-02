@@ -14,5 +14,5 @@
 
 + (CGRect)screenBounds;
 
-+ (AVCaptureVideoOrientation) videoOrientationFromCurrentDeviceOrientation;
++ (AVCaptureVideoOrientation)videoOrientationFromCurrentDeviceOrientation;
 @end

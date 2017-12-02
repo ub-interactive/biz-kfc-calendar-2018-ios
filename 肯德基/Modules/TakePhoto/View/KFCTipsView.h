@@ -10,6 +10,6 @@
 
 @interface KFCTipsView : UIView
 
-@property (nonatomic, copy) NSString *titleStr;
+@property(nonatomic, copy) NSString *titleStr;
 
 @end

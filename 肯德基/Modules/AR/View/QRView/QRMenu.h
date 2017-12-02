@@ -14,7 +14,7 @@ typedef void(^QRMenuDidSelectedBlock)(QRItem *item);
 
 @interface QRMenu : UIView
 
-@property (nonatomic, copy) QRMenuDidSelectedBlock didSelectedBlock;
+@property(nonatomic, copy) QRMenuDidSelectedBlock didSelectedBlock;
 
 - (instancetype)initWithFrame:(CGRect)frame;
 @end

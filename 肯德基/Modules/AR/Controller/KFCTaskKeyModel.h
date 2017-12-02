@@ -10,9 +10,9 @@
 
 @interface KFCTaskKeyModel : NSObject
 
-@property(nonatomic,copy) NSString *taskKey;
+@property(nonatomic, copy) NSString *taskKey;
 
-@property(nonatomic,assign) int completed;
+@property(nonatomic, assign) int completed;
 
 
 @end

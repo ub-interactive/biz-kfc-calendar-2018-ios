@@ -17,32 +17,32 @@
 @end
 
 
-@interface QRView : UIView<UITextFieldDelegate>
+@interface QRView : UIView <UITextFieldDelegate>
 
-@property (nonatomic, strong) UITextField *inputTextField;
-@property (nonatomic, strong) JXQRButton *backQRButton;
-@property (nonatomic, strong) JXQRButton *sureButton;
+@property(nonatomic, strong) UITextField *inputTextField;
+@property(nonatomic, strong) JXQRButton *backQRButton;
+@property(nonatomic, strong) JXQRButton *sureButton;
 
-@property(nonatomic,strong) UIButton *scanImageButton;
-@property(nonatomic,strong) UIButton *scanObjectButton;
+@property(nonatomic, strong) UIButton *scanImageButton;
+@property(nonatomic, strong) UIButton *scanObjectButton;
 
 /*
     任务列表按钮
  */
-@property(nonatomic,strong) UIButton *missionButton;
+@property(nonatomic, strong) UIButton *missionButton;
 
-@property (nonatomic, copy) void(^qrViewSureButtonClickedBlock)(NSString *codeStr);
+@property(nonatomic, copy) void (^qrViewSureButtonClickedBlock)(NSString *codeStr);
 
-@property (nonatomic, copy) void(^qrViewInputButtonClickedBlock)(BOOL isInput);
+@property(nonatomic, copy) void (^qrViewInputButtonClickedBlock)(BOOL isInput);
 
-@property (nonatomic, weak) id<QRViewDelegate> delegate;
+@property(nonatomic, weak) id <QRViewDelegate> delegate;
 /**
  *  透明的区域
  */
-@property (nonatomic, assign) CGSize transparentArea;
+@property(nonatomic, assign) CGSize transparentArea;
 
-@property (nonatomic, strong) NSTimer *animateTimer;
+@property(nonatomic, strong) NSTimer *animateTimer;
 
-@property (nonatomic, copy) void(^qrViewScanButtonClickedBlock)(NSInteger tag);
+@property(nonatomic, copy) void (^qrViewScanButtonClickedBlock)(NSInteger tag);
 
 @end

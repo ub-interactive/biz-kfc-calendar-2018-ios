@@ -12,6 +12,4 @@
 @interface KFCScanViewController : GLKViewController
 
 
-
-
 @end

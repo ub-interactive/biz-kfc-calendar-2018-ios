@@ -11,31 +11,28 @@
 @implementation KFCScanNagationView
 
 
--(void)awakeFromNib{
+- (void)awakeFromNib {
 
     [super awakeFromNib];
-    
+
 //    self.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.3];
-    
+
 //    self.backgroundColor = [UIColor redColor];
-    
-    
+
+
 //    UIVisualEffectView *visualEffectView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
 //    visualEffectView.frame = self.bounds;
-    
+
 //    [self addSubview:visualEffectView];
-    
-    
-    
+
+
+
     self.closeButton.hidden = YES;
 }
 
 - (IBAction)backButtonClick:(id)sender {
-    
-    
-    
-    
-    
+
+
 }
 
 

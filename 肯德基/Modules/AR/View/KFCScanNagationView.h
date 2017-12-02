@@ -11,13 +11,12 @@
 @interface KFCScanNagationView : UIView
 
 //  返回
-@property (weak, nonatomic) IBOutlet UIButton *backButton;
+@property(weak, nonatomic) IBOutlet UIButton *backButton;
 
 //  关闭
-@property (weak, nonatomic) IBOutlet UIButton *closeButton;
+@property(weak, nonatomic) IBOutlet UIButton *closeButton;
 
-@property (weak, nonatomic) IBOutlet UIVisualEffectView *visualEffectView;
-
+@property(weak, nonatomic) IBOutlet UIVisualEffectView *visualEffectView;
 
 
 @end

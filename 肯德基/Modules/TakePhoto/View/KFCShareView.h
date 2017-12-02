@@ -13,7 +13,7 @@
 
 @required
 
--(void)shareViewButtonClicked:(UIButton *)button;
+- (void)shareViewButtonClicked:(UIButton *)button;
 
 
 @end
@@ -21,14 +21,14 @@
 
 @interface KFCShareView : UIView
 
-@property (weak, nonatomic) IBOutlet UIButton *wechatFriend;
+@property(weak, nonatomic) IBOutlet UIButton *wechatFriend;
 
-@property (weak, nonatomic) IBOutlet UIButton *wechatCircle;
+@property(weak, nonatomic) IBOutlet UIButton *wechatCircle;
 
 
-@property (weak, nonatomic) IBOutlet UIButton *cancleButton;
+@property(weak, nonatomic) IBOutlet UIButton *cancleButton;
 
-@property(nonatomic,weak) id<KFCShareViewButtonClickDelegate> delegate;
+@property(nonatomic, weak) id <KFCShareViewButtonClickDelegate> delegate;
 
 
 @end

@@ -10,17 +10,17 @@
 
 @interface KFCScanSuccessView : UIView
 
-@property (weak, nonatomic) IBOutlet UIImageView *scanSuccessImageView;
+@property(weak, nonatomic) IBOutlet UIImageView *scanSuccessImageView;
 
-@property (weak, nonatomic) IBOutlet UIButton *toSeeButton;
+@property(weak, nonatomic) IBOutlet UIButton *toSeeButton;
 
-@property (weak, nonatomic) IBOutlet UIView *scanSuccessTipsView;
+@property(weak, nonatomic) IBOutlet UIView *scanSuccessTipsView;
 
-@property (weak, nonatomic) IBOutlet UILabel *scanSuccessNoteLabel;
+@property(weak, nonatomic) IBOutlet UILabel *scanSuccessNoteLabel;
 
-@property(nonatomic,strong) UIActivityIndicatorView *indicator;
+@property(nonatomic, strong) UIActivityIndicatorView *indicator;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *scanSucessTipsViewHeightConstraint;
+@property(weak, nonatomic) IBOutlet NSLayoutConstraint *scanSucessTipsViewHeightConstraint;
 
 
 @end

@@ -12,24 +12,21 @@
 @implementation KFCReTakeView
 
 
--(void)awakeFromNib{
+- (void)awakeFromNib {
 
     [super awakeFromNib];
 
-    
-    
-    
+
 }
 
 
--(IBAction)ButtonClicked:(UIButton *)sender{
-    
-    if ([self.delegate respondsToSelector:@selector(reTakeViewButtonClicked:)]) {
-        [self.delegate reTakeViewButtonClicked:sender.tag];
+- (IBAction)ButtonClicked:(UIButton *)sender {
+
+    if ([self.delegate respondsToSelector:@selector(retakeViewButtonClicked:)]) {
+        [self.delegate retakeViewButtonClicked:sender.tag];
     }
-    
-    
-    
+
+
 }
 
 

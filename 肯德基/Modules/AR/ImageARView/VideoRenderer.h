@@ -12,7 +12,9 @@
 @interface VideoRenderer : NSObject
 
 - (void)init_;
+
 - (void)render:(easyar_Matrix44F *)projectionMatrix cameraview:(easyar_Matrix44F *)cameraview size:(easyar_Vec2F *)size;
+
 - (unsigned int)texid;
 
 @end

@@ -11,12 +11,19 @@
 @interface ARVideo : NSObject
 
 - (void)openVideoFile:(NSString *)path texid:(int)texid;
+
 - (void)openTransparentVideoFile:(NSString *)path texid:(int)texid;
+
 - (void)openStreamingVideo:(NSString *)url texid:(int)texid;
+
 - (void)setVideoStatus:(int)status;
+
 - (void)onFound;
+
 - (void)onLost;
+
 - (void)update;
+
 - (bool)isRenderTextureAvailable;
 
 @end

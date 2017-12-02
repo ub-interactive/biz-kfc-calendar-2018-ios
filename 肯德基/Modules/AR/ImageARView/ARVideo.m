@@ -10,55 +10,50 @@
 #import <easyar/player.oc.h>
 
 @implementation ARVideo {
-    easyar_VideoPlayer * player;
+    easyar_VideoPlayer *player;
     BOOL prepared;
     BOOL found;
-    NSString * path_;
+    NSString *path_;
 }
 
-- (instancetype)init
-{
+- (instancetype)init {
     player = [easyar_VideoPlayer create];
     prepared = NO;
     found = NO;
     return self;
 }
 
-- (void)openVideoFile:(NSString *)path texid:(int)texid
-{
+- (void)openVideoFile:(NSString *)path texid:(int)texid {
     self->path_ = path;
-    [player setRenderTexture:(void *)(texid)];
+    [player setRenderTexture:(void *) (texid)];
     [player setVideoType:easyar_VideoType_Normal];
-    __weak ARVideo * weak_self = self;
+    __weak ARVideo *weak_self = self;
     [player open:path_ storageType:easyar_StorageType_Assets callback:^(easyar_VideoStatus status) {
         [weak_self setVideoStatus:status];
     }];
 }
 
-- (void)openTransparentVideoFile:(NSString *)path texid:(int)texid
-{
+- (void)openTransparentVideoFile:(NSString *)path texid:(int)texid {
     self->path_ = path;
-    [player setRenderTexture:(void *)(texid)];
+    [player setRenderTexture:(void *) (texid)];
     [player setVideoType:easyar_VideoType_TransparentSideBySide];
-    __weak ARVideo * weak_self = self;
+    __weak ARVideo *weak_self = self;
     [player open:path_ storageType:easyar_StorageType_Assets callback:^(easyar_VideoStatus status) {
         [weak_self setVideoStatus:status];
     }];
 }
 
-- (void)openStreamingVideo:(NSString *)url texid:(int)texid
-{
+- (void)openStreamingVideo:(NSString *)url texid:(int)texid {
     self->path_ = url;
-    [player setRenderTexture:(void *)(texid)];
+    [player setRenderTexture:(void *) (texid)];
     [player setVideoType:easyar_VideoType_Normal];
-    __weak ARVideo * weak_self = self;
+    __weak ARVideo *weak_self = self;
     [player open:url storageType:easyar_StorageType_Absolute callback:^(easyar_VideoStatus status) {
         [weak_self setVideoStatus:status];
     }];
 }
 
-- (void)setVideoStatus:(int)status
-{
+- (void)setVideoStatus:(int)status {
     NSLog(@"video: %@ (%d)", path_, status);
     if (status == easyar_VideoStatus_Ready) {
         prepared = YES;
@@ -72,29 +67,25 @@
     }
 }
 
-- (void)onFound
-{
+- (void)onFound {
     found = YES;
     if (prepared) {
         [player play];
     }
 }
 
-- (void)onLost
-{
+- (void)onLost {
     found = NO;
     if (prepared) {
         [player pause];
     }
 }
 
-- (void)update
-{
+- (void)update {
     [player updateFrame];
 }
 
-- (bool)isRenderTextureAvailable
-{
+- (bool)isRenderTextureAvailable {
     return [player isRenderTextureAvailable];
 }
 

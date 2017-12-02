@@ -13,7 +13,7 @@
 
 @required
 
--(void)oneMoreViewButtonClicked:(UIButton *)button;
+- (void)oneMoreViewButtonClicked:(UIButton *)button;
 
 
 @end
@@ -21,14 +21,14 @@
 @interface KFCOneMoreView : UIView
 
 
-@property (weak, nonatomic) IBOutlet UIImageView *shareTipsImageView;
+@property(weak, nonatomic) IBOutlet UIImageView *shareTipsImageView;
 
-@property (weak, nonatomic) IBOutlet UIButton *shareButton;
-
-
-@property (weak, nonatomic) IBOutlet UIButton *oneMoreButton;
+@property(weak, nonatomic) IBOutlet UIButton *shareButton;
 
 
-@property(nonatomic,weak) id<KFCOneMoreViewButtonClickDelegate> delegate;
+@property(weak, nonatomic) IBOutlet UIButton *oneMoreButton;
+
+
+@property(nonatomic, weak) id <KFCOneMoreViewButtonClickDelegate> delegate;
 
 @end

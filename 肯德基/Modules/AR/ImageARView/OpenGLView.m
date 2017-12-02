@@ -7,14 +7,12 @@
 //=============================================================================================================================
 
 #import "OpenGLView.h"
-#import "AppDelegate.h"
 
 #import "helloar.h"
 
 #import <easyar/engine.oc.h>
 
-@interface OpenGLView ()
-{
+@interface OpenGLView () {
 }
 
 @end
@@ -23,8 +21,7 @@
     BOOL initialized;
 }
 
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     self->initialized = false;
     self.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
@@ -35,25 +32,21 @@
     return self;
 }
 
-- (void)dealloc
-{
+- (void)dealloc {
 }
 
-- (void)start
-{
+- (void)start {
     if (initialize()) {
         start();
     }
 }
 
-- (void)stop
-{
+- (void)stop {
     stop();
     finalize();
 }
 
-- (void)resize:(CGRect)frame orientation:(UIInterfaceOrientation)orientation
-{
+- (void)resize:(CGRect)frame orientation:(UIInterfaceOrientation)orientation {
     float scale;
     if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0f) {
 #pragma clang diagnostic push
@@ -67,8 +60,7 @@
     resizeGL(frame.size.width * scale, frame.size.height * scale);
 }
 
-- (void)drawRect:(CGRect)rect
-{
+- (void)drawRect:(CGRect)rect {
     if (!initialized) {
         initGL();
         initialized = YES;
@@ -76,10 +68,8 @@
     render();
 }
 
-- (void)setOrientation:(UIInterfaceOrientation)orientation
-{
-    switch (orientation)
-    {
+- (void)setOrientation:(UIInterfaceOrientation)orientation {
+    switch (orientation) {
         case UIInterfaceOrientationPortrait:
             [easyar_Engine setRotation:270];
             break;

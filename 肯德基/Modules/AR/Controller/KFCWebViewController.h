@@ -11,11 +11,11 @@
 
 @interface KFCWebViewController : UIViewController
 
-@property (strong, nonatomic) WKWebView *webview;
+@property(strong, nonatomic) WKWebView *webview;
 
 
-@property (nonatomic, copy) NSString *urlStr;
+@property(nonatomic, copy) NSString *urlStr;
 
-@property (nonatomic, assign) BOOL isFromMisson;
+@property(nonatomic, assign) BOOL isFromMisson;
 
 @end

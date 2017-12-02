@@ -11,7 +11,6 @@
 #import "VideoRenderer.h"
 #import "ARVideo.h"
 
-#import <easyar/types.oc.h>
 #import <easyar/camera.oc.h>
 #import <easyar/frame.oc.h>
 #import <easyar/framestreamer.oc.h>
@@ -23,71 +22,67 @@
 
 #import "KFCConfig.h"
 
-easyar_CameraDevice * camera = nil;
-easyar_CameraFrameStreamer * streamer = nil;
-NSMutableArray<easyar_ImageTracker *> * trackers = nil;
-easyar_Renderer * videobg_renderer = nil;
-NSMutableArray<VideoRenderer *> * video_renderers = nil;
-VideoRenderer * current_video_renderer = nil;
+easyar_CameraDevice *camera = nil;
+easyar_CameraFrameStreamer *streamer = nil;
+NSMutableArray<easyar_ImageTracker *> *trackers = nil;
+easyar_Renderer *videobg_renderer = nil;
+NSMutableArray<VideoRenderer *> *video_renderers = nil;
+VideoRenderer *current_video_renderer = nil;
 int tracked_target = 0;
 int active_target = 0;
-ARVideo * video = nil;
+ARVideo *video = nil;
 bool viewport_changed = false;
 int view_size[] = {0, 0};
 int view_rotation = 0;
 int viewport[] = {0, 0, 1280, 720};
 
-void loadFromImage(easyar_ImageTracker * tracker, NSString * path)
-{
-    easyar_ImageTarget * target = [easyar_ImageTarget create];
-    NSString * name = [path substringToIndex:[path rangeOfString:@"."].location];
-    NSString * jstr = [@[@"{\n"
-        "  \"images\" :\n"
-        "  [\n"
-        "    {\n"
-        "      \"image\" : \"", path, @"\",\n"
-        "      \"name\" : \"", name, @"\"\n"
-        "    }\n"
-        "  ]\n"
-        "}"] componentsJoinedByString:@""];
+void loadFromImage(easyar_ImageTracker *tracker, NSString *path) {
+    easyar_ImageTarget *target = [easyar_ImageTarget create];
+    NSString *name = [path substringToIndex:[path rangeOfString:@"."].location];
+    NSString *jstr = [@[@"{\n"
+            "  \"images\" :\n"
+            "  [\n"
+            "    {\n"
+            "      \"image\" : \"", path, @"\",\n"
+            "      \"name\" : \"", name, @"\"\n"
+            "    }\n"
+            "  ]\n"
+            "}"] componentsJoinedByString:@""];
     [target setup:jstr storageType:(easyar_StorageType_Assets | easyar_StorageType_Json) name:@""];
-    [tracker loadTarget:target callback:^(easyar_Target * target, bool status) {
+    [tracker loadTarget:target callback:^(easyar_Target *target, bool status) {
         NSLog(@"111111load target (%d): %@ (%d)", status, [target name], [target runtimeID]);
     }];
 }
 
-void loadAllFromJsonFile(easyar_ImageTracker * tracker, NSString * path)
-{
-    for (easyar_ImageTarget * target in [easyar_ImageTarget setupAll:path storageType:easyar_StorageType_Assets]) {
-        [tracker loadTarget:target callback:^(easyar_Target * target, bool status) {
+void loadAllFromJsonFile(easyar_ImageTracker *tracker, NSString *path) {
+    for (easyar_ImageTarget *target in [easyar_ImageTarget setupAll:path storageType:easyar_StorageType_Assets]) {
+        [tracker loadTarget:target callback:^(easyar_Target *target, bool status) {
             NSLog(@"2222222load target (%d): %@ (%d)", status, [target name], [target runtimeID]);
         }];
     }
 }
 
-BOOL initialize()
-{
+BOOL initialize() {
     camera = [easyar_CameraDevice create];
     streamer = [easyar_CameraFrameStreamer create];
     [streamer attachCamera:camera];
-    
+
     bool status = true;
     status &= [camera open:easyar_CameraDeviceType_Default];
     [camera setSize:[easyar_Vec2I create:@[@1280, @720]]];
-    
-    if (!status) { return status; }
-    easyar_ImageTracker * tracker = [easyar_ImageTracker create];
+
+    if (!status) {return status;}
+    easyar_ImageTracker *tracker = [easyar_ImageTracker create];
     [tracker attachStreamer:streamer];
     loadAllFromJsonFile(tracker, @"targets.json");
     loadFromImage(tracker, @"namecard.jpg");
     trackers = [[NSMutableArray<easyar_ImageTracker *> alloc] init];
     [trackers addObject:tracker];
-    
+
     return status;
 }
 
-void finalize()
-{
+void finalize() {
     video = nil;
     tracked_target = 0;
     active_target = 0;
@@ -100,22 +95,20 @@ void finalize()
     camera = nil;
 }
 
-BOOL start()
-{
+BOOL start() {
     bool status = true;
     status &= (camera != nil) && [camera start];
     status &= (streamer != nil) && [streamer start];
     [camera setFocusMode:easyar_CameraDeviceFocusMode_Continousauto];
-    for (easyar_ImageTracker * tracker in trackers) {
+    for (easyar_ImageTracker *tracker in trackers) {
         status &= [tracker start];
     }
     return status;
 }
 
-BOOL stop()
-{
+BOOL stop() {
     bool status = true;
-    for (easyar_ImageTracker * tracker in trackers) {
+    for (easyar_ImageTracker *tracker in trackers) {
         status &= [tracker stop];
     }
     status &= (streamer != nil) && [streamer stop];
@@ -123,8 +116,7 @@ BOOL stop()
     return status;
 }
 
-void initGL()
-{
+void initGL() {
     if (active_target != 0) {
         [video onLost];
         video = nil;
@@ -135,23 +127,21 @@ void initGL()
     videobg_renderer = [easyar_Renderer create];
     video_renderers = [[NSMutableArray<VideoRenderer *> alloc] init];
     for (int k = 0; k < 3; k += 1) {
-        VideoRenderer * video_renderer = [[VideoRenderer alloc] init];
+        VideoRenderer *video_renderer = [[VideoRenderer alloc] init];
         [video_renderer init_];
         [video_renderers addObject:video_renderer];
     }
     current_video_renderer = nil;
 }
 
-void resizeGL(int width, int height)
-{
+void resizeGL(int width, int height) {
     view_size[0] = width;
     view_size[1] = height;
     viewport_changed = true;
 }
 
-void updateViewport()
-{
-    easyar_CameraCalibration * calib = camera != nil ? [camera cameraCalibration] : nil;
+void updateViewport() {
+    easyar_CameraCalibration *calib = camera != nil ? [camera cameraCalibration] : nil;
     int rotation = calib != nil ? [calib rotation] : 0;
     if (rotation != view_rotation) {
         view_rotation = rotation;
@@ -168,50 +158,49 @@ void updateViewport()
             size[0] = size[1];
             size[1] = t;
         }
-        float scaleRatio = MAX((float)view_size[0] / (float)size[0], (float)view_size[1] / (float)size[1]);
-        int viewport_size[] = {(int)roundf(size[0] * scaleRatio), (int)roundf(size[1] * scaleRatio)};
+        float scaleRatio = MAX((float) view_size[0] / (float) size[0], (float) view_size[1] / (float) size[1]);
+        int viewport_size[] = {(int) roundf(size[0] * scaleRatio), (int) roundf(size[1] * scaleRatio)};
         int viewport_new[] = {(view_size[0] - viewport_size[0]) / 2, (view_size[1] - viewport_size[1]) / 2, viewport_size[0], viewport_size[1]};
         memcpy(&viewport[0], &viewport_new[0], 4 * sizeof(int));
-        
+
         if (camera && [camera isOpened])
             viewport_changed = false;
     }
 }
 
-void render()
-{
+void render() {
     glClearColor(1.f, 1.f, 1.f, 1.f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     if (videobg_renderer != nil) {
         int default_viewport[] = {0, 0, view_size[0], view_size[1]};
-        easyar_Vec4I * oc_default_viewport = [easyar_Vec4I create:@[[NSNumber numberWithInt:default_viewport[0]], [NSNumber numberWithInt:default_viewport[1]], [NSNumber numberWithInt:default_viewport[2]], [NSNumber numberWithInt:default_viewport[3]]]];
+        easyar_Vec4I *oc_default_viewport = [easyar_Vec4I create:@[[NSNumber numberWithInt:default_viewport[0]], [NSNumber numberWithInt:default_viewport[1]], [NSNumber numberWithInt:default_viewport[2]], [NSNumber numberWithInt:default_viewport[3]]]];
         glViewport(default_viewport[0], default_viewport[1], default_viewport[2], default_viewport[3]);
         if ([videobg_renderer renderErrorMessage:oc_default_viewport]) {
             return;
         }
     }
 
-    if (streamer == nil) { return; }
-    easyar_Frame * frame = [streamer peek];
+    if (streamer == nil) {return;}
+    easyar_Frame *frame = [streamer peek];
     updateViewport();
     glViewport(viewport[0], viewport[1], viewport[2], viewport[3]);
 
     if (videobg_renderer != nil) {
         [videobg_renderer render:frame viewport:[easyar_Vec4I create:@[[NSNumber numberWithInt:viewport[0]], [NSNumber numberWithInt:viewport[1]], [NSNumber numberWithInt:viewport[2]], [NSNumber numberWithInt:viewport[3]]]]];
     }
-    
-    
-    
+
+
+
     //    if (saowuti) {
     //
-    
+
     //    }else{
-    
-    
-    
+
+
+
     //}
-    
+
 //    for (easyar_TargetInstance * targetInstance in [frame targetInstances]) {
 //        easyar_TargetStatus status = [targetInstance status];
 //        if (status == easyar_TargetStatus_Tracked) {
@@ -228,10 +217,10 @@ void render()
 //        }
 //    }
 
-    NSArray<easyar_TargetInstance *> * targetInstances = [frame targetInstances];
+    NSArray<easyar_TargetInstance *> *targetInstances = [frame targetInstances];
     if ([targetInstances count] > 0) {
-        easyar_TargetInstance * targetInstance = [targetInstances objectAtIndex:0];
-        easyar_Target * target = [targetInstance target];
+        easyar_TargetInstance *targetInstance = [targetInstances objectAtIndex:0];
+        easyar_Target *target = [targetInstance target];
         int status = [targetInstance status];
         if (status == easyar_TargetStatus_Tracked) {
             int runtimeID = [target runtimeID];
@@ -243,13 +232,13 @@ void render()
             }
             if (tracked_target == 0) {
                 if (video == nil && [video_renderers count] > 0) {
-                    NSString * target_name = [target name];
-                    
+                    NSString *target_name = [target name];
+
                     NSLog(@"我擦 ， 扫描成功了 target_name ==  %@", target_name);
-                    
+
                     [[NSNotificationCenter defaultCenter] postNotificationName:KFC_NOTIFICATION_NAME_AR_RECOGNISE_SUCCEED object:target_name];
-                    
-                    
+
+
                 }
                 if (video != nil) {
                     [video onFound];
@@ -257,7 +246,7 @@ void render()
                     active_target = runtimeID;
                 }
             }
-            easyar_ImageTarget * imagetarget = [target isKindOfClass:[easyar_ImageTarget class]] ? (easyar_ImageTarget *)target : nil;
+            easyar_ImageTarget *imagetarget = [target isKindOfClass:[easyar_ImageTarget class]] ? (easyar_ImageTarget *) target : nil;
             if (imagetarget != nil) {
                 if (current_video_renderer != nil) {
                     [video update];

@@ -11,12 +11,12 @@
 @interface KFCProgressHUD : UIView
 
 
-@property (weak, nonatomic) IBOutlet UILabel *tipsLabel;
+@property(weak, nonatomic) IBOutlet UILabel *tipsLabel;
 
 
-@property (weak, nonatomic) IBOutlet UIImageView *tipsIcon;
+@property(weak, nonatomic) IBOutlet UIImageView *tipsIcon;
 
 
-+(void)showWithString:(NSString *)string inView:(UIView *)view;
++ (void)showWithString:(NSString *)string inView:(UIView *)view;
 
 @end
