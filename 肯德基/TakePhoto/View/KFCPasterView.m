@@ -206,9 +206,11 @@
         NSArray *arr = [NSArray array];
         arr = [KFCStampsModel mj_objectArrayWithKeyValuesArray:pasterModel.stamps];
         KFCStampsModel *stampsModel = arr[indexPath.row];
-        
+    
+    // 有taskkey 的图片, 在任何情况下都可以 点击 显示提示语
+    
         // 如果pstaerModel.isAvailable = false 则所有的图片都变虚
-        if (!pasterModel.isAvailable) {
+        if (!pasterModel.isAvailable && !stampsModel.taskKey) {
             cell.coverImageView.alpha = 0.3f;
             cell.userInteractionEnabled = NO;
         }else{
@@ -237,7 +239,7 @@
         }
     }
     
-    if (![completedTaskKeys containsObject:stampsModel.taskKey]) {
+    if (![completedTaskKeys containsObject:stampsModel.taskKey] && stampsModel.taskKey) {
         
         // cell 上 加个按钮
         cell.tipsButton.tag = indexPath.row;
