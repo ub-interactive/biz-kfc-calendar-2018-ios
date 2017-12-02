@@ -23,7 +23,7 @@
 		1844168D1FBAC73C00198812 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1844168C1FBAC73C00198812 /* UIKit.framework */; };
 		1844168F1FBAC74100198812 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1844168E1FBAC74100198812 /* CoreMotion.framework */; };
 		184416FC1FBD399700198812 /* KFCScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 184416E51FBD399700198812 /* KFCScanViewController.m */; };
-		184416FD1FBD399700198812 /* KFCScanNagationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184416E81FBD399700198812 /* KFCScanNagationView.xib */; };
+		184416FD1FBD399700198812 /* KFCScanNavigationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184416E81FBD399700198812 /* KFCScanNavigationView.xib */; };
 		184416FF1FBD399700198812 /* KFCScanNagationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 184416EA1FBD399700198812 /* KFCScanNagationView.m */; };
 		184417031FBD399700198812 /* targets.json in Resources */ = {isa = PBXBuildFile; fileRef = 184416F31FBD399700198812 /* targets.json */; };
 		184417061FBD399700198812 /* OpenGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 184416F71FBD399700198812 /* OpenGLView.m */; };
@@ -156,7 +156,7 @@
 		184416E41FBD399700198812 /* KFCScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFCScanViewController.h; sourceTree = "<group>"; };
 		184416E51FBD399700198812 /* KFCScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFCScanViewController.m; sourceTree = "<group>"; };
 		184416E71FBD399700198812 /* KFCScanNagationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFCScanNagationView.h; sourceTree = "<group>"; };
-		184416E81FBD399700198812 /* KFCScanNagationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KFCScanNagationView.xib; sourceTree = "<group>"; };
+		184416E81FBD399700198812 /* KFCScanNavigationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KFCScanNavigationView.xib; sourceTree = "<group>"; };
 		184416EA1FBD399700198812 /* KFCScanNagationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFCScanNagationView.m; sourceTree = "<group>"; };
 		184416EF1FBD399700198812 /* OpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLView.h; sourceTree = "<group>"; };
 		184416F31FBD399700198812 /* targets.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = targets.json; sourceTree = "<group>"; };
@@ -409,7 +409,7 @@
 				184422001FBD3D0200198812 /* QRView */,
 				184416E71FBD399700198812 /* KFCScanNagationView.h */,
 				184416EA1FBD399700198812 /* KFCScanNagationView.m */,
-				184416E81FBD399700198812 /* KFCScanNagationView.xib */,
+				184416E81FBD399700198812 /* KFCScanNavigationView.xib */,
 				180FDC071FBD6848002A0DDF /* KFCScanSuccessView.h */,
 				180FDC081FBD6848002A0DDF /* KFCScanSuccessView.m */,
 				180FDC0A1FBD6855002A0DDF /* KFCScanSuccessView.xib */,
@@ -855,7 +855,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2CBF86C1FCA7493005BA26E /* feature.mp4 in Resources */,
-				184416FD1FBD399700198812 /* KFCScanNagationView.xib in Resources */,
+				184416FD1FBD399700198812 /* KFCScanNavigationView.xib in Resources */,
 				B2CDE4891FA8C22E00D11D78 /* LaunchScreen.storyboard in Resources */,
 				B2CDE5141FA9653500D11D78 /* LICENSE in Resources */,
 				184417341FBD39F500198812 /* KFCPasterTableViewCell.xib in Resources */,

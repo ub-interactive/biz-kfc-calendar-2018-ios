@@ -14,6 +14,10 @@
 
 - (void)stop;
 
+- (void)pauseTracker;
+
+- (void)resumeTracker;
+
 - (void)resize:(CGRect)frame orientation:(UIInterfaceOrientation)orientation;
 
 - (void)setOrientation:(UIInterfaceOrientation)orientation;

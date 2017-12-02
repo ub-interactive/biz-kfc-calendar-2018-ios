@@ -16,6 +16,10 @@ BOOL start();
 
 BOOL stop();
 
+BOOL pauseTracker();
+
+BOOL resumeTracker();
+
 void initGL();
 
 void resizeGL(int width, int height);

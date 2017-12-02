@@ -70,7 +70,7 @@
                 <outlet property="scanSuccessNoteLabel" destination="Zw7-9r-f4h" id="QBr-NN-F0Y"/>
                 <outlet property="scanSuccessTipsView" destination="S9q-mf-P8g" id="beE-6c-DFy"/>
                 <outlet property="scanSucessTipsViewHeightConstraint" destination="Bbn-9p-xv2" id="gzT-Mz-mOl"/>
-                <outlet property="toSeeButton" destination="acl-Qs-fhc" id="rsA-se-2Cd"/>
+                <outlet property="seeButton" destination="acl-Qs-fhc" id="rsA-se-2Cd"/>
             </connections>
             <point key="canvasLocation" x="-96.5" y="253"/>
         </view>

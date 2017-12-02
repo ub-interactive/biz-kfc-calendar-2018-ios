@@ -32,11 +32,8 @@
     return self;
 }
 
-- (void)dealloc {
-}
-
 - (void)start {
-    if (initialize()) {
+    if(initialize()) {
         start();
     }
 }
@@ -44,6 +41,14 @@
 - (void)stop {
     stop();
     finalize();
+}
+
+- (void)pauseTracker {
+    pauseTracker();
+}
+
+- (void)resumeTracker {
+    resumeTracker();
 }
 
 - (void)resize:(CGRect)frame orientation:(UIInterfaceOrientation)orientation {

@@ -27,26 +27,8 @@
 
     self.view.backgroundColor = [UIColor whiteColor];
 
-    [self setupNavigationBar];
-
-    [self.view addSubview:self.webview];
-
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.urlStr]];
-
-    [self.webview loadRequest:request];
-
-    self.isSecondLoading = NO;
-
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-
-}
-
-- (void)setupNavigationBar {
-
-    KFCScanNagationView *navigationView = [[NSBundle mainBundle] loadNibNamed:@"KFCScanNagationView" owner:self options:nil].lastObject;
+    //setup navigation bar
+    KFCScanNagationView *navigationView = [[NSBundle mainBundle] loadNibNamed:@"KFCScanNavigationView" owner:self options:nil].lastObject;
     navigationView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 64);
     navigationView.backgroundColor = KFC_COLOR_WITH_RGB(214, 50, 58);
     navigationView.visualEffectView.hidden = YES;
@@ -55,8 +37,13 @@
     self.navigationView = navigationView;
     [self.view addSubview:navigationView];
 
-}
 
+    [self.view addSubview:self.webview];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.urlStr]];
+    [self.webview loadRequest:request];
+
+    self.isSecondLoading = NO;
+}
 
 #pragma mark  WKWebViewDelegate
 
@@ -89,20 +76,18 @@
     if ([scheme isEqualToString:@"kc2018"]) {
 
         if ([URL.host isEqualToString:@"scan"]) {
-            UINavigationController *nav = (UINavigationController *) [UIApplication sharedApplication].keyWindow.rootViewController;
+            UINavigationController *navigationController = (UINavigationController *) [UIApplication sharedApplication].keyWindow.rootViewController;
 
-            for (UIViewController *vc in nav.viewControllers) {
-
+            for (UIViewController *vc in navigationController.viewControllers) {
                 if ([vc isKindOfClass:[KFCScanViewController class]]) {
-                    [nav popToViewController:vc animated:YES];
+                    [navigationController popToViewController:vc animated:YES];
                     decisionHandler(WKNavigationActionPolicyAllow);
                     return;
                 }
             }
 
             KFCScanViewController *viewController = [[KFCScanViewController alloc] init];
-
-            [nav pushViewController:viewController animated:YES];
+            [navigationController pushViewController:viewController animated:YES];
 
         } else {
 

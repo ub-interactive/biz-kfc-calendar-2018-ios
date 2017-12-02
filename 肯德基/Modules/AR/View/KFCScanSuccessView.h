@@ -12,7 +12,7 @@
 
 @property(weak, nonatomic) IBOutlet UIImageView *scanSuccessImageView;
 
-@property(weak, nonatomic) IBOutlet UIButton *toSeeButton;
+@property(weak, nonatomic) IBOutlet UIButton *seeButton;
 
 @property(weak, nonatomic) IBOutlet UIView *scanSuccessTipsView;
 

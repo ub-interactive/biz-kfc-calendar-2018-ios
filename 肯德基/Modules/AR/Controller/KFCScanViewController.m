@@ -41,41 +41,34 @@
     [super viewDidLoad];
     [self->glView setOrientation:self.interfaceOrientation];
 
+    // 设置 navigation bar
+    KFCScanNagationView *navigationView = [[NSBundle mainBundle] loadNibNamed:@"KFCScanNavigationView" owner:self options:nil].lastObject;
+    navigationView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 64);
+    [navigationView.backButton addTarget:self action:@selector(navigationBackButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:navigationView];
+    self.navigationView = navigationView;
 
-    // 设置naviagtionbar
-    [self setupNavigationBar];
-
-    // 之前是写在 viewwillappear里的， 不过会有问题， 会重复加载， 导致白屏
-    // 解决方法， 直接不让 glview stop 了， 实际上 glview 一直在后台识别， 只不过当这个页面不显示的时候不接受识别成功的回调    笨人有笨法😂
     [self->glView start];
+    [KFC_NOTIFICATION_CENTER addObserver:self selector:@selector(arScanSuccess:) name:KFC_NOTIFICATION_NAME_AR_SCAN_SUCCEED object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-
     [super viewWillAppear:animated];
 
     [self.view addSubview:self.qrView];
-
     [self.view bringSubviewToFront:self.navigationView];
 
-    // 识别成功后的通知
-    [KFC_NOTIFICATION_CENTER addObserver:self selector:@selector(arScanSuccess:) name:KFC_NOTIFICATION_NAME_AR_RECOGNISE_SUCCEED object:nil];
-
+    [self->glView resumeTracker];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillAppear:animated];
-
-//    [self->glView stop];
-
-    // 识别成功后的通知
-    [KFC_NOTIFICATION_CENTER removeObserver:self];
+    [super viewWillDisappear:animated];
+    [self->glView pauseTracker];
 }
 
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-//    [self.qrView removeFromSuperview];
-//    self.qrView = nil;
+- (void)dealloc {
+    [self->glView stop];
+    [KFC_NOTIFICATION_CENTER removeObserver:self];
 }
 
 - (void)viewWillLayoutSubviews {
@@ -88,34 +81,17 @@
     [self->glView setOrientation:toInterfaceOrientation];
 }
 
-
-- (void)setupNavigationBar {
-
-    KFCScanNagationView *navigationView = [[NSBundle mainBundle] loadNibNamed:@"KFCScanNagationView" owner:self options:nil].lastObject;
-    navigationView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 64);
-
-    [navigationView.backButton addTarget:self action:@selector(navigationBackButtonClicked) forControlEvents:UIControlEventTouchUpInside];
-
-    [self.view addSubview:navigationView];
-
-    self.navigationView = navigationView;
-}
-
 /*
     识别成功后的处理
  */
-- (void)arScanSuccess:(NSNotification *)noti {
-
-    // 如果当前页面不显示， 则不接收 识别成功的回调，但实际上 一直还在后台识别中。。。
-    if (self.scanSuccessView) return;
-
-    if ([self.view.subviews containsObject:self.scanSuccessView]) return;
+- (void)arScanSuccess:(NSNotification *)notification {
+    [self->glView pauseTracker];
 
     // 识别完成后  先显示一个loading, 去网络请求, 下载完完图片后才显示view, 如果后台不给url , 则直接返回拍照页面, 如果给了, 则进入webviewcontroller 加载url
     // 添加  扫描成功后的view
     self.scanSuccessView = [[NSBundle mainBundle] loadNibNamed:@"KFCScanSuccessView" owner:self options:nil].lastObject;
     self.scanSuccessView.frame = self.view.bounds;
-    [self.scanSuccessView.toSeeButton addTarget:self action:@selector(scanSuccessViewToseeButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.scanSuccessView.seeButton addTarget:self action:@selector(scanSuccessViewSeeButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
 
     [self.view addSubview:self.scanSuccessView];
 
@@ -123,7 +99,7 @@
 
     NSString *deviceId = [[UIDevice currentDevice] identifierForVendor].UUIDString;
 
-    NSString *urlStr = [NSString stringWithFormat:@"%@/%@/%@", KFC_URL_CALENDAR_COMPLETE_TASKS, deviceId, noti.object];
+    NSString *urlStr = [NSString stringWithFormat:@"%@/%@/%@", KFC_URL_CALENDAR_COMPLETE_TASKS, deviceId, notification.object];
 
     NSLog(@"urlStr  ==   %@", urlStr);
 
@@ -133,19 +109,16 @@
 
         self.successModel = [KFCScanSuccessModel mj_objectWithKeyValues:responseObject];
 
-//        self.successModel.completionUrl = nil;
-
         if (self.successModel.completionUrl) {
-            self.scanSuccessView.toSeeButton.titleLabel.text = @"去看看";
-            [self.scanSuccessView.toSeeButton setTitle:@"去看看" forState:UIControlStateNormal];
+            self.scanSuccessView.seeButton.titleLabel.text = @"去看看";
+            [self.scanSuccessView.seeButton setTitle:@"去看看" forState:UIControlStateNormal];
         } else {
-            self.scanSuccessView.toSeeButton.titleLabel.text = @"知道了";
-            [self.scanSuccessView.toSeeButton setTitle:@"知道了" forState:UIControlStateNormal];
+            self.scanSuccessView.seeButton.titleLabel.text = @"知道了";
+            [self.scanSuccessView.seeButton setTitle:@"知道了" forState:UIControlStateNormal];
         }
 
         [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[NSURL URLWithString:self.successModel.completionResource] options:SDWebImageDownloaderContinueInBackground progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL *_Nullable targetURL) {
-
-        }                                                   completed:^(UIImage *_Nullable image, NSData *_Nullable data, NSError *_Nullable error, BOOL finished) {
+        } completed:^(UIImage *_Nullable image, NSData *_Nullable data, NSError *_Nullable error, BOOL finished) {
 
             if (finished) {
 
@@ -156,7 +129,6 @@
 
                 self.scanSuccessView.scanSuccessImageView.hidden = NO;
                 self.scanSuccessView.scanSuccessTipsView.hidden = NO;
-
                 self.scanSuccessView.scanSuccessImageView.image = image;
 
                 if (self.successModel.completionDescription && ![self.successModel.completionDescription isEqualToString:@""]) {
@@ -177,7 +149,6 @@
                     [attributedString addAttributes:textFontAttributes range:NSMakeRange(0, self.successModel.completionDescription.length)];
                     self.scanSuccessView.scanSuccessNoteLabel.attributedText = attributedString;
                 } else {
-
                     // tipsview 高度 40
                     self.scanSuccessView.scanSucessTipsViewHeightConstraint.constant = 40;
                 }
@@ -187,8 +158,6 @@
 
         //   扫描成功  完成任务,  刷新数据
         [KFC_NOTIFICATION_CENTER postNotificationName:KFC_NOTIFICATION_NAME_AR_RECOGNISE_SUCCEED_RELOAD_DATA object:nil];
-
-
     }                           failure:^(NSURLSessionTask *operation, NSError *error) {
 
     }];
@@ -218,10 +187,10 @@
 }
 
 /*
-    去去看看
+    去看看
  */
 
-- (void)scanSuccessViewToseeButtonClicked:(UIButton *)sender {
+- (void)scanSuccessViewSeeButtonClicked:(UIButton *)sender {
 
     [self.scanSuccessView removeFromSuperview];
 

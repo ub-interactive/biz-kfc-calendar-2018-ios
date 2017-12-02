@@ -91,6 +91,22 @@ BOOL stop() {
     return status;
 }
 
+BOOL pauseTracker() {
+    bool status = true;
+    for (easyar_ImageTracker *tracker in trackers) {
+        status &= [tracker stop];
+    }
+    return status;
+}
+
+BOOL resumeTracker() {
+    bool status = true;
+    for (easyar_ImageTracker *tracker in trackers) {
+        status &= [tracker start];
+    }
+    return status;
+}
+
 void initGL() {
     if (active_target != 0) {
         tracked_target = 0;
@@ -168,7 +184,7 @@ void render() {
                 active_target = 0;
             }
 
-            [[NSNotificationCenter defaultCenter] postNotificationName:KFC_NOTIFICATION_NAME_AR_RECOGNISE_SUCCEED object:[target name]];
+            [[NSNotificationCenter defaultCenter] postNotificationName:KFC_NOTIFICATION_NAME_AR_SCAN_SUCCEED object:[target name]];
         }
     } else {
         if (tracked_target != 0) {

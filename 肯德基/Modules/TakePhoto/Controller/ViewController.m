@@ -107,35 +107,19 @@
         [self showFeatureView];
     }
 
+    self.navigationController.navigationBar.hidden = YES;
 }
 
 
 - (void)viewWillAppear:(BOOL)animated {
-
     [super viewWillAppear:animated];
-
-    self.navigationController.navigationBar.hidden = YES;
-
-//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-
-    [super viewDidAppear:animated];
-
     [self.captureSession startRunning];
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
 
-    [super viewWillDisappear:animated];
-
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
     [self.captureSession stopRunning];
-}
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
 }
 
 - (NSArray *)getLocalData {
@@ -195,9 +179,6 @@
     self.previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
 
     [self.view.layer addSublayer:self.previewLayer];
-
-    //设备取景开始
-    [self.captureSession startRunning];
 
     if ([self.captureDevice lockForConfiguration:nil]) {
         //自动闪光灯
