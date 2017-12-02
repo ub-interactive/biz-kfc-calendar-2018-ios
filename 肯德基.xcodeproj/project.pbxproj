@@ -53,13 +53,9 @@
 		1844220F1FBD3D0C00198812 /* JXQRButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1844220A1FBD3D0C00198812 /* JXQRButton.m */; };
 		18C3C0AC1FB96C5B00634283 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3C0AB1FB96C5A00634283 /* UIImage+Resize.m */; };
 		18CE45E1F5755E9E60FE6B95 /* libPods-肯德基.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 050CE03F60370E2CDDC9CCC7 /* libPods-肯德基.a */; };
-		B21158CC1FD15E9D00F93BA4 /* hexagon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B21158C91FD15E9D00F93BA4 /* hexagon.jpg */; };
-		B21158CD1FD15E9D00F93BA4 /* hexagon.mtl in Resources */ = {isa = PBXBuildFile; fileRef = B21158CA1FD15E9D00F93BA4 /* hexagon.mtl */; };
-		B21158CE1FD15E9D00F93BA4 /* hexagon.obj in Resources */ = {isa = PBXBuildFile; fileRef = B21158CB1FD15E9D00F93BA4 /* hexagon.obj */; };
 		B278D5411FD26850000C8FE9 /* belgium_ice_cream_20171218.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B278D5401FD2684F000C8FE9 /* belgium_ice_cream_20171218.jpg */; };
 		B278D54D1FD2A010000C8FE9 /* helloar.m in Sources */ = {isa = PBXBuildFile; fileRef = B278D54C1FD2A010000C8FE9 /* helloar.m */; };
 		B27968311FBFEAD8006E5FE4 /* KFCScanSuccessModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B27968301FBFEAD8006E5FE4 /* KFCScanSuccessModel.m */; };
-		B2A2696A1FD2510600BC0823 /* hexagon.obj in Sources */ = {isa = PBXBuildFile; fileRef = B21158CB1FD15E9D00F93BA4 /* hexagon.obj */; };
 		B2A2696B1FD2511700BC0823 /* NSObject+MJClass.h in Sources */ = {isa = PBXBuildFile; fileRef = B2CDE4D31FA9651800D11D78 /* NSObject+MJClass.h */; };
 		B2A2696C1FD2511700BC0823 /* NSObject+MJCoding.h in Sources */ = {isa = PBXBuildFile; fileRef = B2CDE4D51FA9651800D11D78 /* NSObject+MJCoding.h */; };
 		B2A2696D1FD2511700BC0823 /* NSObject+MJKeyValue.h in Sources */ = {isa = PBXBuildFile; fileRef = B2CDE4D71FA9651900D11D78 /* NSObject+MJKeyValue.h */; };
@@ -213,9 +209,6 @@
 		18C3C0AA1FB96C5A00634283 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
 		18C3C0AB1FB96C5A00634283 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		3D61B87AD0E1217CA979DC0F /* Pods-肯德基.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-肯德基.release.xcconfig"; path = "Pods/Target Support Files/Pods-肯德基/Pods-肯德基.release.xcconfig"; sourceTree = "<group>"; };
-		B21158C91FD15E9D00F93BA4 /* hexagon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = hexagon.jpg; sourceTree = "<group>"; };
-		B21158CA1FD15E9D00F93BA4 /* hexagon.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hexagon.mtl; sourceTree = "<group>"; };
-		B21158CB1FD15E9D00F93BA4 /* hexagon.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hexagon.obj; sourceTree = "<group>"; };
 		B278D5401FD2684F000C8FE9 /* belgium_ice_cream_20171218.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = belgium_ice_cream_20171218.jpg; sourceTree = "<group>"; };
 		B278D54B1FD2A010000C8FE9 /* helloar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloar.h; sourceTree = "<group>"; };
 		B278D54C1FD2A010000C8FE9 /* helloar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = helloar.m; sourceTree = "<group>"; };
@@ -384,12 +377,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		184416791FBAC6DA00198812 /* Frameworks */ = {
+		184416791FBAC6DA00198812 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				B2CDE4A91FA954D600D11D78 /* Utils */,
+				B2CDE5591FA9658800D11D78 /* WeChatSDK */,
+				B2CDE51F1FA9655000D11D78 /* SDWebImage */,
+				B2CDE4E81FA9653500D11D78 /* AFNetworking */,
+				B2CDE4C61FA9651800D11D78 /* MJExtension */,
 				1844167A1FBAC6DA00198812 /* easyar.framework */,
 			);
-			path = Frameworks;
+			path = Libs;
 			sourceTree = "<group>";
 		};
 		184416E21FBD399700198812 /* AR */ = {
@@ -399,7 +397,6 @@
 				184416E61FBD399700198812 /* View */,
 				B279682E1FBFEAC0006E5FE4 /* Model */,
 				184416ED1FBD399700198812 /* ImageARView */,
-				B27039C31FD16D1F00F77FD3 /* ObjArView */,
 			);
 			path = AR;
 			sourceTree = "<group>";
@@ -524,16 +521,6 @@
 			path = QRView;
 			sourceTree = "<group>";
 		};
-		B27039C31FD16D1F00F77FD3 /* ObjArView */ = {
-			isa = PBXGroup;
-			children = (
-				B21158C91FD15E9D00F93BA4 /* hexagon.jpg */,
-				B21158CA1FD15E9D00F93BA4 /* hexagon.mtl */,
-				B21158CB1FD15E9D00F93BA4 /* hexagon.obj */,
-			);
-			path = ObjArView;
-			sourceTree = "<group>";
-		};
 		B279682E1FBFEAC0006E5FE4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -547,11 +534,9 @@
 			isa = PBXGroup;
 			children = (
 				B2CBF85F1FCA636D005BA26E /* Controller */,
-				B2CBF8601FCA636D005BA26E /* Model */,
 				B2CBF8611FCA636D005BA26E /* View */,
 			);
-			name = NewFeature;
-			path = AR/NewFeature;
+			path = NewFeature;
 			sourceTree = "<group>";
 		};
 		B2CBF85F1FCA636D005BA26E /* Controller */ = {
@@ -561,13 +546,6 @@
 				B2CBF8631FCA63F5005BA26E /* KFCNewFeatureViewController.m */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		B2CBF8601FCA636D005BA26E /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		B2CBF8611FCA636D005BA26E /* View */ = {
@@ -601,20 +579,12 @@
 		B2CDE4781FA8C22E00D11D78 /* 肯德基 */ = {
 			isa = PBXGroup;
 			children = (
-				184416791FBAC6DA00198812 /* Frameworks */,
+				F624272C1FD2FEDD00DB82FE /* Resources */,
+				F624272B1FD2FE2E00DB82FE /* Modules */,
+				184416791FBAC6DA00198812 /* Libs */,
 				B2CDE49C1FA8D3F100D11D78 /* KFCConfig.h */,
 				B2CDE47C1FA8C22E00D11D78 /* AppDelegate.h */,
 				B2CDE47D1FA8C22E00D11D78 /* AppDelegate.m */,
-				B2CBF85E1FCA636D005BA26E /* NewFeature */,
-				1844170B1FBD39F500198812 /* TakePhoto */,
-				184416E21FBD399700198812 /* AR */,
-				B2CDE4A71FA954D600D11D78 /* Common */,
-				B2CDE4821FA8C22E00D11D78 /* Main.storyboard */,
-				B2CDE4851FA8C22E00D11D78 /* Assets.xcassets */,
-				B2CBF86A1FCA7285005BA26E /* newfeature_0.MP4 */,
-				B2CDE4871FA8C22E00D11D78 /* LaunchScreen.storyboard */,
-				B2CDE48A1FA8C22E00D11D78 /* Info.plist */,
-				B2A7F3461FC85A220069F497 /* GoogleService-Info.plist */,
 				B2CDE4791FA8C22E00D11D78 /* Supporting Files */,
 			);
 			path = "肯德基";
@@ -623,37 +593,18 @@
 		B2CDE4791FA8C22E00D11D78 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B2CDE48A1FA8C22E00D11D78 /* Info.plist */,
+				B2A7F3461FC85A220069F497 /* GoogleService-Info.plist */,
 				B2CDE47A1FA8C22E00D11D78 /* main.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		B2CDE4A71FA954D600D11D78 /* Common */ = {
+		B2CDE4A91FA954D600D11D78 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				B2FDAC901FCFC59500815668 /* UIImageView+UIActivityIndicatorForSDWebImage.h */,
 				B2FDAC911FCFC59500815668 /* UIImageView+UIActivityIndicatorForSDWebImage.m */,
-				B2CDE4C01FA9550F00D11D78 /* Base */,
-				B2CDE4A81FA954D600D11D78 /* SDK */,
-				B2CDE4A91FA954D600D11D78 /* Utils */,
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
-		B2CDE4A81FA954D600D11D78 /* SDK */ = {
-			isa = PBXGroup;
-			children = (
-				B2CDE5591FA9658800D11D78 /* WeChatSDK */,
-				B2CDE51F1FA9655000D11D78 /* SDWebImage */,
-				B2CDE4E81FA9653500D11D78 /* AFNetworking */,
-				B2CDE4C61FA9651800D11D78 /* MJExtension */,
-			);
-			path = SDK;
-			sourceTree = "<group>";
-		};
-		B2CDE4A91FA954D600D11D78 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
 				18C3C0AA1FB96C5A00634283 /* UIImage+Resize.h */,
 				18C3C0AB1FB96C5A00634283 /* UIImage+Resize.m */,
 				B2CDE5601FA96C1000D11D78 /* UIColor+Hex.h */,
@@ -664,13 +615,6 @@
 				B2CDE4AD1FA954D700D11D78 /* UIView+Frame.m */,
 			);
 			path = Utils;
-			sourceTree = "<group>";
-		};
-		B2CDE4C01FA9550F00D11D78 /* Base */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Base;
 			sourceTree = "<group>";
 		};
 		B2CDE4C61FA9651800D11D78 /* MJExtension */ = {
@@ -857,6 +801,27 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		F624272B1FD2FE2E00DB82FE /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				B2CBF85E1FCA636D005BA26E /* NewFeature */,
+				184416E21FBD399700198812 /* AR */,
+				1844170B1FBD39F500198812 /* TakePhoto */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		F624272C1FD2FEDD00DB82FE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B2CBF86A1FCA7285005BA26E /* newfeature_0.MP4 */,
+				B2CDE4821FA8C22E00D11D78 /* Main.storyboard */,
+				B2CDE4851FA8C22E00D11D78 /* Assets.xcassets */,
+				B2CDE4871FA8C22E00D11D78 /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -886,12 +851,12 @@
 		B2CDE46E1FA8C22E00D11D78 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0910;
 				ORGANIZATIONNAME = "汤旭浩";
 				TargetAttributes = {
 					B2CDE4751FA8C22E00D11D78 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = NY6E95D936;
+						DevelopmentTeam = B85KV5NSU7;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -929,11 +894,9 @@
 				B2CBF8691FCA6422005BA26E /* KFCNewFeatureView.xib in Resources */,
 				B278D5411FD26850000C8FE9 /* belgium_ice_cream_20171218.jpg in Resources */,
 				184417031FBD399700198812 /* targets.json in Resources */,
-				B21158CC1FD15E9D00F93BA4 /* hexagon.jpg in Resources */,
 				180FDC0B1FBD6855002A0DDF /* KFCScanSuccessView.xib in Resources */,
 				B2CDE55F1FA9658800D11D78 /* read_me.txt in Resources */,
 				B2CDE4861FA8C22E00D11D78 /* Assets.xcassets in Resources */,
-				B21158CD1FD15E9D00F93BA4 /* hexagon.mtl in Resources */,
 				B2CDE4841FA8C22E00D11D78 /* Main.storyboard in Resources */,
 				184417351FBD39F500198812 /* KFCOneMoreView.xib in Resources */,
 				B2CDE5461FA9655000D11D78 /* LICENSE in Resources */,
@@ -941,7 +904,6 @@
 				184417301FBD39F500198812 /* KFCProgressHUD.xib in Resources */,
 				B2CDE4DD1FA9651900D11D78 /* Info.plist in Resources */,
 				184417361FBD39F500198812 /* KFCShareView.xib in Resources */,
-				B21158CE1FD15E9D00F93BA4 /* hexagon.obj in Resources */,
 				B2A7F3471FC85A220069F497 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1008,7 +970,6 @@
 				B2A2696C1FD2511700BC0823 /* NSObject+MJCoding.h in Sources */,
 				B2A2696D1FD2511700BC0823 /* NSObject+MJKeyValue.h in Sources */,
 				B2A2696E1FD2511700BC0823 /* NSObject+MJProperty.h in Sources */,
-				B2A2696A1FD2510600BC0823 /* hexagon.obj in Sources */,
 				B2CBF86B1FCA7478005BA26E /* newfeature_0.MP4 in Sources */,
 				1844220C1FBD3D0C00198812 /* QRMenu.m in Sources */,
 				B2CBF8671FCA6407005BA26E /* KFCNewFeatureView.m in Sources */,
@@ -1121,13 +1082,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1135,7 +1099,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -1170,13 +1138,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1184,7 +1155,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -1215,32 +1190,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = NY6E95D936;
+				DEVELOPMENT_TEAM = B85KV5NSU7;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/肯德基/Frameworks",
-					"$(PROJECT_DIR)/肯德基/AR/View/HongDian/AliLive",
-					"$(PROJECT_DIR)/肯德基/AR/View/HongDian/AlipaySDK",
-					"$(PROJECT_DIR)/肯德基/AR/View/HongDian/Rong_Cloud_iOS_IMKit_SDK_v2_7_0_dev",
+					"$(PROJECT_DIR)/肯德基/Libs",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "肯德基/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Libs";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/肯德基/Common/SDK/WeChatSDK",
-					"$(PROJECT_DIR)/肯德基/Common/SDK/WXApiObject.h",
-					"$(PROJECT_DIR)/肯德基/Common/SDK/WXApi.h",
-					"$(PROJECT_DIR)/肯德基/Common/SDK/libWeChatSDK.a",
-					"$(PROJECT_DIR)/肯德基/AR/View/HongDian/libWeiboSDK",
-					"$(PROJECT_DIR)/肯德基/AR/View/HongDian/WeChatSDK",
-					"$(PROJECT_DIR)/肯德基/AR/View/HongDian/mwSDK",
-					"$(PROJECT_DIR)/肯德基/AR/View/HongDian/GoogleAnalytics",
-					"$(PROJECT_DIR)/肯德基/AR/View/HongDian/AlipaySDK",
-					"$(PROJECT_DIR)/肯德基/AR/View/HongDian/Rong_Cloud_iOS_IMKit_SDK_v2_7_0_dev",
+					"$(PROJECT_DIR)/肯德基/Libs/WeChatSDK",
 				);
 				OTHER_LDFLAGS = "-Objc";
 				PRODUCT_BUNDLE_IDENTIFIER = com.youbohudong.kfc2018cal;
@@ -1259,32 +1222,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = NY6E95D936;
+				DEVELOPMENT_TEAM = B85KV5NSU7;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/肯德基/Frameworks",
-					"$(PROJECT_DIR)/肯德基/AR/View/HongDian/AliLive",
-					"$(PROJECT_DIR)/肯德基/AR/View/HongDian/AlipaySDK",
-					"$(PROJECT_DIR)/肯德基/AR/View/HongDian/Rong_Cloud_iOS_IMKit_SDK_v2_7_0_dev",
+					"$(PROJECT_DIR)/肯德基/Libs",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "肯德基/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Libs";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/肯德基/Common/SDK/WeChatSDK",
-					"$(PROJECT_DIR)/肯德基/Common/SDK/WXApiObject.h",
-					"$(PROJECT_DIR)/肯德基/Common/SDK/WXApi.h",
-					"$(PROJECT_DIR)/肯德基/Common/SDK/libWeChatSDK.a",
-					"$(PROJECT_DIR)/肯德基/AR/View/HongDian/libWeiboSDK",
-					"$(PROJECT_DIR)/肯德基/AR/View/HongDian/WeChatSDK",
-					"$(PROJECT_DIR)/肯德基/AR/View/HongDian/mwSDK",
-					"$(PROJECT_DIR)/肯德基/AR/View/HongDian/GoogleAnalytics",
-					"$(PROJECT_DIR)/肯德基/AR/View/HongDian/AlipaySDK",
-					"$(PROJECT_DIR)/肯德基/AR/View/HongDian/Rong_Cloud_iOS_IMKit_SDK_v2_7_0_dev",
+					"$(PROJECT_DIR)/肯德基/Libs/WeChatSDK",
 				);
 				OTHER_LDFLAGS = "-Objc";
 				PRODUCT_BUNDLE_IDENTIFIER = com.youbohudong.kfc2018cal;

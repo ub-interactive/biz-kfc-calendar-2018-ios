@@ -12,13 +12,7 @@
 #import "KFCTaskKeyModel.h"
 #import "KFCScanViewController.h"
 
-// image
-
-//NSString * key = @"amxBNPSXKbRBragBOjnJ0rV5tjSBwQZFk3SqTyd8qlTOv54A8CFjO4fP8RaVD9NDDKcvzXc4aPWHFj7cW5gtViFP1Q4j5nD23zodBz30agY29ai2ar7VQPcW7n41yxP8zv5ZlNhWy1vY4xujQpW8U34E9ZLyKT3byHamzdqWwUD1jnoGS82pRYqGQXiiQGn2pfpwC5BO";
-
-// Obj
-
-NSString * key = @"VoTEQlrcSv7tiCtztHakUFRWweG2aU5I6I7I0jLBojTvdR6tr48GjRtujGUV9pmkTWGxeGuGSoscQsjpuoB7AzXkrhKZXXGkU6IBb0KXSbVRwXbnhpKE2G7jFXzYGklAxbcLai89uznZP2OdbCOci87HsYLsZqXuwMCD9rpyFqFxfLwIVXUgfFnhNNxiPc8JevoJpOVR";
+NSString * key = @"amxBNPSXKbRBragBOjnJ0rV5tjSBwQZFk3SqTyd8qlTOv54A8CFjO4fP8RaVD9NDDKcvzXc4aPWHFj7cW5gtViFP1Q4j5nD23zodBz30agY29ai2ar7VQPcW7n41yxP8zv5ZlNhWy1vY4xujQpW8U34E9ZLyKT3byHamzdqWwUD1jnoGS82pRYqGQXiiQGn2pfpwC5BO";
 
 
 @interface AppDelegate ()
