@@ -69,30 +69,23 @@ void loadAllFromJsonFile(easyar_ImageTracker * tracker, NSString * path)
 
 BOOL initialize()
 {
+    camera = [easyar_CameraDevice create];
+    streamer = [easyar_CameraFrameStreamer create];
+    [streamer attachCamera:camera];
     
-//    static dispatch_once_t onceToken;
-//    dispatch_once(&onceToken, ^{
+    bool status = true;
+    status &= [camera open:easyar_CameraDeviceType_Default];
+    [camera setSize:[easyar_Vec2I create:@[@1280, @720]]];
     
-        camera = [easyar_CameraDevice create];
-        streamer = [easyar_CameraFrameStreamer create];
-        [streamer attachCamera:camera];
-        
-        bool status = true;
-        status &= [camera open:easyar_CameraDeviceType_Default];
-        [camera setSize:[easyar_Vec2I create:@[@1280, @720]]];
-        
-        if (!status) { return status; }
-        easyar_ImageTracker * tracker = [easyar_ImageTracker create];
-        [tracker attachStreamer:streamer];
-        loadAllFromJsonFile(tracker, @"targets.json");
-        loadFromImage(tracker, @"namecard.jpg");
-        trackers = [[NSMutableArray<easyar_ImageTracker *> alloc] init];
-        [trackers addObject:tracker];
-        
-        return status;
-//    });
+    if (!status) { return status; }
+    easyar_ImageTracker * tracker = [easyar_ImageTracker create];
+    [tracker attachStreamer:streamer];
+    loadAllFromJsonFile(tracker, @"targets.json");
+    loadFromImage(tracker, @"namecard.jpg");
+    trackers = [[NSMutableArray<easyar_ImageTracker *> alloc] init];
+    [trackers addObject:tracker];
     
-//    return YES;
+    return status;
 }
 
 void finalize()

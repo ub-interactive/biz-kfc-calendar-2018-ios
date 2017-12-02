@@ -25,13 +25,10 @@
 		184416FC1FBD399700198812 /* KFCScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 184416E51FBD399700198812 /* KFCScanViewController.m */; };
 		184416FD1FBD399700198812 /* KFCScanNagationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184416E81FBD399700198812 /* KFCScanNagationView.xib */; };
 		184416FF1FBD399700198812 /* KFCScanNagationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 184416EA1FBD399700198812 /* KFCScanNagationView.m */; };
-		184417011FBD399700198812 /* namecard.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 184416EE1FBD399700198812 /* namecard.jpg */; };
 		184417031FBD399700198812 /* targets.json in Resources */ = {isa = PBXBuildFile; fileRef = 184416F31FBD399700198812 /* targets.json */; };
 		184417051FBD399700198812 /* VideoRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 184416F61FBD399700198812 /* VideoRenderer.m */; };
 		184417061FBD399700198812 /* OpenGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 184416F71FBD399700198812 /* OpenGLView.m */; };
-		184417081FBD399700198812 /* argame.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 184416F91FBD399700198812 /* argame.jpg */; };
 		184417091FBD399700198812 /* ARVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 184416FA1FBD399700198812 /* ARVideo.m */; };
-		1844170A1FBD399700198812 /* idback.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 184416FB1FBD399700198812 /* idback.jpg */; };
 		1844172B1FBD39F500198812 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1844170D1FBD39F500198812 /* ViewController.m */; };
 		1844172C1FBD39F500198812 /* KFCPasterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 184417121FBD39F500198812 /* KFCPasterModel.m */; };
 		1844172D1FBD39F500198812 /* KFCStampsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 184417131FBD39F500198812 /* KFCStampsModel.m */; };
@@ -168,16 +165,13 @@
 		184416E71FBD399700198812 /* KFCScanNagationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFCScanNagationView.h; sourceTree = "<group>"; };
 		184416E81FBD399700198812 /* KFCScanNagationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KFCScanNagationView.xib; sourceTree = "<group>"; };
 		184416EA1FBD399700198812 /* KFCScanNagationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFCScanNagationView.m; sourceTree = "<group>"; };
-		184416EE1FBD399700198812 /* namecard.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = namecard.jpg; sourceTree = "<group>"; };
 		184416EF1FBD399700198812 /* OpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLView.h; sourceTree = "<group>"; };
 		184416F11FBD399700198812 /* VideoRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoRenderer.h; sourceTree = "<group>"; };
 		184416F31FBD399700198812 /* targets.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = targets.json; sourceTree = "<group>"; };
 		184416F41FBD399700198812 /* ARVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARVideo.h; sourceTree = "<group>"; };
 		184416F61FBD399700198812 /* VideoRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoRenderer.m; sourceTree = "<group>"; };
 		184416F71FBD399700198812 /* OpenGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenGLView.m; sourceTree = "<group>"; };
-		184416F91FBD399700198812 /* argame.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = argame.jpg; sourceTree = "<group>"; };
 		184416FA1FBD399700198812 /* ARVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARVideo.m; sourceTree = "<group>"; };
-		184416FB1FBD399700198812 /* idback.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = idback.jpg; sourceTree = "<group>"; };
 		1844170D1FBD39F500198812 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		1844170E1FBD39F500198812 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		184417101FBD39F500198812 /* KFCStampsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFCStampsModel.h; sourceTree = "<group>"; };
@@ -441,9 +435,6 @@
 			isa = PBXGroup;
 			children = (
 				B278D5401FD2684F000C8FE9 /* belgium_ice_cream_20171218.jpg */,
-				184416EE1FBD399700198812 /* namecard.jpg */,
-				184416F91FBD399700198812 /* argame.jpg */,
-				184416FB1FBD399700198812 /* idback.jpg */,
 				184416F31FBD399700198812 /* targets.json */,
 				B278D54B1FD2A010000C8FE9 /* helloar.h */,
 				B278D54C1FD2A010000C8FE9 /* helloar.m */,
@@ -933,11 +924,8 @@
 				184416FD1FBD399700198812 /* KFCScanNagationView.xib in Resources */,
 				B2CDE4891FA8C22E00D11D78 /* LaunchScreen.storyboard in Resources */,
 				B2CDE5141FA9653500D11D78 /* LICENSE in Resources */,
-				184417011FBD399700198812 /* namecard.jpg in Resources */,
 				184417341FBD39F500198812 /* KFCPasterTableViewCell.xib in Resources */,
-				184417081FBD399700198812 /* argame.jpg in Resources */,
 				184417321FBD39F500198812 /* KFCReTakeView.xib in Resources */,
-				1844170A1FBD399700198812 /* idback.jpg in Resources */,
 				B2CBF8691FCA6422005BA26E /* KFCNewFeatureView.xib in Resources */,
 				B278D5411FD26850000C8FE9 /* belgium_ice_cream_20171218.jpg in Resources */,
 				184417031FBD399700198812 /* targets.json in Resources */,
