@@ -17,7 +17,6 @@ DerivedData/
 !default.mode2v3
 *.perspectivev3
 !default.perspectivev3
-xcuserdata/
 
 ## Other
 *.moved-aside
@@ -74,10 +73,3 @@ iOSInjectionProject/
 
 ## compatibility with Xcode 3 and earlier (ignoring not required starting Xcode 4)
 .idea/workspace.xml
-Pods/FirebaseAnalytics/Frameworks/FirebaseCoreDiagnostics.framework/
-Pods/FirebaseAnalytics/Frameworks/FirebaseNanoPB.framework/
-Pods/Local Podspecs/
-Pods/Pods.xcodeproj/xcuserdata/liangliao.xcuserdatad/xcschemes/GoogleToolboxForMac.xcscheme
-"Pods/Pods.xcodeproj/xcuserdata/liangliao.xcuserdatad/xcschemes/Pods-\350\202\257\345\276\267\345\237\272.xcscheme"
-Pods/Pods.xcodeproj/xcuserdata/liangliao.xcuserdatad/xcschemes/nanopb.xcscheme
-"\350\202\257\345\276\267\345\237\272/Base.lproj/"
