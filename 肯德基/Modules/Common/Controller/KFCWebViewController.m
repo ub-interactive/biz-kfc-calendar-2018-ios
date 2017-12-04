@@ -244,7 +244,7 @@
         [self.webview goBack];
         return;
     }
-    if (!self.isFromMisson) {
+    if (!self.isFromTasks) {
         [self.navigationController popToRootViewControllerAnimated:YES];
         return;
     }
@@ -254,7 +254,7 @@
 
 - (void)navigationCloseButtonClicked {
 
-    if (!self.isFromMisson) {
+    if (!self.isFromTasks) {
         [self.navigationController popToRootViewControllerAnimated:YES];
         return;
     }

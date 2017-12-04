@@ -15,6 +15,6 @@
 
 @property(nonatomic, copy) NSString *urlStr;
 
-@property(nonatomic, assign) BOOL isFromMisson;
+@property(nonatomic, assign) BOOL isFromTasks;
 
 @end

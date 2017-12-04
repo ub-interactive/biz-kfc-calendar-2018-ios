@@ -56,6 +56,7 @@
     [self.view bringSubviewToFront:self.navigationView];
 
     [self.scanSuccessView removeFromSuperview];
+    self.scanSuccessView = nil;
 
     [self->glView startCamera];
     [self->glView startTracker];
@@ -92,7 +93,7 @@
     // 添加  扫描成功后的view
     self.scanSuccessView = [[NSBundle mainBundle] loadNibNamed:@"KFCScanSuccessView" owner:self options:nil].lastObject;
     self.scanSuccessView.frame = self.view.bounds;
-    [self.scanSuccessView.goButton addTarget:self action:@selector(scanSuccessViewSeeButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.scanSuccessView.goButton addTarget:self action:@selector(scanSuccessViewGoButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
 
     [self.view addSubview:self.scanSuccessView];
 
@@ -115,7 +116,7 @@
         }
 
         [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[NSURL URLWithString:self.successModel.completionResource] options:SDWebImageDownloaderContinueInBackground progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL *_Nullable targetURL) {
-        } completed:^(UIImage *_Nullable image, NSData *_Nullable data, NSError *_Nullable error, BOOL finished) {
+        }                                                   completed:^(UIImage *_Nullable image, NSData *_Nullable data, NSError *_Nullable error, BOOL finished) {
 
             if (finished) {
 
@@ -185,21 +186,18 @@
     去看看
  */
 
-- (void)scanSuccessViewSeeButtonClicked:(UIButton *)sender {
+- (void)scanSuccessViewGoButtonClicked:(UIButton *)sender {
 
     [self.scanSuccessView removeFromSuperview];
 
     // 根据后台返回的数据   来决定去哪个页面
 
-    //如果后台不给url , 则直接返回拍照页面, 如果给了, 则进入webviewcontroller 加载url
-
+    //如果后台不给url , 则直接返回拍照页面, 如果给了, 则进入web view controller 加载url
     if (!self.successModel.completionUrl) {
         [self.navigationController popToRootViewControllerAnimated:YES];
-        return;
+    } else {
+        [self pushWebViewControllerWithUrlStr:self.successModel.completionUrl isFromTasks:NO];
     }
-
-    [self pushWebViewControllerWithUrlStr:self.successModel.completionUrl isFromMisson:NO];
-
 }
 
 /*
@@ -216,24 +214,17 @@
  */
 
 - (void)qrViewTasksButtonClicked {
-
-    [self pushWebViewControllerWithUrlStr:@"https://www.youbohudong.com/biz/vip/kfc/calendar-2018/tasks" isFromMisson:YES];
-
+    [self pushWebViewControllerWithUrlStr:@"https://www.youbohudong.com/biz/vip/kfc/calendar-2018/tasks" isFromTasks:YES];
     [self.scanSuccessView removeFromSuperview];
     self.scanSuccessView = nil;
-
-
 }
 
 
-- (void)pushWebViewControllerWithUrlStr:(NSString *)urlStr isFromMisson:(BOOL)isMission {
-
+- (void)pushWebViewControllerWithUrlStr:(NSString *)urlStr isFromTasks:(BOOL)isFromTasks {
     KFCWebViewController *webViewController = [KFCWebViewController new];
     webViewController.urlStr = urlStr;
-    webViewController.isFromMisson = isMission;
+    webViewController.isFromTasks = isFromTasks;
     [self.navigationController pushViewController:webViewController animated:YES];
-
-
 }
 
 - (void)qrviewScanButtonClicked:(NSInteger)tag {
@@ -243,16 +234,6 @@
     }                completion:^(BOOL finished) {
         if (finished) [self->glView startCamera];
     }];
-
-    if (tag == 100) {       // 点击扫图片
-
-
-
-    } else if (tag == 200) {      // 点击扫图片
-
-
-
-    }
 
 }
 
@@ -273,7 +254,6 @@
 
         [_qrView setQrViewSureButtonClickedBlock:^(NSString *qrStr) {
 
-//            [weakSelf handleScanResultWithQrcodeStr:qrStr];
             [weakSelf qrViewTasksButtonClicked];
         }];
 
