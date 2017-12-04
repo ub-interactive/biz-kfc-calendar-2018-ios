@@ -29,26 +29,29 @@
     self.drawableDepthFormat = GLKViewDrawableDepthFormat24;
     self.drawableStencilFormat = GLKViewDrawableStencilFormat8;
     [self bindDrawable];
+
+    initialize();
     return self;
 }
 
-- (void)start {
-    if(initialize()) {
-        start();
-    }
+- (void)startCamera {
+    startCamera();
 }
 
-- (void)stop {
-    stop();
+- (void)stopCamera {
+    stopCamera();
+}
+
+- (void)stopTracker {
+    stopTracker();
+}
+
+- (void)startTracker {
+    startTracker();
+}
+
+- (void)dealloc {
     finalize();
-}
-
-- (void)pauseTracker {
-    pauseTracker();
-}
-
-- (void)resumeTracker {
-    resumeTracker();
 }
 
 - (void)resize:(CGRect)frame orientation:(UIInterfaceOrientation)orientation {

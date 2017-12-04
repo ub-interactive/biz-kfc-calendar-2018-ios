@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16G1036" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -22,10 +22,10 @@
                     <rect key="frame" x="50" y="534" width="279" height="40"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="acl-Qs-fhc">
-                            <rect key="frame" x="0.0" y="0.0" width="279" height="40"/>
+                            <rect key="frame" x="0.0" y="-4" width="279" height="44"/>
                             <color key="backgroundColor" red="0.85646522045135498" green="0.17853620648384094" blue="0.18315508961677551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="40" id="SYw-YE-Cw8"/>
+                                <constraint firstAttribute="height" constant="44" id="SYw-YE-Cw8"/>
                             </constraints>
                             <state key="normal" title="去看看">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -66,11 +66,11 @@
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="scanSuccessImageView" destination="whh-KG-1XS" id="HNx-3r-s9o"/>
-                <outlet property="scanSuccessNoteLabel" destination="Zw7-9r-f4h" id="QBr-NN-F0Y"/>
-                <outlet property="scanSuccessTipsView" destination="S9q-mf-P8g" id="beE-6c-DFy"/>
-                <outlet property="scanSucessTipsViewHeightConstraint" destination="Bbn-9p-xv2" id="gzT-Mz-mOl"/>
-                <outlet property="seeButton" destination="acl-Qs-fhc" id="rsA-se-2Cd"/>
+                <outlet property="goButton" destination="acl-Qs-fhc" id="rsA-se-2Cd"/>
+                <outlet property="heightConstraint" destination="Bbn-9p-xv2" id="gzT-Mz-mOl"/>
+                <outlet property="imageView" destination="whh-KG-1XS" id="HNx-3r-s9o"/>
+                <outlet property="tipLabel" destination="Zw7-9r-f4h" id="QBr-NN-F0Y"/>
+                <outlet property="tipView" destination="S9q-mf-P8g" id="beE-6c-DFy"/>
             </connections>
             <point key="canvasLocation" x="-96.5" y="253"/>
         </view>

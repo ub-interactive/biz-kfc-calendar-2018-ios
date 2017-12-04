@@ -233,7 +233,7 @@
         [UIView animateWithDuration:0 animations:^{
             [self addRetakeView:self.image];
         }                completion:^(BOOL finished) {
-            [self autoAddStampGroupView];
+            [self addStampGroupView];
         }];
 
     }];
@@ -350,7 +350,7 @@
 
     [self dismissViewControllerAnimated:YES completion:^{
         // 自动显示贴纸页面
-        [self autoAddStampGroupView];
+        [self addStampGroupView];
     }];
 
 }
@@ -406,12 +406,12 @@
 
     } else {      // 贴纸
 
-        [self autoAddStampGroupView];
+        [self addStampGroupView];
     }
 }
 
-// 添加pasterview
-- (void)autoAddStampGroupView {
+// 添加stamp group
+- (void)addStampGroupView {
 
     if (self.stampGroups.count && !self.stampGroupView.data.count) {
         self.stampGroupView.data = self.stampGroups;
@@ -429,7 +429,7 @@
 
     NSString *msg = @"图片保存成功! ";
     if (error != NULL) {
-        msg = @"图片保存失败  ";
+        msg = @"图片保存失败";
     }
     [KFCProgressHUD showWithString:msg inView:self.view];
 
@@ -463,7 +463,6 @@
 - (UIImage *)captureImageFromView:(UIView *)view {
 
     CGRect frame = view.bounds;
-//    UIGraphicsBeginImageContext(frame.size);      // 模糊的图
     UIGraphicsBeginImageContextWithOptions(frame.size, NO, 0.0);  // 原图  清晰
     CGContextRef contextRef = UIGraphicsGetCurrentContext();
     [view.layer renderInContext:contextRef];
@@ -476,9 +475,6 @@
 
 // 再拍一张
 - (void)oneMoreViewButtonClicked:(UIButton *)button {
-
-    [KFC_USER_DEFAULTS setObject:@"1" forKey:KFC_USER_DEFAULT_FIRST_SHARE];
-    [KFC_USER_DEFAULTS synchronize];
 
     if (button.tag == 10) {     // 分享
 
@@ -531,7 +527,7 @@
 - (void)shareToWechatWithType:(int)scene {
 
     if (![WXApi isWXAppInstalled]) {
-        [KFCProgressHUD showWithString:@"未检测到分享源" inView:self.view];
+        [KFCProgressHUD showWithString:@"请先下载微信" inView:self.view];
         return;
     }
 
@@ -560,84 +556,8 @@
 
 - (void)stampGroupViewDidClickedWithImageName:(NSString *)imgName {
 
-
-    // 不透明的图片  , 直接切的图
-//    UIImage *tmpImg = [self shotWithView:cell.contentView];
-//    UIImageView *temView = [[UIImageView alloc] initWithImage:tmpImg];
-
-    // 透明的图片, 拿cell 中图片来用
-//    UIView *temView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 65, 85)];
-//    
-//    UIView *imgBgView = [[UIView alloc] initWithFrame:temView.bounds];
-//    imgBgView.backgroundColor = [UIColor whiteColor];
-//    imgBgView.alpha = 0.3f;
-//    [temView addSubview:imgBgView];
-//    
-//    UIImageView *temImageView = [[UIImageView alloc] initWithImage:cell.coverImageView.image];
-//    temImageView.frame = temView.bounds;
-//    [temView addSubview:temImageView];
-
-
-
-//    if ([self.pasterView.subviews containsObject:self.temView]) {
-//        [self.temView removeFromSuperview];
-//    }
-//    
-//    [self.pasterView addSubview:temView];
-//    self.temView = temView;
-//    
-//    //  其他的view 移除掉, 直接remove会有问题, 先hidden 吧 
-//    for (UIView *subView in self.pasterView.subviews) {
-//        
-//        NSLog(@" subView  ==  %@", subView);
-//        if (subView != temView) {
-//            //                [subView removeFromSuperview];
-//            subView.hidden = YES;
-//        }
-//    }
-
-    //  跟随手指移动的截图
-//    CGPoint newPoint = [sender locationInView:[UIApplication sharedApplication].keyWindow];
-
-//    CGRect tempRect = temView.frame;
-
-//    tempRect.origin.x = newPoint.x - temView.width;
-//    tempRect.origin.y = newPoint.y - temView.height;
-
-//    temView.center = newPoint;
-
-//    if(sender.state == UIGestureRecognizerStateEnded){
-
-//        CGPoint p = [sender locationInView:self.retakeView];
-
-    CGFloat rate = (85 + 32) * 1.0 / (65 + 32) * 1.0;
-
     CGFloat imgW = [UIScreen mainScreen].bounds.size.width / 2;
-
-//        if (type == imgNameTypeString) {
-
-//            UIImage *img = [UIImage imageNamed:imgName];
-//            
-////            NSLog(@"bendi  image  ==  %@", img);
-//            
-//            // 图片的 高度和宽度
-//            CGFloat imgWid = CGImageGetWidth(img.CGImage);
-//            CGFloat imgHei = CGImageGetHeight(img.CGImage);
-//            
-//            CGFloat realHeight = imgW * (imgHei / imgWid);
-//            
-//            self.editImageview = [[KFCEditImageView alloc] initWithFrame:CGRectMake(0, 0, imgW, realHeight)];
-//            
-//            self.editImageview.center = self.cameraImageView.center;
-//            self.editImageview.y = self.cameraImageView.height / 2 - self.editImageview.height / 2;
-//            
-//            self.editImageview.imageView.image = img;
-
-//        }else if (type == imgNameTypeUrl) {
-
     UIImage *cachedImage = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:imgName];
-
-//            NSLog(@"cachedImage  ==  %@", cachedImage);
 
     // 图片的 高度和宽度
     CGFloat imgWid = CGImageGetWidth(cachedImage.CGImage);
@@ -652,7 +572,6 @@
     self.editImageview.y = self.cameraImageView.height / 2 - self.editImageview.height / 2;
     self.editImageview.imageView.image = cachedImage;
 
-//        }
     // 设置图片name, 发通知过来可删除
     self.editImageview.imgName = imgName;
     [self.cameraImageView addSubview:self.editImageview];
@@ -667,16 +586,9 @@
 
     [self.retakeView addGestureRecognizer:tap];
 
-
-//        [temView removeFromSuperview];
-
     // 拖动完成后 将paster view  移除
     [self.stampGroupView removeFromSuperview];
     self.stampGroupView.x = 145;
-
-    // 点保存的时候 再存储吧应该是
-//        [self.usedImgArr addObject:imgName];
-//    }
 
 }
 
@@ -694,48 +606,6 @@
     self.retakeView.retakeButton.hidden = (noti.object != nil);
     self.retakeView.saveButton.hidden = (noti.object != nil);
 }
-
-
-/**
- *  截取view中某个区域生成一张图片
- */
-- (UIImage *)shotWithView:(UIView *)view inFrame:(CGRect)frame {
-
-    CGImageRef imageRef = CGImageCreateWithImageInRect([self shotWithView:view].CGImage, frame);
-    UIGraphicsBeginImageContext(frame.size);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGRect rect = CGRectMake(0, 0, frame.size.width, frame.size.height);
-    CGContextTranslateCTM(context, 0, rect.size.height);//下移
-    CGContextScaleCTM(context, 1.0f, -1.0f);//上翻
-    CGContextDrawImage(context, rect, imageRef);
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    CGImageRelease(imageRef);
-    CGContextRelease(context);
-    return image;
-}
-
-
-/**
- *  截取view生成一张图片
- */
-- (UIImage *)shotWithView:(UIView *)view {
-
-    UIGraphicsBeginImageContext(view.bounds.size);
-    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return image;
-}
-
-//-(NSMutableArray *)usedImgArr{
-//
-//    if (!_usedImgArr) {
-//        _usedImgArr = [NSMutableArray array];
-//    }
-//    return _usedImgArr;
-//}
-
 
 - (KFCStampGroupView *)stampGroupView {
 
@@ -804,23 +674,23 @@
         if (i == 0) {
 
             newFeaturePageView.titleLabel.text = @"欢迎来到 K记大玩家";
-            newFeaturePageView.descLabel.text = @"带你在欢乐中走过2018，上校黑科技扫一扫赢优惠券。更有各种限量版活动贴纸等您来秀。";
+            newFeaturePageView.descLabel.text = @"本上校为你带来了整整一年的惊喜…";
         } else if (i == 1) {
 
             newFeaturePageView.titleLabel.text = @"AR黑科技 扫扫有惊喜";
-            newFeaturePageView.descLabel.text = @"带你在欢乐中走过2018，上校黑科技扫一扫赢优惠券。更有各种限量版活动贴纸等您来秀。带你在欢乐中走过2018，上校黑科技扫一扫赢优惠券。更有各种限量版活动贴纸等您来秀。";
+            newFeaturePageView.descLabel.text = @"玩转AR黑科技 扫海报 扫汉堡…\n扫得越多 惊喜越多";
         } else if (i == 2) {
 
             newFeaturePageView.titleLabel.text = @"收集K记贴纸 秀翻朋友圈";
-            newFeaturePageView.descLabel.text = @"带你在欢乐中走过2018，上校黑科技扫一扫赢优惠券。更有各种限量版活动贴纸等您来秀。";
+            newFeaturePageView.descLabel.text = @"收集肯德基限定精美贴纸\n分享朋友圈秀出独一无二的你";
         } else if (i == 3) {
 
             newFeaturePageView.titleLabel.text = @"参加主题活动 赢惊喜礼物";
-            newFeaturePageView.descLabel.text = @"带你在欢乐中走过2018，上校黑科技扫一扫赢优惠券。更有各种限量版活动贴纸等您来秀。";
+            newFeaturePageView.descLabel.text = @"开启消息推送获取肯德基最新活动讯息\n参加店内活动赢取免费礼物";
         }
 
         if (i == 3) {       // 开始 按钮
-            [newFeaturePageView.nextPageButton setImage:[UIImage imageNamed:@"newfeature_start"] forState:UIControlStateNormal];
+            [newFeaturePageView.nextPageButton setImage:[UIImage imageNamed:@"feature-start"] forState:UIControlStateNormal];
         }
 
         [newfeatureScrollView addSubview:newFeaturePageView];
@@ -855,41 +725,6 @@
 - (void)dealloc {
     [KFC_NOTIFICATION_CENTER removeObserver:self];
 }
-
-/*
- 
- 我们在有多个 UIView 层叠时，比如一个按钮被一个 UIView 遮盖时，想要在点击最上层的 UIView 时能触发按钮的相应事件
- 
--(UIView*) hitTest:(CGPoint)point withEvent:(UIEvent *)event{
-    if(testHits){
-        return nil;
-    }
-    
-    if(!self.passthroughViews
-       || (self.passthroughViews && self.passthroughViews.count == 0)){
-        return self;
-    } else {
-        
-        UIView *hitView = [super hitTest:point withEvent:event];
-        
-        if (hitView == self) {
-            //Test whether any of the passthrough views would handle this touch
-            testHits = YES;
-            CGPoint superPoint = [self.superview convertPoint:point fromView:self];
-            UIView *superHitView = [self.superview hitTest:superPoint withEvent:event];
-            testHits = NO;
-            
-            if ([self isPassthroughView:superHitView]) {
-                hitView = superHitView;
-            }
-        }
-        
-        return hitView;
-    }
-}
-
-
-*/
 
 
 @end

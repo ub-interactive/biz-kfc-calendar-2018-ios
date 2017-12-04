@@ -15,17 +15,17 @@
 
     [super awakeFromNib];
 
-    self.scanSuccessTipsView.layer.cornerRadius = 3;
-    self.scanSuccessTipsView.layer.masksToBounds = YES;
+    self.tipView.layer.cornerRadius = 3;
+    self.tipView.layer.masksToBounds = YES;
 
-    self.scanSuccessTipsView.hidden = YES;
-    self.scanSuccessImageView.hidden = YES;
+    self.tipView.hidden = YES;
+    self.imageView.hidden = YES;
 
-    self.indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    self.indicator.frame = CGRectMake(SCREEN_WIDTH / 2 - 50, SCREEN_HEIGHT / 2 - 50, 100, 100);
+    self.loadingIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    self.loadingIndicator.frame = CGRectMake(SCREEN_WIDTH / 2 - 50, SCREEN_HEIGHT / 2 - 50, 100, 100);
 
-    [self.indicator startAnimating];
-    [self addSubview:self.indicator];
+    [self.loadingIndicator startAnimating];
+    [self addSubview:self.loadingIndicator];
 
 
 }

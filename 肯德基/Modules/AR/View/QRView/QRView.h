@@ -29,7 +29,7 @@
 /*
     任务列表按钮
  */
-@property(nonatomic, strong) UIButton *missionButton;
+@property(nonatomic, strong) UIButton *tasksButton;
 
 @property(nonatomic, copy) void (^qrViewSureButtonClickedBlock)(NSString *codeStr);
 

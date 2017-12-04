@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		180FDC091FBD6848002A0DDF /* KFCScanSuccessView.m in Sources */ = {isa = PBXBuildFile; fileRef = 180FDC081FBD6848002A0DDF /* KFCScanSuccessView.m */; };
 		180FDC0B1FBD6855002A0DDF /* KFCScanSuccessView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 180FDC0A1FBD6855002A0DDF /* KFCScanSuccessView.xib */; };
-		180FDC401FBD8FA3002A0DDF /* KFCWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 180FDC3F1FBD8FA3002A0DDF /* KFCWebViewController.m */; };
 		180FDC431FBD9F47002A0DDF /* KFCTaskKeyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 180FDC421FBD9F47002A0DDF /* KFCTaskKeyModel.m */; };
 		1844167B1FBAC6DA00198812 /* easyar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1844167A1FBAC6DA00198812 /* easyar.framework */; };
 		1844167D1FBAC6F100198812 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1844167C1FBAC6F100198812 /* GLKit.framework */; };
@@ -131,6 +130,7 @@
 		F509E29A19DAF54D02B79C69 /* KFCFeatureView.m in Sources */ = {isa = PBXBuildFile; fileRef = F509E6E9FC21408243A57204 /* KFCFeatureView.m */; };
 		F509E718D4171BEF35CC9FB5 /* KFCFeatureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F509EB6460E3C630A0678418 /* KFCFeatureView.xib */; };
 		F509E980E19F3EC884AEDE4B /* belgium_ice_cream_20171218.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F509E24FEABBEA38D5C1624A /* belgium_ice_cream_20171218.jpg */; };
+		F509EB50C65A2D2397D5D98E /* KFCWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F509EEA94EC8E2AF7540F64A /* KFCWebViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -138,8 +138,6 @@
 		180FDC071FBD6848002A0DDF /* KFCScanSuccessView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFCScanSuccessView.h; sourceTree = "<group>"; };
 		180FDC081FBD6848002A0DDF /* KFCScanSuccessView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFCScanSuccessView.m; sourceTree = "<group>"; };
 		180FDC0A1FBD6855002A0DDF /* KFCScanSuccessView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KFCScanSuccessView.xib; sourceTree = "<group>"; };
-		180FDC3E1FBD8FA3002A0DDF /* KFCWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFCWebViewController.h; sourceTree = "<group>"; };
-		180FDC3F1FBD8FA3002A0DDF /* KFCWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFCWebViewController.m; sourceTree = "<group>"; };
 		180FDC411FBD9F47002A0DDF /* KFCTaskKeyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFCTaskKeyModel.h; sourceTree = "<group>"; };
 		180FDC421FBD9F47002A0DDF /* KFCTaskKeyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFCTaskKeyModel.m; sourceTree = "<group>"; };
 		1844167A1FBAC6DA00198812 /* easyar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = easyar.framework; sourceTree = "<group>"; };
@@ -332,9 +330,11 @@
 		B2FDAC911FCFC59500815668 /* UIImageView+UIActivityIndicatorForSDWebImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+UIActivityIndicatorForSDWebImage.m"; sourceTree = "<group>"; };
 		D1EB75111B0439E35291D20D /* Pods-肯德基.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-肯德基.debug.xcconfig"; path = "Pods/Target Support Files/Pods-肯德基/Pods-肯德基.debug.xcconfig"; sourceTree = "<group>"; };
 		F509E24FEABBEA38D5C1624A /* belgium_ice_cream_20171218.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = belgium_ice_cream_20171218.jpg; sourceTree = "<group>"; };
+		F509E2C74F3EFFF0877ECA09 /* KFCWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFCWebViewController.h; sourceTree = "<group>"; };
 		F509E3BD890DCEA00A6B12B5 /* KFCFeatureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFCFeatureView.h; sourceTree = "<group>"; };
 		F509E6E9FC21408243A57204 /* KFCFeatureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFCFeatureView.m; sourceTree = "<group>"; };
 		F509EB6460E3C630A0678418 /* KFCFeatureView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KFCFeatureView.xib; sourceTree = "<group>"; };
+		F509EEA94EC8E2AF7540F64A /* KFCWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFCWebViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -387,7 +387,7 @@
 				184416E31FBD399700198812 /* Controller */,
 				184416E61FBD399700198812 /* View */,
 				B279682E1FBFEAC0006E5FE4 /* Model */,
-				184416ED1FBD399700198812 /* ImageARView */,
+				184416ED1FBD399700198812 /* EasyAr */,
 			);
 			path = AR;
 			sourceTree = "<group>";
@@ -397,8 +397,6 @@
 			children = (
 				184416E41FBD399700198812 /* KFCScanViewController.h */,
 				184416E51FBD399700198812 /* KFCScanViewController.m */,
-				180FDC3E1FBD8FA3002A0DDF /* KFCWebViewController.h */,
-				180FDC3F1FBD8FA3002A0DDF /* KFCWebViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -417,7 +415,7 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		184416ED1FBD399700198812 /* ImageARView */ = {
+		184416ED1FBD399700198812 /* EasyAr */ = {
 			isa = PBXGroup;
 			children = (
 				B278D54B1FD2A010000C8FE9 /* ArCore.h */,
@@ -425,7 +423,7 @@
 				184416EF1FBD399700198812 /* OpenGLView.h */,
 				184416F71FBD399700198812 /* OpenGLView.m */,
 			);
-			path = ImageARView;
+			path = EasyAr;
 			sourceTree = "<group>";
 		};
 		1844170B1FBD39F500198812 /* TakePhoto */ = {
@@ -761,11 +759,29 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		F509E6A8204809FB6041D993 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				F509E2C74F3EFFF0877ECA09 /* KFCWebViewController.h */,
+				F509EEA94EC8E2AF7540F64A /* KFCWebViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		F509E8849C623EEE19320C76 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				F509E6A8204809FB6041D993 /* Controller */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		F624272B1FD2FE2E00DB82FE /* Modules */ = {
 			isa = PBXGroup;
 			children = (
 				184416E21FBD399700198812 /* AR */,
 				1844170B1FBD39F500198812 /* TakePhoto */,
+				F509E8849C623EEE19320C76 /* Common */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -959,7 +975,6 @@
 				B2CDE4E31FA9651900D11D78 /* NSObject+MJClass.m in Sources */,
 				B2CDE4E71FA9651900D11D78 /* NSString+MJExtension.m in Sources */,
 				1844173B1FBD39F500198812 /* KFCRetakeView.m in Sources */,
-				180FDC401FBD8FA3002A0DDF /* KFCWebViewController.m in Sources */,
 				B2CDE54A1FA9655000D11D78 /* SDImageCache.m in Sources */,
 				B2CDE51A1FA9653500D11D78 /* UIButton+AFNetworking.m in Sources */,
 				B2CDE5501FA9655000D11D78 /* SDWebImageManager.m in Sources */,
@@ -1019,6 +1034,7 @@
 				184417331FBD39F500198812 /* KFCOneMoreView.m in Sources */,
 				1844220E1FBD3D0C00198812 /* QRView.m in Sources */,
 				F509E29A19DAF54D02B79C69 /* KFCFeatureView.m in Sources */,
+				F509EB50C65A2D2397D5D98E /* KFCWebViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

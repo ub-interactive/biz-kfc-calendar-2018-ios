@@ -24,7 +24,7 @@ static NSTimeInterval kQrLineanimateDuration = 0.010;
     CGFloat qrLineY;
     JXQRButton *inputButton;
 
-    UILabel *noticeMessageLabel;
+    UILabel *tipLabel;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -51,8 +51,6 @@ static NSTimeInterval kQrLineanimateDuration = 0.010;
 }
 
 - (void)initQRLine {
-
-
     CGRect screenBounds = [QRUtil screenBounds];
     qrLine = [[UIImageView alloc] initWithFrame:CGRectMake(screenBounds.size.width / 2 - self.transparentArea.width / 2 + 10, screenBounds.size.height / 2 - self.transparentArea.height / 2 + 10, self.transparentArea.width - 20, 4)];
     qrLine.image = [UIImage imageNamed:@"qrLine"];
@@ -60,43 +58,20 @@ static NSTimeInterval kQrLineanimateDuration = 0.010;
     [self addSubview:qrLine];
     qrLineY = qrLine.frame.origin.y;
 
-//    inputButton = [[JXQRButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 60 , SCREEN_HEIGHT / 2 - self.transparentArea.height / 2 - 60, 120, 40)];
-//    [inputButton setImage:[UIImage imageNamed:@"barcode"] forState:UIControlStateNormal];
-//    inputButton.titleLabel.text = @"输入条码";
-//    inputButton.titleLabel.font = JXC_FONT_SMALL;
-//    [inputButton addTarget:self action:@selector(inputButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-//    [self addSubview:inputButton];
+    tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 20, 20)];
+    tipLabel.center = CGPointMake(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + self.transparentArea.height / 2 + 25);
+    tipLabel.textColor = [UIColor whiteColor];
+    tipLabel.textAlignment = NSTextAlignmentCenter;
+    tipLabel.text = @"将标识图放入框内，开始扫描";
+    tipLabel.font = [UIFont systemFontOfSize:14];
+    tipLabel.alpha = 0.8f;
+    [self addSubview:tipLabel];
 
-    noticeMessageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 20, 20)];
-    noticeMessageLabel.center = CGPointMake(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + self.transparentArea.height / 2 + 25);
-    noticeMessageLabel.textColor = [UIColor whiteColor];
-    noticeMessageLabel.textAlignment = NSTextAlignmentCenter;
-    noticeMessageLabel.text = @"将标识图放入框内，开始扫描";
-    noticeMessageLabel.font = [UIFont systemFontOfSize:14];
-    noticeMessageLabel.alpha = 0.8f;
-    [self addSubview:noticeMessageLabel];
-
-    _missionButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 190, 40)];
-    _missionButton.center = CGPointMake(SCREEN_WIDTH / 2, CGRectGetMaxY(noticeMessageLabel.frame) + 15 + 20);
-    [_missionButton setImage:[UIImage imageNamed:@"activityList"] forState:UIControlStateNormal];
-    [_missionButton addTarget:self action:@selector(missionListButtonClicked) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:_missionButton];
-
-
-    self.scanImageButton = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 50 - 25, 100, 50, 50)];
-    [self.scanImageButton setImage:[UIImage imageNamed:@"scanImg"] forState:UIControlStateNormal];
-    [self.scanImageButton setImage:[UIImage imageNamed:@"scanImg_red"] forState:UIControlStateSelected];
-    self.scanImageButton.selected = YES;
-    self.scanImageButton.tag = 100;
-    [self.scanImageButton addTarget:self action:@selector(scanImageButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-//    [self addSubview:self.scanImageButton];
-
-    self.scanObjectButton = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH / 2 + 50 - 25, 100, 50, 50)];
-    [self.scanObjectButton setImage:[UIImage imageNamed:@"scanObj_gray"] forState:UIControlStateNormal];
-    [self.scanObjectButton setImage:[UIImage imageNamed:@"scanObj"] forState:UIControlStateSelected];
-    self.scanObjectButton.tag = 200;
-    [self.scanObjectButton addTarget:self action:@selector(scanObjectButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-//    [self addSubview:self.scanObjectButton];
+    self.tasksButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 190, 44)];
+    self.tasksButton.center = CGPointMake(SCREEN_WIDTH / 2, CGRectGetMaxY(tipLabel.frame) + 15 + 20);
+    [self.tasksButton setImage:[UIImage imageNamed:@"activityList"] forState:UIControlStateNormal];
+    [self.tasksButton addTarget:self action:@selector(missionListButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:self.tasksButton];
 }
 
 
@@ -155,7 +130,7 @@ static NSTimeInterval kQrLineanimateDuration = 0.010;
 - (void)addWhiteRect:(CGContextRef)ctx rect:(CGRect)rect {
 
     CGContextStrokeRect(ctx, rect);
-    CGContextSetRGBStrokeColor(ctx, 222.0 / 255.0, 0.0, 0.0, 1);
+    CGContextSetRGBStrokeColor(ctx, (CGFloat) (222.0 / 255.0), 0.0, 0.0, 1);
     CGContextSetLineWidth(ctx, 0.8);
     CGContextAddRect(ctx, rect);
     CGContextStrokePath(ctx);
@@ -165,31 +140,31 @@ static NSTimeInterval kQrLineanimateDuration = 0.010;
 
     //画四个边角
     CGContextSetLineWidth(ctx, CORNOR_LINE_WIDTH);
-    CGContextSetRGBStrokeColor(ctx, 231.0 / 255.0, 42.0 / 255.0, 48.0 / 255.0, 1);     // red
+    CGContextSetRGBStrokeColor(ctx, (CGFloat) (231.0 / 255.0), (CGFloat) (42.0 / 255.0), (CGFloat) (48.0 / 255.0), 1);     // red
 
     //左上角
-    CGPoint poinsTopLeftA[] = {CGPointMake(rect.origin.x - CORNOR_LINE_MARGIN + 0.7, rect.origin.y - CORNOR_LINE_MARGIN), CGPointMake(rect.origin.x - CORNOR_LINE_MARGIN + 0.7, rect.origin.y + CORNOR_LINE_LENGTH)};
-    CGPoint poinsTopLeftB[] = {CGPointMake(rect.origin.x - CORNOR_LINE_MARGIN, rect.origin.y + 0.7 - CORNOR_LINE_MARGIN), CGPointMake(rect.origin.x + CORNOR_LINE_LENGTH, rect.origin.y + 0.7 - CORNOR_LINE_MARGIN)};
+    CGPoint poinsTopLeftA[] = {CGPointMake((CGFloat) (rect.origin.x - CORNOR_LINE_MARGIN + 0.7), rect.origin.y - CORNOR_LINE_MARGIN), CGPointMake((CGFloat) (rect.origin.x - CORNOR_LINE_MARGIN + 0.7), rect.origin.y + CORNOR_LINE_LENGTH)};
+    CGPoint poinsTopLeftB[] = {CGPointMake(rect.origin.x - CORNOR_LINE_MARGIN, (CGFloat) (rect.origin.y + 0.7 - CORNOR_LINE_MARGIN)), CGPointMake(rect.origin.x + CORNOR_LINE_LENGTH, (CGFloat) (rect.origin.y + 0.7 - CORNOR_LINE_MARGIN))};
     [self addLine:poinsTopLeftA pointB:poinsTopLeftB ctx:ctx];
 
     //左下角
-    CGPoint poinsBottomLeftA[] = {CGPointMake(rect.origin.x + 0.7 - CORNOR_LINE_MARGIN, rect.origin.y + rect.size.height - CORNOR_LINE_LENGTH),
-            CGPointMake(rect.origin.x + 0.7 - CORNOR_LINE_MARGIN, rect.origin.y + rect.size.height + CORNOR_LINE_MARGIN)};
-    CGPoint poinsBottomLeftB[] = {CGPointMake(rect.origin.x - CORNOR_LINE_MARGIN, rect.origin.y + rect.size.height - 0.7 + CORNOR_LINE_MARGIN),
-            CGPointMake(rect.origin.x + 0.7 + CORNOR_LINE_LENGTH, rect.origin.y + rect.size.height - 0.7 + CORNOR_LINE_MARGIN)};
+    CGPoint poinsBottomLeftA[] = {CGPointMake((CGFloat) (rect.origin.x + 0.7 - CORNOR_LINE_MARGIN), rect.origin.y + rect.size.height - CORNOR_LINE_LENGTH),
+            CGPointMake((CGFloat) (rect.origin.x + 0.7 - CORNOR_LINE_MARGIN), rect.origin.y + rect.size.height + CORNOR_LINE_MARGIN)};
+    CGPoint poinsBottomLeftB[] = {CGPointMake(rect.origin.x - CORNOR_LINE_MARGIN, (CGFloat) (rect.origin.y + rect.size.height - 0.7 + CORNOR_LINE_MARGIN)),
+            CGPointMake((CGFloat) (rect.origin.x + 0.7 + CORNOR_LINE_LENGTH), (CGFloat) (rect.origin.y + rect.size.height - 0.7 + CORNOR_LINE_MARGIN))};
     [self addLine:poinsBottomLeftA pointB:poinsBottomLeftB ctx:ctx];
 
     //右上角
-    CGPoint poinsTopRightA[] = {CGPointMake(rect.origin.x + rect.size.width - CORNOR_LINE_LENGTH, rect.origin.y + 0.7 - CORNOR_LINE_MARGIN),
-            CGPointMake(rect.origin.x + CORNOR_LINE_MARGIN + rect.size.width, rect.origin.y + 0.7 - CORNOR_LINE_MARGIN)};
-    CGPoint poinsTopRightB[] = {CGPointMake(rect.origin.x + rect.size.width - 0.7 + CORNOR_LINE_MARGIN, rect.origin.y - CORNOR_LINE_MARGIN),
-            CGPointMake(rect.origin.x + rect.size.width - 0.7 + CORNOR_LINE_MARGIN, rect.origin.y + CORNOR_LINE_LENGTH + 0.7)};
+    CGPoint poinsTopRightA[] = {CGPointMake(rect.origin.x + rect.size.width - CORNOR_LINE_LENGTH, (CGFloat) (rect.origin.y + 0.7 - CORNOR_LINE_MARGIN)),
+            CGPointMake(rect.origin.x + CORNOR_LINE_MARGIN + rect.size.width, (CGFloat) (rect.origin.y + 0.7 - CORNOR_LINE_MARGIN))};
+    CGPoint poinsTopRightB[] = {CGPointMake((CGFloat) (rect.origin.x + rect.size.width - 0.7 + CORNOR_LINE_MARGIN), rect.origin.y - CORNOR_LINE_MARGIN),
+            CGPointMake((CGFloat) (rect.origin.x + rect.size.width - 0.7 + CORNOR_LINE_MARGIN), (CGFloat) (rect.origin.y + CORNOR_LINE_LENGTH + 0.7))};
     [self addLine:poinsTopRightA pointB:poinsTopRightB ctx:ctx];
 
     // 右下角
-    CGPoint poinsBottomRightA[] = {CGPointMake(rect.origin.x + rect.size.width - 0.7 + CORNOR_LINE_MARGIN, rect.origin.y + rect.size.height + -CORNOR_LINE_LENGTH),
-            CGPointMake(rect.origin.x - 0.7 + rect.size.width + CORNOR_LINE_MARGIN, rect.origin.y + rect.size.height + CORNOR_LINE_MARGIN)};
-    CGPoint poinsBottomRightB[] = {CGPointMake(rect.origin.x + rect.size.width - CORNOR_LINE_LENGTH, rect.origin.y + rect.size.height - 0.7 + CORNOR_LINE_MARGIN), CGPointMake(rect.origin.x + rect.size.width + CORNOR_LINE_MARGIN, rect.origin.y + rect.size.height - 0.7 + CORNOR_LINE_MARGIN)};
+    CGPoint poinsBottomRightA[] = {CGPointMake((CGFloat) (rect.origin.x + rect.size.width - 0.7 + CORNOR_LINE_MARGIN), rect.origin.y + rect.size.height + -CORNOR_LINE_LENGTH),
+            CGPointMake((CGFloat) (rect.origin.x - 0.7 + rect.size.width + CORNOR_LINE_MARGIN), rect.origin.y + rect.size.height + CORNOR_LINE_MARGIN)};
+    CGPoint poinsBottomRightB[] = {CGPointMake(rect.origin.x + rect.size.width - CORNOR_LINE_LENGTH, (CGFloat) (rect.origin.y + rect.size.height - 0.7 + CORNOR_LINE_MARGIN)), CGPointMake(rect.origin.x + rect.size.width + CORNOR_LINE_MARGIN, (CGFloat) (rect.origin.y + rect.size.height - 0.7 + CORNOR_LINE_MARGIN))};
     [self addLine:poinsBottomRightA pointB:poinsBottomRightB ctx:ctx];
 
     CGContextStrokePath(ctx);
@@ -220,7 +195,7 @@ static NSTimeInterval kQrLineanimateDuration = 0.010;
 
 - (void)inputButtonClicked:(UIButton *)btn {
 
-    noticeMessageLabel.hidden = YES;
+    tipLabel.hidden = YES;
     qrLine.hidden = YES;
     inputButton.hidden = YES;
 
@@ -322,7 +297,7 @@ static NSTimeInterval kQrLineanimateDuration = 0.010;
 
 - (void)backQRButtonClicked:(UIButton *)btn {
 
-    noticeMessageLabel.hidden = NO;
+    tipLabel.hidden = NO;
     qrLine.hidden = NO;
     inputButton.hidden = NO;
 

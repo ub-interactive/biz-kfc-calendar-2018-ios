@@ -6,20 +6,22 @@
 //
 //=============================================================================================================================
 
-#import <GLKit/GLKView.h>
+#import <Foundation/Foundation.h>
 
-@interface OpenGLView : GLKView
+BOOL initialize();
 
-- (void)start;
+void finalize();
 
-- (void)stop;
+BOOL startCamera();
 
-- (void)pauseTracker;
+BOOL stopCamera();
 
-- (void)resumeTracker;
+BOOL stopTracker();
 
-- (void)resize:(CGRect)frame orientation:(UIInterfaceOrientation)orientation;
+BOOL startTracker();
 
-- (void)setOrientation:(UIInterfaceOrientation)orientation;
+void initGL();
 
-@end
+void resizeGL(int width, int height);
+
+void render();

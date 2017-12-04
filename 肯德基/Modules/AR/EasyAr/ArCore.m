@@ -70,28 +70,22 @@ void finalize() {
     camera = nil;
 }
 
-BOOL start() {
+BOOL startCamera() {
     bool status = true;
     status &= (camera != nil) && [camera start];
     status &= (streamer != nil) && [streamer start];
     [camera setFocusMode:easyar_CameraDeviceFocusMode_Continousauto];
-    for (easyar_ImageTracker *tracker in trackers) {
-        status &= [tracker start];
-    }
     return status;
 }
 
-BOOL stop() {
+BOOL stopCamera() {
     bool status = true;
-    for (easyar_ImageTracker *tracker in trackers) {
-        status &= [tracker stop];
-    }
     status &= (streamer != nil) && [streamer stop];
     status &= (camera != nil) && [camera stop];
     return status;
 }
 
-BOOL pauseTracker() {
+BOOL stopTracker() {
     bool status = true;
     for (easyar_ImageTracker *tracker in trackers) {
         status &= [tracker stop];
@@ -99,7 +93,7 @@ BOOL pauseTracker() {
     return status;
 }
 
-BOOL resumeTracker() {
+BOOL startTracker() {
     bool status = true;
     for (easyar_ImageTracker *tracker in trackers) {
         status &= [tracker start];
@@ -151,7 +145,7 @@ void updateViewport() {
 }
 
 void render() {
-    glClearColor(0.f, 1.f, 1.f, 1.f);
+    glClearColor(1.f, 1.f, 1.f, 1.f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     if (videobg_renderer != nil) {
