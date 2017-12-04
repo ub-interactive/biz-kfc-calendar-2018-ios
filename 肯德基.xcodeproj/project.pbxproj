@@ -839,7 +839,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0910;
-				ORGANIZATIONNAME = "汤旭浩";
+				ORGANIZATIONNAME = "优播互动";
 				TargetAttributes = {
 					B2CDE4751FA8C22E00D11D78 = {
 						CreatedOnToolsVersion = 8.3.2;
