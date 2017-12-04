@@ -25,6 +25,8 @@ NSString *key = @"amxBNPSXKbRBragBOjnJ0rV5tjSBwQZFk3SqTyd8qlTOv54A8CFjO4fP8RaVD9
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
+    [FIRApp configure];
+    
     //   微信
     [WXApi registerApp:KFC_WX_APP_ID];
 

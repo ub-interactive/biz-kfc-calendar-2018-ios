@@ -91,10 +91,6 @@
 
         } else {
 
-            //        [[UIApplication sharedApplication] openURL:URL];
-
-            //        kc2018://share?type=0&url=https://www.apple.com&thumb=http://www.apple.com/apple.png&title=标题
-
             NSMutableDictionary *dic = [self getURLParametersWithUrl:URL];
 
             NSLog(@"NSMutableDictionary  ==  %@", dic);
