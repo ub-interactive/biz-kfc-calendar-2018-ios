@@ -1,5 +1,5 @@
 //
-//  KFCReTakeView.h
+//  KFCRetakeView.h
 //  肯德基
 //
 //  Created by 二哥 on 2017/11/1.
@@ -8,27 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol KFCReTakeViewButtonClickDelegate <NSObject>
+@protocol KFCRetakeViewButtonClickDelegate <NSObject>
 
 - (void)retakeViewButtonClicked:(NSInteger)buttonTag;
 
 @end
 
-@interface KFCReTakeView : UIView
-
+@interface KFCRetakeView : UIView
 
 @property(weak, nonatomic) IBOutlet UIButton *pasterButton;
 
-//@property (weak, nonatomic) IBOutlet UIView *retakeBgView;
-
 @property(nonatomic, weak) IBOutlet UIButton *retakeButton;
 
-//@property (weak, nonatomic) IBOutlet UIView *saveBgView;
 @property(nonatomic, weak) IBOutlet UIButton *saveButton;
 
-@property(weak, nonatomic) IBOutlet UIImageView *secondStepImageView;
-
-@property(nonatomic, weak) id <KFCReTakeViewButtonClickDelegate> delegate;
+@property(nonatomic, weak) id <KFCRetakeViewButtonClickDelegate> delegate;
 
 
 @end

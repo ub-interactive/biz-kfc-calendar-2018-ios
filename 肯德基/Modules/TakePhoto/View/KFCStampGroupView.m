@@ -1,12 +1,12 @@
 //
-//  KFCPasterView.m
+//  KFCStampGroupView.m
 //  肯德基
 //
 //  Created by 二哥 on 2017/11/1.
 //  Copyright © 2017年 汤旭浩. All rights reserved.
 //
 
-#import "KFCPasterView.h"
+#import "KFCStampGroupView.h"
 #import "KFCPasterTableViewCell.h"
 #import "KFCConfig.h"
 #import "KFCStampGroupModel.h"
@@ -14,17 +14,15 @@
 #import "AppDelegate.h"
 #import "KFCTaskKeyModel.h"
 
-@interface KFCPasterView () <UITableViewDelegate, UITableViewDataSource>
+@interface KFCStampGroupView () <UITableViewDelegate, UITableViewDataSource>
 
 @property(nonatomic, strong) UIButton *preBtn;
 
 @property(nonatomic, strong) KFCTipsView *tipsView;
 
-@property(nonatomic, strong) UIButton *cellCoverButton;
-
 @end
 
-@implementation KFCPasterView
+@implementation KFCStampGroupView
 
 - (void)awakeFromNib {
 
@@ -53,15 +51,11 @@
 
     _data = data;
 
-//    NSLog(@"setData  == %@", data);
-
     NSMutableArray *titleArray = [NSMutableArray array];
 
     for (KFCStampGroupModel *pasterModel in data) {
 
         [titleArray addObject:pasterModel.name];
-
-//        NSLog(@"setData  == %@", pasterModel.name);
     }
 
     [self setupTagsButtonWithTitles:titleArray];
@@ -96,6 +90,7 @@
 
         btn.layer.cornerRadius = 3;
 //        btn.layer.masksToBounds = YES;        // 这句不写, 可使view的圆角与阴影共存
+
         // shadow color
         UIColor *customColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.2];
 
@@ -108,8 +103,8 @@
 
         //  isNew
 
-        KFCStampGroupModel *pasterModel = self.data[i];
-        if (pasterModel.isNew) {
+        KFCStampGroupModel *stampGroupModel = self.data[i];
+        if (stampGroupModel.isNew) {
             UIButton *newbtn = [[UIButton alloc] initWithFrame:CGRectMake(btnX - 15, btnY - 15, 30, 30)];
             [newbtn setImage:[UIImage imageNamed:@"newTags"] forState:UIControlStateNormal];
             [self addSubview:newbtn];
@@ -117,19 +112,19 @@
 
         [btn addTarget:self action:@selector(tagsButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
 
-        UIColor *redcolor = [UIColor colorWithRed:216.0 / 256.0 green:48.0 / 256.0 blue:53.0 / 256.0 alpha:1.0f];
+        UIColor *redcolor = [UIColor colorWithRed:(CGFloat) (216.0 / 256.0) green:(CGFloat) (48.0 / 256.0) blue:(CGFloat) (53.0 / 256.0) alpha:1.0f];
 
-        UIColor *titleRedcolor = [UIColor colorWithRed:222.0 / 256.0 green:0 blue:0 alpha:1.0f];
+        UIColor *titleRedColor = [UIColor colorWithRed:(CGFloat) (222.0 / 256.0) green:0 blue:0 alpha:1.0f];
         // 暂时不可用
-        if (!pasterModel.isAvailable) {
+        if (!stampGroupModel.isAvailable) {
 
-            UIColor *notAvailableColor = [UIColor colorWithRed:222.0 / 256.0 green:0 blue:0 alpha:0.3f];
+            UIColor *notAvailableColor = [UIColor colorWithRed:(CGFloat) (222.0 / 256.0) green:0 blue:0 alpha:0.3f];
             [btn setTitleColor:notAvailableColor forState:UIControlStateNormal];
 
             [btn addTarget:self action:@selector(tagsButtontouchDown:) forControlEvents:UIControlEventTouchDown];
             [btn addTarget:self action:@selector(tagsButtontouchUp:) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
         } else {
-            [btn setTitleColor:titleRedcolor forState:UIControlStateNormal];
+            [btn setTitleColor:titleRedColor forState:UIControlStateNormal];
         }
         // 最后一个  请期待
         if (i == titleArray.count - 1) {
@@ -172,38 +167,11 @@
 
     KFCPasterTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:KFCPasterTableViewCellReusedId];
     NSArray *downloadedImageArr = [KFC_USER_DEFAULTS objectForKey:KFC_USER_DEFAULT_DOWN_LOADED_IAMGES];
-    // cell 中图片名称
-    NSString *cellImageName;
 
-//    __weak __typeof(&*cell)weakCell = cell;
-//    if (self.preBtn.tag == 1 || self.preBtn.tag == 0) {
-//        
-//        cellImageName = self.localImageArray[indexPath.row];
-//        nameType = imgNameTypeString;
-//        
-//        cell.coverImageView.image = [UIImage imageNamed:cellImageName];
-//        
-//        if ([usedImages containsObject:cellImageName]) {   // 本地图片 已使用,  只有已使用和未使用两种状态, 不需要下载
-//            cell.usedBgView.hidden = NO;
-//            cell.usedIcon.hidden = NO;
-//            cell.userInteractionEnabled = NO;
-//        }else{      // 未使用
-//            cell.usedBgView.hidden = YES;
-//            cell.usedIcon.hidden = YES;
-//            cell.userInteractionEnabled = YES;
-//        }
-//        cell.coverImageView.alpha = 1.0f;
-//        cell.userInteractionEnabled = YES;
-//        cell.coverImageBgView.layer.borderWidth = 0;
-//        cell.loadingTitleLabel.hidden = YES;
-//        cell.loadingProgressView.hidden = YES;
-//        
-//    }else{
-
-    KFCStampGroupModel *pasterModel = self.data[self.preBtn.tag];
+    KFCStampGroupModel *pasterModel = self.data[(NSUInteger) self.preBtn.tag];
     NSArray *arr = [NSArray array];
     arr = [KFCStampsModel mj_objectArrayWithKeyValuesArray:pasterModel.stamps];
-    KFCStampsModel *stampsModel = arr[indexPath.row];
+    KFCStampsModel *stampsModel = arr[(NSUInteger) indexPath.row];
 
     // 有taskkey 的图片, 在任何情况下都可以 点击 显示提示语
 
@@ -268,42 +236,23 @@
         cell.coverImageView.alpha = 0.5f;
     }
 
-    cellImageName = stampsModel.image;
-
-//    }
-
-
-
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
     // 开始下载大图
-//    NSMutableArray *usedImages = [KFC_USER_DEFAULTS objectForKey:KFC_USER_DEFAULT_USED_IMAGES];
     NSArray *downloadedImageArr = [KFC_USER_DEFAULTS objectForKey:KFC_USER_DEFAULT_DOWN_LOADED_IAMGES];
 
-//    if (self.preBtn.tag == 1 || self.preBtn.tag == 0) {
-//        
-//        NSString *cellImageName = self.localImageArray[indexPath.row];
-//        
-//        if ([usedImages containsObject:cellImageName]) return;   // 本地图片 已使用,只有已使用和未使用两种状态, 不需要下载
-//        
-//        if ([self.delegate respondsToSelector:@selector(pasterViewDidClickedWithImageName:type:)]) {
-//            [self.delegate pasterViewDidClickedWithImageName:cellImageName type:imgNameTypeString];
-//        }
-//        
-//    }else{
-
-    KFCStampGroupModel *pasterModel = self.data[self.preBtn.tag];
+    KFCStampGroupModel *pasterModel = self.data[(NSUInteger) self.preBtn.tag];
     NSArray *arr = [NSArray array];
     arr = [KFCStampsModel mj_objectArrayWithKeyValuesArray:pasterModel.stamps];
-    KFCStampsModel *stampsModel = arr[indexPath.row];
+    KFCStampsModel *stampsModel = arr[(NSUInteger) indexPath.row];
 
     if ([downloadedImageArr containsObject:stampsModel.image]) {     //  已下载   直接使用
 
-        if ([self.delegate respondsToSelector:@selector(pasterViewDidClickedWithImageName:)]) {
-            [self.delegate pasterViewDidClickedWithImageName:stampsModel.image];
+        if ([self.delegate respondsToSelector:@selector(stampGroupViewDidClickedWithImageName:)]) {
+            [self.delegate stampGroupViewDidClickedWithImageName:stampsModel.image];
         }
 
     } else {      // 未下载  去下载
@@ -317,7 +266,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 cell.loadingProgressView.hidden = NO;
                 cell.loadingTitleLabel.hidden = NO;
-                CGFloat progress = receivedSize * 1.0 / expectedSize * 1.0;
+                CGFloat progress = (CGFloat) (receivedSize * 1.0 / expectedSize * 1.0);
                 cell.loadingProgressView.progress = progress;
             });
 

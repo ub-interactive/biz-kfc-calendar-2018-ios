@@ -1,15 +1,15 @@
 //
-//  KFCReTakeView.m
+//  KFCRetakeView.m
 //  肯德基
 //
 //  Created by 二哥 on 2017/11/1.
 //  Copyright © 2017年 汤旭浩. All rights reserved.
 //
 
-#import "KFCReTakeView.h"
+#import "KFCRetakeView.h"
 #import "KFCConfig.h"
 
-@implementation KFCReTakeView
+@implementation KFCRetakeView
 
 
 - (void)awakeFromNib {

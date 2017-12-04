@@ -51,14 +51,10 @@
                                     <action selector="scanButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="y8K-ds-RUa"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="firstStep" translatesAutoresizingMaskIntoConstraints="NO" id="20L-Jb-Hyp">
-                                <rect key="frame" x="170.5" y="501" width="114" height="33"/>
-                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="NhC-jo-iYS" firstAttribute="top" secondItem="pIs-Pi-LyF" secondAttribute="top" id="26O-dz-DfF"/>
-                            <constraint firstItem="b13-Jj-fql" firstAttribute="top" secondItem="20L-Jb-Hyp" secondAttribute="bottom" constant="8" id="5Yr-WV-Ouo"/>
                             <constraint firstItem="5sZ-At-xNI" firstAttribute="top" secondItem="NhC-jo-iYS" secondAttribute="bottom" constant="15" id="AOU-rW-1fY"/>
                             <constraint firstItem="pIs-Pi-LyF" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="30" id="J1T-iv-6rd"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="b13-Jj-fql" secondAttribute="bottom" constant="45" id="K2c-9I-kjm"/>
@@ -66,12 +62,10 @@
                             <constraint firstItem="b13-Jj-fql" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="WO6-DE-UNB"/>
                             <constraint firstItem="5sZ-At-xNI" firstAttribute="trailing" secondItem="NhC-jo-iYS" secondAttribute="trailing" id="knn-h0-EHX"/>
                             <constraint firstAttribute="trailing" secondItem="NhC-jo-iYS" secondAttribute="trailing" constant="30" id="oZF-Oe-0bR"/>
-                            <constraint firstItem="20L-Jb-Hyp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="40" id="pKB-0P-i17"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="IBm-Zp-3Lu"/>
                     <connections>
-                        <outlet property="firstStepTipImageView" destination="20L-Jb-Hyp" id="dxl-9T-ehd"/>
                         <outlet property="importFromAlbumButton" destination="5sZ-At-xNI" id="hwF-Jt-WHa"/>
                         <outlet property="scanButton" destination="pIs-Pi-LyF" id="Ivf-KK-tAx"/>
                         <outlet property="switchCameraButton" destination="NhC-jo-iYS" id="dgA-BA-Ir3"/>
@@ -137,7 +131,6 @@
     <resources>
         <image name="album" width="44" height="54"/>
         <image name="chageCamera" width="44" height="54"/>
-        <image name="firstStep" width="114" height="33"/>
         <image name="scan" width="44" height="54"/>
         <image name="takePhoto" width="80" height="80"/>
     </resources>

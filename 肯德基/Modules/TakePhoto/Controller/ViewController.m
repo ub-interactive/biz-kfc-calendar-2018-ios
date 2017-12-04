@@ -9,8 +9,8 @@
 #import <AVFoundation/AVFoundation.h>
 #import "KFCConfig.h"
 #import "KFCEditImageView.h"
-#import "KFCReTakeView.h"
-#import "KFCPasterView.h"
+#import "KFCRetakeView.h"
+#import "KFCStampGroupView.h"
 #import "KFCOneMoreView.h"
 #import "WXApi.h"
 #import "KFCStampGroupModel.h"
@@ -18,7 +18,7 @@
 #import "KFCScanViewController.h"
 #import "KFCFeatureView.h"
 
-@interface ViewController () <KFCReTakeViewButtonClickDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, KFCPasterViewButtonClickDelegate, KFCOneMoreViewButtonClickDelegate, KFCShareViewButtonClickDelegate>
+@interface ViewController () <KFCRetakeViewButtonClickDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, KFCShowStampGroupViewButtonClickDelegate, KFCOneMoreViewButtonClickDelegate, KFCShareViewButtonClickDelegate>
 
 @property(nonatomic, assign) NSNumber *isFirstLaunch;
 
@@ -37,9 +37,9 @@
 //图像预览层，实时显示捕获的图像
 @property(nonatomic, strong) AVCaptureVideoPreviewLayer *previewLayer;
 
-@property(nonatomic, strong) KFCReTakeView *retakeView;
+@property(nonatomic, strong) KFCRetakeView *retakeView;
 
-@property(nonatomic, strong) KFCPasterView *pasterView;
+@property(nonatomic, strong) KFCStampGroupView *stampGroupView;
 
 @property(nonatomic, strong) KFCOneMoreView *oneMoreView;
 
@@ -55,19 +55,18 @@
 
 @property(nonatomic, strong) KFCEditImageView *editImageview;
 
-@property(nonatomic, strong) UIView *temView;
-
 @property(nonatomic, strong) NSMutableArray *usedImgArr;
 
 @property(nonatomic, strong) KFCShareView *shareView;
 
-// 对焦框view
-@property(nonatomic, strong) UIView *preFocusView;
-
+// feature
 @property(nonatomic, strong) UIView *featureView;
 
 @property(nonatomic, strong) UIScrollView *featureScrollView;
 
+
+// controllers
+@property(nonatomic, strong) KFCScanViewController *kfcScanViewController;
 
 @end
 
@@ -75,6 +74,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    //init UI
+    self.navigationController.navigationBar.hidden = YES;
 
     // check first launch
     self.isFirstLaunch = [KFC_USER_DEFAULTS objectForKey:KFC_USER_DEFAULT_IS_FIRST_LAUNCH] == nil ? @YES : [KFC_USER_DEFAULTS objectForKey:KFC_USER_DEFAULT_IS_FIRST_LAUNCH];
@@ -89,25 +91,34 @@
     [self.view bringSubviewToFront:self.takePhotoButton];
     [self.view bringSubviewToFront:self.scanButton];
 
-    [self.view bringSubviewToFront:self.firstStepTipImageView];
-    self.firstStepTipImageView.hidden = ![self.isFirstLaunch boolValue];
-
+    // init data
     [self getStampGroupData];
 
+    // bind notifications
     [KFC_NOTIFICATION_CENTER addObserver:self selector:@selector(editImageViewActive:) name:KFC_NOTIFICATION_NAME_EDIT_IMAGEVIEW_ACTIVE object:nil];
     [KFC_NOTIFICATION_CENTER addObserver:self selector:@selector(getStampGroupData) name:KFC_NOTIFICATION_NAME_AR_RECOGNISE_SUCCEED_RELOAD_DATA object:nil];
 
-    // 判断是否显示 特性页面
+    // show feature pages
     NSString *lastVersion = [KFC_USER_DEFAULTS stringForKey:KFC_USER_DEFAULT_APP_VERSION];
     NSString *currentVersion = [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"];
 
-    //   是第一次使用app || 是第一次使用当前版本
+    // 是第一次使用app || 是第一次使用当前版本
     if (!lastVersion || [lastVersion compare:currentVersion] == NSOrderedAscending) {
         [KFC_USER_DEFAULTS setObject:currentVersion forKey:KFC_USER_DEFAULT_APP_VERSION];
         [self showFeatureView];
     }
 
-    self.navigationController.navigationBar.hidden = YES;
+
+    // init child controllers
+    self.kfcScanViewController = [[KFCScanViewController alloc] init];
+
+    // image picker controller
+    self.imagePickerController = [[UIImagePickerController alloc] init];
+    self.imagePickerController.delegate = self;
+
+    self.imagePickerController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    self.imagePickerController.allowsEditing = NO;
+    self.imagePickerController.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
 }
 
 
@@ -115,7 +126,6 @@
     [super viewWillAppear:animated];
     [self.captureSession startRunning];
 }
-
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
@@ -138,15 +148,9 @@
     [self.stampGroups addObjectsFromArray:[self getLocalData]];
 
     [[AFHTTPSessionManager manager] GET:KFC_URL_CALENDAR_NEW_STAMPS parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
-
-        NSLog(@"JSON: %@", responseObject);
-
         [self.stampGroups removeAllObjects];
-
         self.stampGroups = [KFCStampGroupModel mj_objectArrayWithKeyValuesArray:responseObject];
-
         [self.stampGroups addObjectsFromArray:[self getLocalData]];
-
     }                           failure:^(NSURLSessionTask *operation, NSError *error) {
 
     }];
@@ -207,92 +211,6 @@
     return nil;
 }
 
-// 点击屏幕   开始聚焦
-
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-
-    return;
-
-    if ([self.view.subviews containsObject:self.retakeView]) return;
-
-    //先进行判断是否支持控制对焦
-    if (_captureDevice.isFocusPointOfInterestSupported && [_captureDevice isFocusModeSupported:AVCaptureFocusModeAutoFocus]) {
-
-        NSError *error = nil;
-        //对cameraDevice进行操作前，需要先锁定，防止其他线程访问，
-        [_captureDevice lockForConfiguration:&error];
-        [_captureDevice setFocusMode:AVCaptureFocusModeAutoFocus];
-
-        CGPoint locationP = [touches.anyObject locationInView:self.view];
-        CGPoint cameraPoint = [self.previewLayer captureDevicePointOfInterestForPoint:locationP];
-
-//        竖屏时候对焦点应是
-//        (tap.x/self.view.frame.size.width, tap.y/self.view.frame.size.height)
-
-        CGFloat rateX = locationP.x / self.view.width;
-        CGFloat rateY = locationP.y / self.view.height;
-
-        NSLog(@"locationP  x  ==  %.2f", locationP.x);
-        NSLog(@"locationP  y  ==  %.2f", locationP.y);
-
-        NSLog(@"rateX  x  ==  %.2f", rateX);
-        NSLog(@"retaY  y  ==  %.2f", rateY);
-
-        //        NSLog(@"self.focusView  ==  %@", self.focusView);
-
-        NSLog(@"cameraPoint  x  ==  %.2f", cameraPoint.x);
-        NSLog(@"cameraPoint  y  ==  %.2f", cameraPoint.y);
-
-        [_captureDevice setFocusPointOfInterest:cameraPoint];
-//        [_device setFocusPointOfInterest:CGPointMake(rateX, rateY)];
-
-        //曝光模式
-        if ([_captureDevice isExposureModeSupported:AVCaptureExposureModeAutoExpose]) {
-            [_captureDevice setExposureMode:AVCaptureExposureModeAutoExpose];
-        } else {
-            NSLog(@"曝光模式修改失败");
-        }
-
-        //曝光点的位置
-        if ([_captureDevice isExposurePointOfInterestSupported]) {
-            [_captureDevice setExposurePointOfInterest:cameraPoint];
-        }
-
-        //  操作完成后，记得进行unlock。
-        [_captureDevice unlockForConfiguration];
-
-
-        if (self.preFocusView) [self.preFocusView removeFromSuperview];
-
-        UIView *focusView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 160, 160)];
-        focusView.center = locationP;
-        focusView.backgroundColor = [UIColor clearColor];
-
-        focusView.layer.borderColor = [UIColor colorWithRed:253.0 / 255.0 green:197.0 / 255.0 blue:52.0 / 255.0 alpha:1.0].CGColor;
-        focusView.layer.borderWidth = 1;
-
-        [self.view addSubview:focusView];
-
-        [UIView animateWithDuration:0.3f animations:^{
-            focusView.frame = CGRectMake(0, 0, 80, 80);
-            focusView.center = locationP;
-        }                completion:^(BOOL finished) {
-
-            [UIView animateWithDuration:0.3f animations:^{
-                focusView.alpha = 0.3f;
-            }];
-
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t) (2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [focusView removeFromSuperview];
-            });
-        }];
-
-        self.preFocusView = focusView;
-    }
-
-}
-
-
 // 拍照
 - (IBAction)takePhotoButtonClicked:(id)sender {
 
@@ -315,7 +233,7 @@
         [UIView animateWithDuration:0 animations:^{
             [self addRetakeView:self.image];
         }                completion:^(BOOL finished) {
-            [self autoAddPasterView];
+            [self autoAddStampGroupView];
         }];
 
     }];
@@ -325,14 +243,11 @@
 - (void)addRetakeView:(UIImage *)image {
 
     //  重新拍照 & 保存 的蒙版
-    self.retakeView = [[NSBundle mainBundle] loadNibNamed:@"KFCReTakeView" owner:self options:nil].lastObject;
+    self.retakeView = [[NSBundle mainBundle] loadNibNamed:@"KFCRetakeView" owner:self options:nil].lastObject;
     self.retakeView.frame = self.view.bounds;
-
-    NSLog(@"image  ==   %@", image);
 
     self.retakeView.delegate = self;
     [self.view addSubview:self.retakeView];
-
 
     // 根据图片比例 计算高度
     CGFloat ration = image.size.height / image.size.width;
@@ -357,9 +272,6 @@
     self.switchCameraButton.hidden = YES;
     self.importFromAlbumButton.hidden = YES;
     self.takePhotoButton.hidden = YES;
-
-    self.retakeView.secondStepImageView.hidden = ![self.isFirstLaunch boolValue];
-
 }
 
 
@@ -419,20 +331,12 @@
 
     [self.captureSession stopRunning];
 
-    self.imagePickerController = [[UIImagePickerController alloc] init];
-    self.imagePickerController.delegate = self;
-
-    self.imagePickerController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    self.imagePickerController.allowsEditing = NO;
-    self.imagePickerController.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
-
     [self presentViewController:self.imagePickerController animated:YES completion:nil];
 }
 
 // 扫一扫
 - (IBAction)scanButtonClicked:(UIButton *)sender {
-    KFCScanViewController *scanViewController = [KFCScanViewController new];
-    [self.navigationController pushViewController:scanViewController animated:YES];
+    [self.navigationController pushViewController:self.kfcScanViewController animated:YES];
 }
 
 
@@ -446,7 +350,7 @@
 
     [self dismissViewControllerAnimated:YES completion:^{
         // 自动显示贴纸页面
-        [self autoAddPasterView];
+        [self autoAddStampGroupView];
     }];
 
 }
@@ -458,12 +362,9 @@
     }];
 }
 
-#pragma mark - KFCReTakeViewButtonClickDelegate
+#pragma mark - KFCRetakeViewButtonClickDelegate
 
 - (void)retakeViewButtonClicked:(NSInteger)buttonTag {
-
-    [KFC_USER_DEFAULTS setObject:@"1" forKey:KFC_USER_DEFAULT_FIRST_CHOOSE_PASTER];
-    [KFC_USER_DEFAULTS synchronize];
 
     if (buttonTag == 1) {       // 重拍 或  再拍一张
 
@@ -505,21 +406,19 @@
 
     } else {      // 贴纸
 
-        self.retakeView.secondStepImageView.hidden = YES;
-
-        [self autoAddPasterView];
+        [self autoAddStampGroupView];
     }
 }
 
 // 添加pasterview
-- (void)autoAddPasterView {
+- (void)autoAddStampGroupView {
 
-    if (self.stampGroups.count && !self.pasterView.data.count) {
-        self.pasterView.data = self.stampGroups;
+    if (self.stampGroups.count && !self.stampGroupView.data.count) {
+        self.stampGroupView.data = self.stampGroups;
     }
-    [self.view addSubview:self.pasterView];
+    [self.view addSubview:self.stampGroupView];
     [UIView animateWithDuration:0.3f animations:^{
-        self.pasterView.x = 0;
+        self.stampGroupView.x = 0;
     }];
 }
 
@@ -541,9 +440,6 @@
     self.oneMoreView = [[NSBundle mainBundle] loadNibNamed:@"KFCOneMoreView" owner:self options:nil].lastObject;
     self.oneMoreView.frame = self.view.bounds;
     self.oneMoreView.delegate = self;
-
-    NSString *firstShare = [KFC_USER_DEFAULTS objectForKey:KFC_USER_DEFAULT_FIRST_SHARE];
-    self.oneMoreView.shareTipsImageView.hidden = firstShare.intValue;
 
     [self.view addSubview:self.oneMoreView];
 
@@ -642,13 +538,8 @@
     WXMediaMessage *message = [WXMediaMessage message];
 
     [message setThumbImage:[self.editedImage resizedImageToFitInSize:CGSizeMake(150, 150) scaleIfSmaller:YES]];
-//    message.title = @"111";
-//    message.description = @"222";
 
     WXImageObject *imageObject = [WXImageObject object];
-
-//    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"" ofType:@""];
-//    imageObject.imageData = [NSData dataWithContentsOfFile:filePath];
 
     imageObject.imageData = UIImageJPEGRepresentation(self.editedImage, 1);
     message.mediaObject = imageObject;
@@ -667,7 +558,7 @@
 
 // 长按图片  拖出来
 
-- (void)pasterViewDidClickedWithImageName:(NSString *)imgName {
+- (void)stampGroupViewDidClickedWithImageName:(NSString *)imgName {
 
 
     // 不透明的图片  , 直接切的图
@@ -780,8 +671,8 @@
 //        [temView removeFromSuperview];
 
     // 拖动完成后 将paster view  移除
-    [self.pasterView removeFromSuperview];
-    self.pasterView.x = 145;
+    [self.stampGroupView removeFromSuperview];
+    self.stampGroupView.x = 145;
 
     // 点保存的时候 再存储吧应该是
 //        [self.usedImgArr addObject:imgName];
@@ -846,16 +737,16 @@
 //}
 
 
-- (KFCPasterView *)pasterView {
+- (KFCStampGroupView *)stampGroupView {
 
-    if (!_pasterView) {
+    if (!_stampGroupView) {
 
-        _pasterView = [[NSBundle mainBundle] loadNibNamed:@"KFCPasterView" owner:self options:nil].lastObject;
-        _pasterView.frame = CGRectMake(145, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-        _pasterView.delegate = self;
+        _stampGroupView = [[NSBundle mainBundle] loadNibNamed:@"KFCPasterView" owner:self options:nil].lastObject;
+        _stampGroupView.frame = CGRectMake(145, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+        _stampGroupView.delegate = self;
 
     }
-    return _pasterView;
+    return _stampGroupView;
 }
 
 /**************     特性页面     **************/

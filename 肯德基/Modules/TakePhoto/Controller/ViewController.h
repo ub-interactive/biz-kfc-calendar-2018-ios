@@ -18,8 +18,6 @@
 
 @property(nonatomic, weak) IBOutlet UIButton *importFromAlbumButton;
 
-@property(weak, nonatomic) IBOutlet UIImageView *firstStepTipImageView;
-
 @property(nonatomic, strong) NSMutableArray *stampGroups;
 
 @end
