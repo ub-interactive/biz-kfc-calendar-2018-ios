@@ -70,18 +70,26 @@
 
 @end
 
-@implementation ViewController
+@implementation ViewController {
+    UIVisualEffectView *blurView;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    //init UI
-    self.navigationController.navigationBar.hidden = YES;
 
     // check first launch
     self.isFirstLaunch = [KFC_USER_DEFAULTS objectForKey:KFC_USER_DEFAULT_IS_FIRST_LAUNCH] == nil ? @YES : [KFC_USER_DEFAULTS objectForKey:KFC_USER_DEFAULT_IS_FIRST_LAUNCH];
     [KFC_USER_DEFAULTS setObject:@NO forKey:KFC_USER_DEFAULT_IS_FIRST_LAUNCH];
     [KFC_USER_DEFAULTS synchronize];
+
+    // init data
+    [self getStampGroupData];
+
+    //init UI
+    self.navigationController.navigationBar.hidden = YES;
+    blurView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleDark]];
+    blurView.frame = self.view.bounds;
+    blurView.autoresizingMask = (UIViewAutoresizing) (UIViewAutoresizingFlexibleWidth || UIViewAutoresizingFlexibleHeight);
 
     // 启动相机
     [self setupCamera];
@@ -91,12 +99,9 @@
     [self.view bringSubviewToFront:self.takePhotoButton];
     [self.view bringSubviewToFront:self.scanButton];
 
-    // init data
-    [self getStampGroupData];
-
     // bind notifications
-    [KFC_NOTIFICATION_CENTER addObserver:self selector:@selector(editImageViewActive:) name:KFC_NOTIFICATION_NAME_EDIT_IMAGEVIEW_ACTIVE object:nil];
-    [KFC_NOTIFICATION_CENTER addObserver:self selector:@selector(getStampGroupData) name:KFC_NOTIFICATION_NAME_AR_RECOGNISE_SUCCEED_RELOAD_DATA object:nil];
+    [KFC_NOTIFICATION_CENTER addObserver:self selector:@selector(editImageViewActive:) name:KFC_NOTIFICATION_NAME_EDIT_IMAGE_VIEW_ACTIVE object:nil];
+    [KFC_NOTIFICATION_CENTER addObserver:self selector:@selector(getStampGroupData) name:KFC_NOTIFICATION_NAME_AR_SCAN_SUCCEED_RELOAD_DATA object:nil];
 
     // show feature pages
     NSString *lastVersion = [KFC_USER_DEFAULTS stringForKey:KFC_USER_DEFAULT_APP_VERSION];
@@ -122,14 +127,31 @@
 }
 
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self.captureSession startRunning];
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self startCaptureSessionWithCompletion:nil];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
+    [self stopCaptureSessionWithCompletion:nil];
+}
+
+
+- (void)startCaptureSessionWithCompletion:(void (^ __nullable)(BOOL finished))completion {
+    blurView.alpha = 1;
+    [self.captureSession startRunning];
+    [UIView animateWithDuration:0.1f animations:^{
+        blurView.alpha = 0;
+    }                completion:completion];
+}
+
+- (void)stopCaptureSessionWithCompletion:(void (^ __nullable)(BOOL finished))completion {
+    blurView.alpha = 0;
     [self.captureSession stopRunning];
+    [UIView animateWithDuration:0.1f animations:^{
+        blurView.alpha = 1;
+    }                completion:completion];
 }
 
 - (NSArray *)getLocalData {
@@ -183,6 +205,7 @@
     self.previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
 
     [self.view.layer addSublayer:self.previewLayer];
+    [self.view addSubview:blurView];
 
     if ([self.captureDevice lockForConfiguration:nil]) {
         //自动闪光灯
@@ -224,7 +247,7 @@
 
         if (imageDataSampleBuffer == nil) return;
 
-        [self.captureSession stopRunning];
+        [self stopCaptureSessionWithCompletion:nil];
 
         NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
 
@@ -254,13 +277,10 @@
     // 显示的高度
     CGFloat realHeight = SCREEN_WIDTH * ration;
 
-    NSLog(@"realHeight  ==   %.2f", realHeight);
-
     self.cameraImageView = [[UIImageView alloc] initWithFrame:self.retakeView.bounds];
     self.cameraImageView.backgroundColor = [UIColor orangeColor];
     self.cameraImageView.contentMode = UIViewContentModeScaleAspectFit;
     self.cameraImageView.userInteractionEnabled = YES;
-//    self.cameraImageView.clipsToBounds = YES;
 
     self.cameraImageView.height = floorf(realHeight);       // 向下取整, 不然截图的时候 会有底部会有白边
     self.cameraImageView.center = self.retakeView.center;
@@ -302,9 +322,9 @@
         }
 
         //生成新的输入
+        [self stopCaptureSessionWithCompletion:nil];
         newInput = [AVCaptureDeviceInput deviceInputWithDevice:newCamera error:nil];
-//        [self.previewLayer addAnimation:animation forKey:nil];
-
+        [self.previewLayer addAnimation:animation forKey:nil];
         if (newInput != nil) {
             [self.captureSession beginConfiguration];
             [self.captureSession removeInput:self.captureDeviceInput];
@@ -316,10 +336,12 @@
                 [self.captureSession addInput:self.captureDeviceInput];
             }
             [self.captureSession commitConfiguration];
+            [self startCaptureSessionWithCompletion:nil];
 
         } else if (error) {
             NSLog(@"toggle carema failed, error = %@", error);
         }
+
     }
 
 
@@ -328,15 +350,16 @@
 
 // 相册
 - (IBAction)importFromAlbumButtonClicked:(id)sender {
-
-    [self.captureSession stopRunning];
-
-    [self presentViewController:self.imagePickerController animated:YES completion:nil];
+    [self stopCaptureSessionWithCompletion:(void (^)(BOOL)) ^{
+        [self presentViewController:self.imagePickerController animated:YES completion:nil];
+    }];
 }
 
 // 扫一扫
 - (IBAction)scanButtonClicked:(UIButton *)sender {
-    [self.navigationController pushViewController:self.kfcScanViewController animated:YES];
+    [self stopCaptureSessionWithCompletion:(void (^)(BOOL)) ^{
+        [self.navigationController pushViewController:self.kfcScanViewController animated:YES];
+    }];
 }
 
 
@@ -344,13 +367,15 @@
 
 //该代理方法仅适用于只选取图片时
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(nullable NSDictionary<NSString *, id> *)editingInfo {
-
     self.image = image;
     [self addRetakeView:self.image];
 
     [self dismissViewControllerAnimated:YES completion:^{
         // 自动显示贴纸页面
-        [self addStampGroupView];
+        [self stopCaptureSessionWithCompletion:(void (^)(BOOL)) ^{
+            [self addStampGroupView];
+        }];
+
     }];
 
 }
@@ -358,7 +383,7 @@
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
 
     [self dismissViewControllerAnimated:YES completion:^{
-        [self.captureSession startRunning];
+        [self startCaptureSessionWithCompletion:nil];
     }];
 }
 
@@ -376,7 +401,7 @@
         [self.cameraImageView removeFromSuperview];
         [self.oneMoreView removeFromSuperview];
 
-        [self.captureSession startRunning];
+        [self startCaptureSessionWithCompletion:nil];
 
     } else if (buttonTag == 2) {      // 保存
 
@@ -391,8 +416,8 @@
                 if ([subView isKindOfClass:KFCEditImageView.class]) {
                     KFCEditImageView *imgView = (KFCEditImageView *) subView;
                     imgView.deleteButton.hidden = YES;
-                    imgView.scaleBtn.hidden = YES;
-                    imgView.imgBgView.hidden = YES;
+                    imgView.dragButton.hidden = YES;
+                    imgView.backgroundView.hidden = YES;
                     [imgView.border removeFromSuperlayer];
                 }
             }
@@ -505,11 +530,11 @@
 
     } else if (button.tag == 1) {     // 朋友圈
 
-        [self shareToWechatWithType:WXSceneTimeline];
+        [self shareToWeChatWithType:WXSceneTimeline];
 
     } else if (button.tag == 2) {     //  好友
 
-        [self shareToWechatWithType:WXSceneSession];
+        [self shareToWeChatWithType:WXSceneSession];
 
     } else if (button.tag == 4) {     // cover  button
 
@@ -524,7 +549,7 @@
 }
 
 
-- (void)shareToWechatWithType:(int)scene {
+- (void)shareToWeChatWithType:(int)scene {
 
     if (![WXApi isWXAppInstalled]) {
         [KFCProgressHUD showWithString:@"请先下载微信" inView:self.view];
@@ -570,12 +595,12 @@
     self.editImageview = [[KFCEditImageView alloc] initWithFrame:CGRectMake(0, 0, imgW, realHeight)];
     self.editImageview.center = self.cameraImageView.center;
     self.editImageview.y = self.cameraImageView.height / 2 - self.editImageview.height / 2;
-    self.editImageview.imageView.image = cachedImage;
+    self.editImageview.stampImageView.image = cachedImage;
 
     // 设置图片name, 发通知过来可删除
-    self.editImageview.imgName = imgName;
+    self.editImageview.imageName = imgName;
     [self.cameraImageView addSubview:self.editImageview];
-    [KFCEditImageView setActiveEmoticonView:self.editImageview];
+    [KFCEditImageView setActiveStampView:self.editImageview];
 
     self.retakeView.saveButton.hidden = YES;
     self.retakeView.retakeButton.hidden = YES;
@@ -595,7 +620,7 @@
 
 - (void)retakeViewTap:(UITapGestureRecognizer *)tap {
 
-    [KFCEditImageView setActiveEmoticonView:nil];
+    [KFCEditImageView setActiveStampView:nil];
 
     self.retakeView.retakeButton.hidden = NO;
     self.retakeView.saveButton.hidden = NO;

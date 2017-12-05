@@ -8,20 +8,20 @@
 
 #import <Foundation/Foundation.h>
 
-BOOL initialize();
+BOOL initialize(void);
 
-void finalize();
+void finalize(void);
 
-BOOL startCamera();
+BOOL startCamera(void);
 
-BOOL stopCamera();
+BOOL stopCamera(void);
 
-BOOL stopTracker();
+BOOL stopTracker(void);
 
-BOOL startTracker();
+BOOL startTracker(void);
 
-void initGL();
+void initGL(void);
 
 void resizeGL(int width, int height);
 
-void render();
+void render(void);

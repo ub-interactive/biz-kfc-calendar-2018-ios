@@ -79,6 +79,7 @@
 		F636A8A61FD548090046FF4F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F636A8A51FD548090046FF4F /* GoogleService-Info.plist */; };
 		F699ED471FD54F410056B06D /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = F699ED441FD54F410056B06D /* README.txt */; };
 		F699ED481FD54F410056B06D /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F699ED461FD54F410056B06D /* libWeChatSDK.a */; };
+		F6A280FC1FD65DC800C19F42 /* scan-success.wav in Resources */ = {isa = PBXBuildFile; fileRef = F6A280FB1FD65DC800C19F42 /* scan-success.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -193,6 +194,7 @@
 		F699ED441FD54F410056B06D /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		F699ED451FD54F410056B06D /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
 		F699ED461FD54F410056B06D /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		F6A280FB1FD65DC800C19F42 /* scan-success.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "scan-success.wav"; sourceTree = "<group>"; };
 		F6E6598C1FD535F00058850F /* KFCCalendar2018.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KFCCalendar2018.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -502,6 +504,7 @@
 			children = (
 				F624272D1FD324E500DB82FE /* Targets */,
 				B2CBF86A1FCA7285005BA26E /* feature.mp4 */,
+				F6A280FB1FD65DC800C19F42 /* scan-success.wav */,
 				B2CDE4851FA8C22E00D11D78 /* Assets.xcassets */,
 				B2CDE4821FA8C22E00D11D78 /* Main.storyboard */,
 				B2CDE4871FA8C22E00D11D78 /* LaunchScreen.storyboard */,
@@ -609,6 +612,7 @@
 				B2CDE4861FA8C22E00D11D78 /* Assets.xcassets in Resources */,
 				B2CDE4841FA8C22E00D11D78 /* Main.storyboard in Resources */,
 				184417351FBD39F500198812 /* KFCOneMoreView.xib in Resources */,
+				F6A280FC1FD65DC800C19F42 /* scan-success.wav in Resources */,
 				184417391FBD39F500198812 /* KFCPasterView.xib in Resources */,
 				184417301FBD39F500198812 /* KFCProgressHUD.xib in Resources */,
 				184417361FBD39F500198812 /* KFCShareView.xib in Resources */,

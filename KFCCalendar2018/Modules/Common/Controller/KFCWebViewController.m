@@ -37,9 +37,18 @@
     self.navigationView = navigationView;
     [self.view addSubview:navigationView];
 
-
+    [self.view setBackgroundColor:[UIColor colorWithWhite:1.0f alpha:0.2f]];
     [self.view addSubview:self.webview];
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.urlStr]];
+
+    // append udid
+    NSString *urlString = nil;
+    if([self.urlStr containsString:@"?"]) {
+        urlString = [self.urlStr stringByAppendingString:[NSString stringWithFormat:@"&udid=%@", [KFC_USER_DEFAULTS objectForKey:KFC_USER_DEFAULT_UDID]]];
+    } else {
+        urlString = [self.urlStr stringByAppendingString:[NSString stringWithFormat:@"?udid=%@", [KFC_USER_DEFAULTS objectForKey:KFC_USER_DEFAULT_UDID]]];
+    }
+
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     [self.webview loadRequest:request];
 
     self.isSecondLoading = NO;
@@ -93,8 +102,6 @@
 
             NSMutableDictionary *dic = [self getURLParametersWithUrl:URL];
 
-            NSLog(@"NSMutableDictionary  ==  %@", dic);
-
             NSString *type = dic[@"type"];
             NSString *title = dic[@"title"];
             NSString *thumb = dic[@"thumb"];
@@ -127,12 +134,7 @@
         }
 
     } else {
-
-        //    if (webView.canGoBack) {
-        //    self.navigationView.closeButton.hidden = !webView.canGoBack;
         self.navigationView.closeButton.hidden = !self.isSecondLoading;
-        //    }
-
         self.isSecondLoading = YES;
     }
 
@@ -141,8 +143,6 @@
 }
 
 - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message {
-
-    NSLog(@"%@", message.body);
 
 //    NSString *urlStr = [message.body objectForKey:@"message"];
 

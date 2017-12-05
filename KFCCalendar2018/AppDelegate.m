@@ -12,8 +12,6 @@
 #import "KFCTaskKeyModel.h"
 #import "KFCScanViewController.h"
 
-NSString *key = @"amxBNPSXKbRBragBOjnJ0rV5tjSBwQZFk3SqTyd8qlTOv54A8CFjO4fP8RaVD9NDDKcvzXc4aPWHFj7cW5gtViFP1Q4j5nD23zodBz30agY29ai2ar7VQPcW7n41yxP8zv5ZlNhWy1vY4xujQpW8U34E9ZLyKT3byHamzdqWwUD1jnoGS82pRYqGQXiiQGn2pfpwC5BO";
-
 
 @interface AppDelegate ()
 
@@ -30,13 +28,13 @@ NSString *key = @"amxBNPSXKbRBragBOjnJ0rV5tjSBwQZFk3SqTyd8qlTOv54A8CFjO4fP8RaVD9
     //   微信
     [WXApi registerApp:KFC_WX_APP_ID];
 
-    if (![easyar_Engine initialize:key]) {
+    if (![easyar_Engine initialize:KFC_EASY_AR_KEY]) {
         NSLog(@"easyar_Engine Initialization Failed.");
     }
 
     [self getCompletedTasks];
 
-    [KFC_NOTIFICATION_CENTER addObserver:self selector:@selector(getCompletedTasks) name:KFC_NOTIFICATION_NAME_AR_RECOGNISE_SUCCEED_RELOAD_DATA object:nil];
+    [KFC_NOTIFICATION_CENTER addObserver:self selector:@selector(getCompletedTasks) name:KFC_NOTIFICATION_NAME_AR_SCAN_SUCCEED_RELOAD_DATA object:nil];
 
     return YES;
 }
@@ -45,9 +43,8 @@ NSString *key = @"amxBNPSXKbRBragBOjnJ0rV5tjSBwQZFk3SqTyd8qlTOv54A8CFjO4fP8RaVD9
 
     NSString *deviceId = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
 
-    NSDictionary *params = @{@"uuid": deviceId};
-
-    NSLog(@"params  ==  %@", params);
+    [KFC_USER_DEFAULTS setObject:deviceId forKey:KFC_USER_DEFAULT_UDID];
+    [KFC_USER_DEFAULTS synchronize];
 
     NSString *urlStr = [NSString stringWithFormat:@"%@/%@", KFC_URL_CALENDAR_COMPLETE_TASKS, deviceId];
 

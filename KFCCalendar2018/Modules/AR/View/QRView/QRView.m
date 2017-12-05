@@ -244,45 +244,6 @@ static NSTimeInterval kQrLineanimateDuration = 0.010;
 
 
 /*
-    扫海报
- */
-- (void)scanImageButtonClicked:(UIButton *)sender {
-
-    if (sender.isSelected) return;
-
-    sender.selected = YES;
-    self.scanObjectButton.selected = NO;
-
-    [KFC_USER_DEFAULTS setObject:[NSNumber numberWithBool:NO] forKey:KFC_USER_DEFAULT_IS_SCAN_OBJ];
-    [KFC_USER_DEFAULTS synchronize];
-
-    if (self.qrViewScanButtonClickedBlock) {
-        self.qrViewScanButtonClickedBlock(sender.tag);
-    }
-}
-
-
-/*
-    扫物体
- */
-- (void)scanObjectButtonClicked:(UIButton *)sender {
-
-    if (sender.isSelected) return;
-
-    sender.selected = YES;
-    self.scanImageButton.selected = NO;
-
-    [KFC_USER_DEFAULTS setObject:[NSNumber numberWithBool:YES] forKey:KFC_USER_DEFAULT_IS_SCAN_OBJ];
-    [KFC_USER_DEFAULTS synchronize];
-
-    if (self.qrViewScanButtonClickedBlock) {
-        self.qrViewScanButtonClickedBlock(sender.tag);
-    }
-
-}
-
-
-/*
     任务列表 按钮点击
  */
 
@@ -316,7 +277,6 @@ static NSTimeInterval kQrLineanimateDuration = 0.010;
 - (void)sureButtonClicked {
 
     if (!self.inputTextField.text || [self.inputTextField.text isEqualToString:@""]) {
-//        [KFCProgressHUD showError:@"请输入条码号"];
         return;
     }
 
@@ -354,7 +314,6 @@ static NSTimeInterval kQrLineanimateDuration = 0.010;
         _backQRButton = [[JXQRButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 140, CGRectGetMaxY(inputButton.frame) + 100, 120, 40)];
         [_backQRButton setImage:[UIImage imageNamed:@"scan_white"] forState:UIControlStateNormal];
         _backQRButton.titleLabel.text = @"切换扫码";
-//        _backQRButton.titleLabel.font = JXC_FONT_SMALL;
         [_backQRButton addTarget:self action:@selector(backQRButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _backQRButton;
@@ -365,7 +324,6 @@ static NSTimeInterval kQrLineanimateDuration = 0.010;
     if (_sureButton == nil) {
         _sureButton = [[JXQRButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH / 2 + 20, CGRectGetMaxY(inputButton.frame) + 100, 120, 40)];
         _sureButton.titleLabel.text = @"确定";
-//        _sureButton.titleLabel.font = JXC_FONT_DEFAULT;
         [_sureButton addTarget:self action:@selector(sureButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     }
     return _sureButton;

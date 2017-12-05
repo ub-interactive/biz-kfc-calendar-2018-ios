@@ -14,6 +14,7 @@
 #import "KFCScanSuccessView.h"
 #import "KFCWebViewController.h"
 #import "KFCScanSuccessModel.h"
+#import <AudioToolbox/AudioToolbox.h>
 
 @interface KFCScanViewController ()
 
@@ -29,6 +30,7 @@
 
 @implementation KFCScanViewController {
     OpenGLView *glView;
+    SystemSoundID scanSuccessSound;
 }
 
 - (void)loadView {
@@ -47,6 +49,10 @@
     [navigationView.backButton addTarget:self action:@selector(navigationBackButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:navigationView];
     self.navigationView = navigationView;
+    
+    // load sound
+    NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"scan-success" ofType:@"wav"];
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath: soundPath], &scanSuccessSound);
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -71,6 +77,7 @@
     [self->glView stopTracker];
     [self->glView stopCamera];
     [KFC_NOTIFICATION_CENTER removeObserver:self];
+    AudioServicesDisposeSystemSoundID(scanSuccessSound);
 }
 
 - (void)viewWillLayoutSubviews {
@@ -89,6 +96,8 @@
 - (void)arScanSuccess:(NSNotification *)notification {
     [self->glView stopTracker];
 
+    AudioServicesPlaySystemSound(scanSuccessSound);
+    
     // 识别完成后  先显示一个loading, 去网络请求, 下载完完图片后才显示view, 如果后台不给url , 则直接返回拍照页面, 如果给了, 则进入webviewcontroller 加载url
     // 添加  扫描成功后的view
     self.scanSuccessView = [[NSBundle mainBundle] loadNibNamed:@"KFCScanSuccessView" owner:self options:nil].lastObject;
@@ -155,7 +164,7 @@
         }];
 
         //   扫描成功  完成任务,  刷新数据
-        [KFC_NOTIFICATION_CENTER postNotificationName:KFC_NOTIFICATION_NAME_AR_RECOGNISE_SUCCEED_RELOAD_DATA object:nil];
+        [KFC_NOTIFICATION_CENTER postNotificationName:KFC_NOTIFICATION_NAME_AR_SCAN_SUCCEED_RELOAD_DATA object:nil];
     }                           failure:^(NSURLSessionTask *operation, NSError *error) {
 
     }];
