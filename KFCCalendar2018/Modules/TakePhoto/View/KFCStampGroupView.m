@@ -53,9 +53,9 @@
 
     NSMutableArray *titleArray = [NSMutableArray array];
 
-    for (KFCStampGroupModel *pasterModel in data) {
+    for (KFCStampGroupModel *stampGroupModel in data) {
 
-        [titleArray addObject:pasterModel.name];
+        [titleArray addObject:stampGroupModel.name];
     }
 
     [self setupTagsButtonWithTitles:titleArray];
