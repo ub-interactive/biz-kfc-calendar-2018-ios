@@ -40,7 +40,7 @@
 		184417361FBD39F500198812 /* KFCShareView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184417231FBD39F500198812 /* KFCShareView.xib */; };
 		184417371FBD39F500198812 /* KFCStampGroupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 184417241FBD39F500198812 /* KFCStampGroupView.m */; };
 		184417381FBD39F500198812 /* KFCProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 184417261FBD39F500198812 /* KFCProgressHUD.m */; };
-		184417391FBD39F500198812 /* KFCPasterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184417271FBD39F500198812 /* KFCPasterView.xib */; };
+		184417391FBD39F500198812 /* KFCStampGroupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184417271FBD39F500198812 /* KFCStampGroupView.xib */; };
 		1844173A1FBD39F500198812 /* KFCTipsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 184417281FBD39F500198812 /* KFCTipsView.m */; };
 		1844173B1FBD39F500198812 /* KFCRetakeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 184417291FBD39F500198812 /* KFCRetakeView.m */; };
 		1844220B1FBD3D0C00198812 /* QRItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 184422021FBD3D0C00198812 /* QRItem.m */; };
@@ -52,8 +52,6 @@
 		4166D808DD10CB3D197493BA /* libPods-KFCCalendar2018.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 98426445442F99578DAF8B3A /* libPods-KFCCalendar2018.a */; };
 		B278D54D1FD2A010000C8FE9 /* ArCore.m in Sources */ = {isa = PBXBuildFile; fileRef = B278D54C1FD2A010000C8FE9 /* ArCore.m */; };
 		B27968311FBFEAD8006E5FE4 /* KFCScanSuccessModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B27968301FBFEAD8006E5FE4 /* KFCScanSuccessModel.m */; };
-		B2CBF86B1FCA7478005BA26E /* feature.mp4 in Sources */ = {isa = PBXBuildFile; fileRef = B2CBF86A1FCA7285005BA26E /* feature.mp4 */; };
-		B2CBF86C1FCA7493005BA26E /* feature.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B2CBF86A1FCA7285005BA26E /* feature.mp4 */; };
 		B2CDE47B1FA8C22E00D11D78 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CDE47A1FA8C22E00D11D78 /* main.m */; };
 		B2CDE47E1FA8C22E00D11D78 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CDE47D1FA8C22E00D11D78 /* AppDelegate.m */; };
 		B2CDE4841FA8C22E00D11D78 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2CDE4821FA8C22E00D11D78 /* Main.storyboard */; };
@@ -80,6 +78,7 @@
 		F699ED471FD54F410056B06D /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = F699ED441FD54F410056B06D /* README.txt */; };
 		F699ED481FD54F410056B06D /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F699ED461FD54F410056B06D /* libWeChatSDK.a */; };
 		F6A280FC1FD65DC800C19F42 /* scan-success.wav in Resources */ = {isa = PBXBuildFile; fileRef = F6A280FB1FD65DC800C19F42 /* scan-success.wav */; };
+		F6E669AF1FD6930A00F7152D /* feature.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = F6E669AE1FD6927900F7152D /* feature.mp4 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -132,7 +131,7 @@
 		184417241FBD39F500198812 /* KFCStampGroupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFCStampGroupView.m; sourceTree = "<group>"; };
 		184417251FBD39F500198812 /* KFCShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFCShareView.h; sourceTree = "<group>"; };
 		184417261FBD39F500198812 /* KFCProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFCProgressHUD.m; sourceTree = "<group>"; };
-		184417271FBD39F500198812 /* KFCPasterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KFCPasterView.xib; sourceTree = "<group>"; };
+		184417271FBD39F500198812 /* KFCStampGroupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KFCStampGroupView.xib; sourceTree = "<group>"; };
 		184417281FBD39F500198812 /* KFCTipsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFCTipsView.m; sourceTree = "<group>"; };
 		184417291FBD39F500198812 /* KFCRetakeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFCRetakeView.m; sourceTree = "<group>"; };
 		1844172A1FBD39F500198812 /* KFCOneMoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFCOneMoreView.h; sourceTree = "<group>"; };
@@ -156,7 +155,6 @@
 		B278D54C1FD2A010000C8FE9 /* ArCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArCore.m; sourceTree = "<group>"; };
 		B279682F1FBFEAD8006E5FE4 /* KFCScanSuccessModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFCScanSuccessModel.h; sourceTree = "<group>"; };
 		B27968301FBFEAD8006E5FE4 /* KFCScanSuccessModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFCScanSuccessModel.m; sourceTree = "<group>"; };
-		B2CBF86A1FCA7285005BA26E /* feature.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = feature.mp4; sourceTree = "<group>"; };
 		B2CDE4761FA8C22E00D11D78 /* KFCCalendar2018.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KFCCalendar2018.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2CDE47A1FA8C22E00D11D78 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B2CDE47C1FA8C22E00D11D78 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -196,6 +194,7 @@
 		F699ED461FD54F410056B06D /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		F6A280FB1FD65DC800C19F42 /* scan-success.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "scan-success.wav"; sourceTree = "<group>"; };
 		F6E6598C1FD535F00058850F /* KFCCalendar2018.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KFCCalendar2018.entitlements; sourceTree = "<group>"; };
+		F6E669AE1FD6927900F7152D /* feature.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = feature.mp4; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -334,7 +333,7 @@
 				1844171F1FBD39F500198812 /* KFCPasterTableViewCell.xib */,
 				1844171A1FBD39F500198812 /* KFCStampGroupView.h */,
 				184417241FBD39F500198812 /* KFCStampGroupView.m */,
-				184417271FBD39F500198812 /* KFCPasterView.xib */,
+				184417271FBD39F500198812 /* KFCStampGroupView.xib */,
 				1844171B1FBD39F500198812 /* KFCTipsView.h */,
 				184417281FBD39F500198812 /* KFCTipsView.m */,
 				1844172A1FBD39F500198812 /* KFCOneMoreView.h */,
@@ -502,8 +501,8 @@
 		F624272C1FD2FEDD00DB82FE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F6E669AE1FD6927900F7152D /* feature.mp4 */,
 				F624272D1FD324E500DB82FE /* Targets */,
-				B2CBF86A1FCA7285005BA26E /* feature.mp4 */,
 				F6A280FB1FD65DC800C19F42 /* scan-success.wav */,
 				B2CDE4851FA8C22E00D11D78 /* Assets.xcassets */,
 				B2CDE4821FA8C22E00D11D78 /* Main.storyboard */,
@@ -601,7 +600,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2CBF86C1FCA7493005BA26E /* feature.mp4 in Resources */,
+				F6E669AF1FD6930A00F7152D /* feature.mp4 in Resources */,
 				F699ED471FD54F410056B06D /* README.txt in Resources */,
 				184416FD1FBD399700198812 /* KFCScanNavigationView.xib in Resources */,
 				B2CDE4891FA8C22E00D11D78 /* LaunchScreen.storyboard in Resources */,
@@ -613,7 +612,7 @@
 				B2CDE4841FA8C22E00D11D78 /* Main.storyboard in Resources */,
 				184417351FBD39F500198812 /* KFCOneMoreView.xib in Resources */,
 				F6A280FC1FD65DC800C19F42 /* scan-success.wav in Resources */,
-				184417391FBD39F500198812 /* KFCPasterView.xib in Resources */,
+				184417391FBD39F500198812 /* KFCStampGroupView.xib in Resources */,
 				184417301FBD39F500198812 /* KFCProgressHUD.xib in Resources */,
 				184417361FBD39F500198812 /* KFCShareView.xib in Resources */,
 				F636A8A61FD548090046FF4F /* GoogleService-Info.plist in Resources */,
@@ -680,7 +679,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2CBF86B1FCA7478005BA26E /* feature.mp4 in Sources */,
 				1844220C1FBD3D0C00198812 /* QRMenu.m in Sources */,
 				B2D461AF1FA996E700BACA55 /* KFCConfig.h in Sources */,
 				B2CDE4B91FA954D700D11D78 /* KKClassList.m in Sources */,

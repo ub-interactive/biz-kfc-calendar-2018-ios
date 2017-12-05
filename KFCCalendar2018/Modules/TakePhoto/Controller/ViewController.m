@@ -98,6 +98,7 @@
     [self.view bringSubviewToFront:self.importFromAlbumButton];
     [self.view bringSubviewToFront:self.takePhotoButton];
     [self.view bringSubviewToFront:self.scanButton];
+    [self.view bringSubviewToFront:self.infoButton];
 
     // bind notifications
     [KFC_NOTIFICATION_CENTER addObserver:self selector:@selector(editImageViewActive:) name:KFC_NOTIFICATION_NAME_EDIT_IMAGE_VIEW_ACTIVE object:nil];
@@ -159,7 +160,7 @@
     KFCStampGroupModel *kfcStampGroupModel = [[KFCStampGroupModel alloc] init];
     kfcStampGroupModel.name = @"敬请期待";
     kfcStampGroupModel.isNew = 0;
-    kfcStampGroupModel.note = @"不定期推出新贴纸和限量版贴纸，请关注APP通知，收集贴纸，手慢则无哦！";
+    kfcStampGroupModel.note = @"K记大玩家会不定期推出新贴纸，请关注K记通知和线下活动活动！";
     kfcStampGroupModel.isAvailable = 0;
 
     return @[kfcStampGroupModel];
@@ -292,6 +293,7 @@
     self.switchCameraButton.hidden = YES;
     self.importFromAlbumButton.hidden = YES;
     self.takePhotoButton.hidden = YES;
+    self.infoButton.hidden = YES;
 }
 
 
@@ -396,6 +398,7 @@
         self.switchCameraButton.hidden = NO;
         self.importFromAlbumButton.hidden = NO;
         self.takePhotoButton.hidden = NO;
+        self.infoButton.hidden = NO;
 
         [self.retakeView removeFromSuperview];
         [self.cameraImageView removeFromSuperview];
@@ -636,7 +639,7 @@
 
     if (!_stampGroupView) {
 
-        _stampGroupView = [[NSBundle mainBundle] loadNibNamed:@"KFCPasterView" owner:self options:nil].lastObject;
+        _stampGroupView = [[NSBundle mainBundle] loadNibNamed:@"KFCStampGroupView" owner:self options:nil].lastObject;
         _stampGroupView.frame = CGRectMake(145, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
         _stampGroupView.delegate = self;
 
@@ -678,7 +681,11 @@
     self.featureScrollView.showsHorizontalScrollIndicator = NO;
 
     [self.featureView addSubview:self.featureScrollView];
-
+    self.featureView.alpha = 0;
+    [UIView animateWithDuration:0.5 animations:^{
+        self.featureView.alpha = 1;
+    }];
+    
     [self setScrollViewImages:self.featureScrollView];
 }
 
@@ -749,6 +756,11 @@
 
 - (void)dealloc {
     [KFC_NOTIFICATION_CENTER removeObserver:self];
+}
+
+
+- (IBAction)infoButtonClicked:(id)sender {
+    [self showFeatureView];
 }
 
 

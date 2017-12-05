@@ -20,5 +20,7 @@
 
 @property(nonatomic, strong) NSMutableArray *stampGroups;
 
+@property (weak, nonatomic) IBOutlet UIButton *infoButton;
+
 @end
 

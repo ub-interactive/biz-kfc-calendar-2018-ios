@@ -49,11 +49,7 @@
     NSString *urlStr = [NSString stringWithFormat:@"%@/%@", KFC_URL_CALENDAR_COMPLETE_TASKS, deviceId];
 
     [[AFHTTPSessionManager manager] GET:urlStr parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
-
-        NSLog(@"completed task key s = JSON: %@", responseObject);
-
         self.taskKeyArray = [KFCTaskKeyModel mj_objectArrayWithKeyValuesArray:responseObject];
-
     }                           failure:^(NSURLSessionTask *operation, NSError *error) {
 
     }];
