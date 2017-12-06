@@ -223,7 +223,7 @@
  */
 
 - (void)qrViewTasksButtonClicked {
-    [self pushWebViewControllerWithUrlStr:@"https://www.youbohudong.com/biz/vip/kfc/calendar-2018/tasks" isFromTasks:YES];
+    [self pushWebViewControllerWithUrlStr:KFC_URL_CALENDAR_TASK_LIST isFromTasks:YES];
     [self.scanSuccessView removeFromSuperview];
     self.scanSuccessView = nil;
 }

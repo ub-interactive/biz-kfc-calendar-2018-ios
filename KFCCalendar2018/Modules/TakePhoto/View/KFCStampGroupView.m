@@ -153,7 +153,7 @@
 //    
 //        return self.localImageArray.count;
 //    }else{
-    KFCStampGroupModel *pasterModel = self.data[self.preBtn.tag];
+    KFCStampGroupModel *pasterModel = self.data[(NSUInteger) self.preBtn.tag];
     return pasterModel.stamps.count;
 //    }
 }
