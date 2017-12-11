@@ -1,8 +1,42 @@
 {
-  "images": [
-    {
-      "image": "belgium_ice_cream_20171218.jpg",
-      "name": "belgium_ice_cream_20171218"
-    }
-  ]
+    "images": [
+               {
+               "image": "belgium_ice_cream_20171218.jpg",
+               "name": "belgium_ice_cream_20171218"
+               },
+               {
+               "image": "christmas_20171218_compass_1.jpg",
+               "name": "christmas_20171218_compass"
+               },
+               {
+               "image": "christmas_20171218_compass_2.jpg",
+               "name": "christmas_20171218_compass"
+               },
+               {
+               "image": "christmas_20171218_compass_3.jpg",
+               "name": "christmas_20171218_compass"
+               },
+               {
+               "image": "christmas_20171218_compass_4.jpg",
+               "name": "christmas_20171218_compass"
+               },
+               {
+               "image": "christmas_20171218_blanket_1.jpg",
+               "name": "christmas_20171218_blanket"
+               },
+               {
+               "image": "christmas_20171218_blanket_2.jpg",
+               "name": "christmas_20171218_blanket"
+               }
+               ,
+               {
+               "image": "christmas_20171218_lamp_1.jpg",
+               "name": "christmas_20171218_lamp"
+               },
+               {
+               "image": "christmas_20171218_lamp_2.jpg",
+               "name": "christmas_20171218_lamp"
+               }
+               
+               ]
 }

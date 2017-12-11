@@ -45,7 +45,7 @@
     if([self.urlStr containsString:@"?"]) {
         urlString = [self.urlStr stringByAppendingString:[NSString stringWithFormat:@"&udid=%@", [KFC_USER_DEFAULTS objectForKey:KFC_USER_DEFAULT_UDID]]];
     } else {
-        urlString = [self.urlStr stringByAppendingString:[NSString stringWithFormat:@"?udid=%@", [KFC_USER_DEFAULTS objectForKey:KFC_USER_DEFAULT_UDID]]];
+        urlString = [self.urlStr stringByAppendingString:[NSString stringWithFormat:@"&udid=%@", [KFC_USER_DEFAULTS objectForKey:KFC_USER_DEFAULT_UDID]]];
     }
 
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];

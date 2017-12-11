@@ -109,10 +109,10 @@
     NSString *currentVersion = [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"];
 
     // 是第一次使用app || 是第一次使用当前版本
-    if (!lastVersion || [lastVersion compare:currentVersion] == NSOrderedAscending) {
-        [KFC_USER_DEFAULTS setObject:currentVersion forKey:KFC_USER_DEFAULT_APP_VERSION];
-        [self showFeatureView];
-    }
+//    if (!lastVersion || [lastVersion compare:currentVersion] == NSOrderedAscending) {
+//        [KFC_USER_DEFAULTS setObject:currentVersion forKey:KFC_USER_DEFAULT_APP_VERSION];
+//        [self showFeatureView];
+//    }
 
 
     // init child controllers

@@ -75,6 +75,14 @@
 		F509E980E19F3EC884AEDE4B /* belgium_ice_cream_20171218.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F509E24FEABBEA38D5C1624A /* belgium_ice_cream_20171218.jpg */; };
 		F509EB50C65A2D2397D5D98E /* KFCWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F509EEA94EC8E2AF7540F64A /* KFCWebViewController.m */; };
 		F636A8A61FD548090046FF4F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F636A8A51FD548090046FF4F /* GoogleService-Info.plist */; };
+		F68468BB1FDAC889006537FE /* christmas_20171218_compass_4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F68468B71FDAC888006537FE /* christmas_20171218_compass_4.jpg */; };
+		F68468BC1FDAC889006537FE /* christmas_20171218_compass_2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F68468B81FDAC888006537FE /* christmas_20171218_compass_2.jpg */; };
+		F68468BD1FDAC889006537FE /* christmas_20171218_compass_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F68468B91FDAC888006537FE /* christmas_20171218_compass_1.jpg */; };
+		F68468BE1FDAC889006537FE /* christmas_20171218_compass_3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F68468BA1FDAC889006537FE /* christmas_20171218_compass_3.jpg */; };
+		F68468C11FDAC9E9006537FE /* christmas_20171218_blanket_2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F68468BF1FDAC9E8006537FE /* christmas_20171218_blanket_2.jpg */; };
+		F68468C21FDAC9E9006537FE /* christmas_20171218_blanket_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F68468C01FDAC9E8006537FE /* christmas_20171218_blanket_1.jpg */; };
+		F68468C51FDACBC2006537FE /* christmas_20171218_lamp_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F68468C31FDACBC1006537FE /* christmas_20171218_lamp_1.jpg */; };
+		F68468C61FDACBC2006537FE /* christmas_20171218_lamp_2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F68468C41FDACBC1006537FE /* christmas_20171218_lamp_2.jpg */; };
 		F699ED471FD54F410056B06D /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = F699ED441FD54F410056B06D /* README.txt */; };
 		F699ED481FD54F410056B06D /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F699ED461FD54F410056B06D /* libWeChatSDK.a */; };
 		F6A280FC1FD65DC800C19F42 /* scan-success.wav in Resources */ = {isa = PBXBuildFile; fileRef = F6A280FB1FD65DC800C19F42 /* scan-success.wav */; };
@@ -187,6 +195,14 @@
 		F509EB6460E3C630A0678418 /* KFCFeatureView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KFCFeatureView.xib; sourceTree = "<group>"; };
 		F509EEA94EC8E2AF7540F64A /* KFCWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFCWebViewController.m; sourceTree = "<group>"; };
 		F636A8A51FD548090046FF4F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F68468B71FDAC888006537FE /* christmas_20171218_compass_4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = christmas_20171218_compass_4.jpg; sourceTree = "<group>"; };
+		F68468B81FDAC888006537FE /* christmas_20171218_compass_2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = christmas_20171218_compass_2.jpg; sourceTree = "<group>"; };
+		F68468B91FDAC888006537FE /* christmas_20171218_compass_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = christmas_20171218_compass_1.jpg; sourceTree = "<group>"; };
+		F68468BA1FDAC889006537FE /* christmas_20171218_compass_3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = christmas_20171218_compass_3.jpg; sourceTree = "<group>"; };
+		F68468BF1FDAC9E8006537FE /* christmas_20171218_blanket_2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = christmas_20171218_blanket_2.jpg; sourceTree = "<group>"; };
+		F68468C01FDAC9E8006537FE /* christmas_20171218_blanket_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = christmas_20171218_blanket_1.jpg; sourceTree = "<group>"; };
+		F68468C31FDACBC1006537FE /* christmas_20171218_lamp_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = christmas_20171218_lamp_1.jpg; sourceTree = "<group>"; };
+		F68468C41FDACBC1006537FE /* christmas_20171218_lamp_2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = christmas_20171218_lamp_2.jpg; sourceTree = "<group>"; };
 		F699ED421FD54F410056B06D /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		F699ED431FD54F410056B06D /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
 		F699ED441FD54F410056B06D /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
@@ -516,6 +532,14 @@
 			children = (
 				184416F31FBD399700198812 /* targets.json */,
 				F509E24FEABBEA38D5C1624A /* belgium_ice_cream_20171218.jpg */,
+				F68468B91FDAC888006537FE /* christmas_20171218_compass_1.jpg */,
+				F68468B81FDAC888006537FE /* christmas_20171218_compass_2.jpg */,
+				F68468BA1FDAC889006537FE /* christmas_20171218_compass_3.jpg */,
+				F68468B71FDAC888006537FE /* christmas_20171218_compass_4.jpg */,
+				F68468C01FDAC9E8006537FE /* christmas_20171218_blanket_1.jpg */,
+				F68468BF1FDAC9E8006537FE /* christmas_20171218_blanket_2.jpg */,
+				F68468C31FDACBC1006537FE /* christmas_20171218_lamp_1.jpg */,
+				F68468C41FDACBC1006537FE /* christmas_20171218_lamp_2.jpg */,
 			);
 			path = Targets;
 			sourceTree = "<group>";
@@ -600,10 +624,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F68468BE1FDAC889006537FE /* christmas_20171218_compass_3.jpg in Resources */,
+				F68468C61FDACBC2006537FE /* christmas_20171218_lamp_2.jpg in Resources */,
+				F68468BC1FDAC889006537FE /* christmas_20171218_compass_2.jpg in Resources */,
+				F68468C51FDACBC2006537FE /* christmas_20171218_lamp_1.jpg in Resources */,
 				F6E669AF1FD6930A00F7152D /* feature.mp4 in Resources */,
 				F699ED471FD54F410056B06D /* README.txt in Resources */,
+				F68468C21FDAC9E9006537FE /* christmas_20171218_blanket_1.jpg in Resources */,
 				184416FD1FBD399700198812 /* KFCScanNavigationView.xib in Resources */,
 				B2CDE4891FA8C22E00D11D78 /* LaunchScreen.storyboard in Resources */,
+				F68468C11FDAC9E9006537FE /* christmas_20171218_blanket_2.jpg in Resources */,
 				184417341FBD39F500198812 /* KFCPasterTableViewCell.xib in Resources */,
 				184417321FBD39F500198812 /* KFCRetakeView.xib in Resources */,
 				184417031FBD399700198812 /* targets.json in Resources */,
@@ -613,7 +643,9 @@
 				184417351FBD39F500198812 /* KFCOneMoreView.xib in Resources */,
 				F6A280FC1FD65DC800C19F42 /* scan-success.wav in Resources */,
 				184417391FBD39F500198812 /* KFCStampGroupView.xib in Resources */,
+				F68468BD1FDAC889006537FE /* christmas_20171218_compass_1.jpg in Resources */,
 				184417301FBD39F500198812 /* KFCProgressHUD.xib in Resources */,
+				F68468BB1FDAC889006537FE /* christmas_20171218_compass_4.jpg in Resources */,
 				184417361FBD39F500198812 /* KFCShareView.xib in Resources */,
 				F636A8A61FD548090046FF4F /* GoogleService-Info.plist in Resources */,
 				F509E718D4171BEF35CC9FB5 /* KFCFeatureView.xib in Resources */,

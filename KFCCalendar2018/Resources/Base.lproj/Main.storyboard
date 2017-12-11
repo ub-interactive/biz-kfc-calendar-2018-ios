@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="jrA-0e-E2m">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="jrA-0e-E2m">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -51,28 +51,15 @@
                                     <action selector="scanButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="y8K-ds-RUa"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cqy-JM-ley" userLabel="infoButton">
-                                <rect key="frame" x="301" y="555" width="44" height="54"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="54" id="BnA-ZV-BcE"/>
-                                    <constraint firstAttribute="width" constant="44" id="QKw-1m-6Rb"/>
-                                </constraints>
-                                <state key="normal" image="help"/>
-                                <connections>
-                                    <action selector="infoButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pR2-7F-kuy"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="NhC-jo-iYS" firstAttribute="top" secondItem="pIs-Pi-LyF" secondAttribute="top" id="26O-dz-DfF"/>
                             <constraint firstItem="5sZ-At-xNI" firstAttribute="top" secondItem="NhC-jo-iYS" secondAttribute="bottom" constant="15" id="AOU-rW-1fY"/>
-                            <constraint firstItem="Cqy-JM-ley" firstAttribute="centerX" secondItem="5sZ-At-xNI" secondAttribute="centerX" id="GTw-EU-ItV"/>
                             <constraint firstItem="pIs-Pi-LyF" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="30" id="J1T-iv-6rd"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="b13-Jj-fql" secondAttribute="bottom" constant="45" id="K2c-9I-kjm"/>
                             <constraint firstItem="NhC-jo-iYS" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="40" id="MHS-c0-YSh"/>
                             <constraint firstItem="b13-Jj-fql" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="WO6-DE-UNB"/>
-                            <constraint firstItem="Cqy-JM-ley" firstAttribute="centerY" secondItem="b13-Jj-fql" secondAttribute="centerY" id="kEE-tI-E1F"/>
                             <constraint firstItem="5sZ-At-xNI" firstAttribute="trailing" secondItem="NhC-jo-iYS" secondAttribute="trailing" id="knn-h0-EHX"/>
                             <constraint firstAttribute="trailing" secondItem="NhC-jo-iYS" secondAttribute="trailing" constant="30" id="oZF-Oe-0bR"/>
                         </constraints>
@@ -80,7 +67,6 @@
                     <navigationItem key="navigationItem" id="IBm-Zp-3Lu"/>
                     <connections>
                         <outlet property="importFromAlbumButton" destination="5sZ-At-xNI" id="hwF-Jt-WHa"/>
-                        <outlet property="infoButton" destination="Cqy-JM-ley" id="HKk-SB-aWm"/>
                         <outlet property="scanButton" destination="pIs-Pi-LyF" id="Ivf-KK-tAx"/>
                         <outlet property="switchCameraButton" destination="NhC-jo-iYS" id="dgA-BA-Ir3"/>
                         <outlet property="takePhotoButton" destination="b13-Jj-fql" id="bef-sy-tw9"/>
@@ -145,7 +131,6 @@
     <resources>
         <image name="album" width="44" height="54"/>
         <image name="chageCamera" width="44" height="54"/>
-        <image name="help" width="26" height="26"/>
         <image name="scan" width="44" height="54"/>
         <image name="takePhoto" width="80" height="80"/>
     </resources>

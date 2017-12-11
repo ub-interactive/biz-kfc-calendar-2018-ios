@@ -60,8 +60,8 @@
 #define KFC_URL_CALENDAR_TASK_LIST          @"https://www.youbohudong.com/biz/vip/kfc/calendar-2018/tasks"
 
 /*******  api  *********/
-#define KFC_URL_CALENDAR_NEW_STAMPS         @"https://www.youbohudong.com/biz/vip/kfc/calendar-2018/api/stamps"
-#define KFC_URL_CALENDAR_COMPLETE_TASKS     @"https://www.youbohudong.com/biz/vip/kfc/calendar-2018/api/tasks"
+#define KFC_URL_CALENDAR_NEW_STAMPS         @"https://www.youbohudong.com/api/biz/vip/kfc/calendar-2018/stamps"
+#define KFC_URL_CALENDAR_COMPLETE_TASKS     @"https://www.youbohudong.com/api/biz/vip/kfc/calendar-2018/tasks"
 //https://www.youbohudong.com/biz/vip/kfc/calendar-2018/api/tasks/<uuid>/<taskKey>   用户完成taskKey后更新服务器记录
 
 //**** ACCOUNT
