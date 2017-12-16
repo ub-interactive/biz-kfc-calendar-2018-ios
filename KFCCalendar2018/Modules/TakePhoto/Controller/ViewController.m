@@ -109,10 +109,10 @@
     NSString *currentVersion = [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"];
 
     // 是第一次使用app || 是第一次使用当前版本
-//    if (!lastVersion || [lastVersion compare:currentVersion] == NSOrderedAscending) {
-//        [KFC_USER_DEFAULTS setObject:currentVersion forKey:KFC_USER_DEFAULT_APP_VERSION];
-//        [self showFeatureView];
-//    }
+    if (!lastVersion || [lastVersion compare:currentVersion] == NSOrderedAscending) {
+        [KFC_USER_DEFAULTS setObject:currentVersion forKey:KFC_USER_DEFAULT_APP_VERSION];
+        [self showFeatureView];
+    }
 
 
     // init child controllers
@@ -160,7 +160,7 @@
     KFCStampGroupModel *kfcStampGroupModel = [[KFCStampGroupModel alloc] init];
     kfcStampGroupModel.name = @"敬请期待";
     kfcStampGroupModel.isNew = 0;
-    kfcStampGroupModel.note = @"K记大玩家会不定期推出新贴纸，请关注K记通知和线下活动活动！";
+    kfcStampGroupModel.note = @"大玩家会不定期推出新贴纸，请关注通知和线下活动！";
     kfcStampGroupModel.isAvailable = 0;
 
     return @[kfcStampGroupModel];
@@ -697,7 +697,6 @@
         newFeaturePageView.frame = CGRectMake(i * SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 
         newFeaturePageView.pageControl.currentPage = i;
-        newFeaturePageView.iconImageView.hidden = (i != 0);
 
         newFeaturePageView.nextPageButton.tag = i;
         [newFeaturePageView.nextPageButton addTarget:self action:@selector(featureNextPageButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
@@ -713,12 +712,12 @@
             newFeaturePageView.descLabel.text = @"玩转AR黑科技 扫海报 扫汉堡…\n扫得越多 惊喜越多";
         } else if (i == 2) {
 
-            newFeaturePageView.titleLabel.text = @"收集K记贴纸 秀翻朋友圈";
-            newFeaturePageView.descLabel.text = @"收集肯德基限定精美贴纸\n分享朋友圈秀出独一无二的你";
+            newFeaturePageView.titleLabel.text = @"收集贴纸 秀翻朋友圈";
+            newFeaturePageView.descLabel.text = @"收集限定精美贴纸\n分享朋友圈秀出独一无二的你";
         } else if (i == 3) {
 
             newFeaturePageView.titleLabel.text = @"参加主题活动 赢惊喜礼物";
-            newFeaturePageView.descLabel.text = @"开启消息推送获取肯德基最新活动讯息\n参加店内活动赢取免费礼物";
+            newFeaturePageView.descLabel.text = @"开启消息推送获取最新活动讯息\n参加店内活动赢取免费礼物";
         }
 
         if (i == 3) {       // 开始 按钮
@@ -751,6 +750,7 @@
  */
 - (void)featureSkipButtonClicked {
     [self.featureView removeFromSuperview];
+    self.featureView = nil;
 }
 
 

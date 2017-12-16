@@ -51,6 +51,17 @@
                                     <action selector="scanButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="y8K-ds-RUa"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VQh-jr-AVv">
+                                <rect key="frame" x="300" y="559" width="46" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="46" id="M8z-kL-JFf"/>
+                                    <constraint firstAttribute="height" constant="46" id="pam-5G-2lW"/>
+                                </constraints>
+                                <state key="normal" image="help"/>
+                                <connections>
+                                    <action selector="infoButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IJr-nP-d5b"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -60,6 +71,8 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="b13-Jj-fql" secondAttribute="bottom" constant="45" id="K2c-9I-kjm"/>
                             <constraint firstItem="NhC-jo-iYS" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="40" id="MHS-c0-YSh"/>
                             <constraint firstItem="b13-Jj-fql" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="WO6-DE-UNB"/>
+                            <constraint firstItem="VQh-jr-AVv" firstAttribute="centerX" secondItem="5sZ-At-xNI" secondAttribute="centerX" id="cSw-62-MPx"/>
+                            <constraint firstItem="VQh-jr-AVv" firstAttribute="centerY" secondItem="b13-Jj-fql" secondAttribute="centerY" id="dgU-DT-hCn"/>
                             <constraint firstItem="5sZ-At-xNI" firstAttribute="trailing" secondItem="NhC-jo-iYS" secondAttribute="trailing" id="knn-h0-EHX"/>
                             <constraint firstAttribute="trailing" secondItem="NhC-jo-iYS" secondAttribute="trailing" constant="30" id="oZF-Oe-0bR"/>
                         </constraints>
@@ -67,6 +80,7 @@
                     <navigationItem key="navigationItem" id="IBm-Zp-3Lu"/>
                     <connections>
                         <outlet property="importFromAlbumButton" destination="5sZ-At-xNI" id="hwF-Jt-WHa"/>
+                        <outlet property="infoButton" destination="VQh-jr-AVv" id="drO-ra-2um"/>
                         <outlet property="scanButton" destination="pIs-Pi-LyF" id="Ivf-KK-tAx"/>
                         <outlet property="switchCameraButton" destination="NhC-jo-iYS" id="dgA-BA-Ir3"/>
                         <outlet property="takePhotoButton" destination="b13-Jj-fql" id="bef-sy-tw9"/>
@@ -131,6 +145,7 @@
     <resources>
         <image name="album" width="44" height="54"/>
         <image name="chageCamera" width="44" height="54"/>
+        <image name="help" width="26" height="26"/>
         <image name="scan" width="44" height="54"/>
         <image name="takePhoto" width="80" height="80"/>
     </resources>

@@ -26,7 +26,7 @@
 
 {
     "completionResource": "https://static.youbohudong.com/uploaded/2017/11/14/6870fb7c8eb2a517eb140013bd544fff.png",
-    "completionDescription": "您已经成功收集肯德基比利时巧克力冰激凌限量版贴纸，立即拍照炫耀一下！",
+    "completionDescription": "您已经成功收集比利时巧克力冰激凌限量版贴纸，立即拍照炫耀一下！",
     "completionUrl": "https://www.apple.com"
 }
 

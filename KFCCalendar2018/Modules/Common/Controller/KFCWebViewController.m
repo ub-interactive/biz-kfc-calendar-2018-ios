@@ -16,6 +16,8 @@
 
 @property(nonatomic, strong) KFCScanNagationView *navigationView;
 
+@property(nonatomic, strong) UIActivityIndicatorView *activityIndicator;
+
 @property(nonatomic, assign) BOOL isSecondLoading;
 
 @end
@@ -24,8 +26,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    self.view.backgroundColor = [UIColor whiteColor];
 
     //setup navigation bar
     KFCScanNagationView *navigationView = [[NSBundle mainBundle] loadNibNamed:@"KFCScanNavigationView" owner:self options:nil].lastObject;
@@ -36,45 +36,43 @@
     [navigationView.closeButton addTarget:self action:@selector(navigationCloseButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     self.navigationView = navigationView;
     [self.view addSubview:navigationView];
-
-    [self.view setBackgroundColor:[UIColor colorWithWhite:1.0f alpha:0.2f]];
+    
     [self.view addSubview:self.webview];
 
+    // setup progress view
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] init];
+    activityIndicator.frame = CGRectMake(SCREEN_WIDTH/2 - 32, SCREEN_HEIGHT/2 - 32, 64, 64);
+    self.activityIndicator = activityIndicator;
+    self.activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+    [self.view addSubview:activityIndicator];
+    
     // append udid
     NSString *urlString = nil;
     if([self.urlStr containsString:@"?"]) {
         urlString = [self.urlStr stringByAppendingString:[NSString stringWithFormat:@"&udid=%@", [KFC_USER_DEFAULTS objectForKey:KFC_USER_DEFAULT_UDID]]];
     } else {
-        urlString = [self.urlStr stringByAppendingString:[NSString stringWithFormat:@"&udid=%@", [KFC_USER_DEFAULTS objectForKey:KFC_USER_DEFAULT_UDID]]];
+        urlString = [self.urlStr stringByAppendingString:[NSString stringWithFormat:@"?udid=%@", [KFC_USER_DEFAULTS objectForKey:KFC_USER_DEFAULT_UDID]]];
     }
 
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+    
+    [self.activityIndicator startAnimating];
     [self.webview loadRequest:request];
 
     self.isSecondLoading = NO;
 }
 
 #pragma mark  WKWebViewDelegate
-
-- (void)webView:(WKWebView *)webView didCommitNavigation:(null_unspecified WKNavigation *)navigation {
-
-//    [self.progressHUD showWithMaskType:WSProgressHUDMaskTypeWhite];
+- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(null_unspecified WKNavigation *)navigation withError:(nonnull NSError *)error {
+    [self.activityIndicator stopAnimating];
 }
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation {
-
-//    [self.progressHUD dismiss];
-
-    self.webview.alpha = 0;
-    [UIView animateWithDuration:0.5 animations:^{
-        self.webview.alpha = 1;
-    }];
-
+    [self.activityIndicator stopAnimating];
 }
 
-- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(null_unspecified WKNavigation *)navigation withError:(nonnull NSError *)error {
-
-    //[WSProgressHUD showErrorWithStatus:@"网络错误，请稍后再试"];
+- (void)webView:(WKWebView *)webView didFailNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error {
+    [self.activityIndicator stopAnimating];
 }
 
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
@@ -279,7 +277,6 @@
         [configuretion.userContentController addScriptMessageHandler:self name:@"kfc"];
 
         _webview = [[WKWebView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 64) configuration:configuretion];
-        _webview.backgroundColor = [UIColor clearColor];
         _webview.navigationDelegate = self;
         _webview.UIDelegate = self;
 

@@ -355,8 +355,6 @@
     KFCStampGroupModel *pasterModel = self.data[sender.tag];
     if (pasterModel.isAvailable) return;
 
-//        pasterModel.note = @"2018年2月1日贴纸可用，肯德基宅急送用户更有机会获得限量版黄金贴纸哦！";
-
     if (!pasterModel.note || [pasterModel.note isEqualToString:@""]) return;
 
     CGFloat tipsViewH = [self rectWithString:pasterModel.note].size.height + 14;
@@ -383,7 +381,6 @@
     arr = [KFCStampsModel mj_objectArrayWithKeyValuesArray:pasterModel.stamps];
     KFCStampsModel *stampsModel = arr[sender.tag];
 
-//    stampsModel.note = @"2018年2月1日贴纸可用，肯德基宅急送用户更有机会获得限量版黄金贴纸哦！";
     if (!stampsModel.note || [stampsModel.note isEqualToString:@""]) return;
 
     CGFloat tipsViewH = [self rectWithString:stampsModel.note].size.height + 14;

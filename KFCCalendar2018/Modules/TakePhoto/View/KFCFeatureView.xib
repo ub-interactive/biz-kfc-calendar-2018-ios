@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -29,9 +29,6 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kfc_head" translatesAutoresizingMaskIntoConstraints="NO" id="3RL-Ek-N7N">
-                    <rect key="frame" x="127" y="264.5" width="120" height="146"/>
-                </imageView>
                 <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="975-6a-cEw">
                     <rect key="frame" x="159.5" y="518" width="55" height="10"/>
                     <constraints>
@@ -66,8 +63,6 @@
                 <constraint firstItem="975-6a-cEw" firstAttribute="top" secondItem="kXp-O7-iKR" secondAttribute="bottom" constant="30" id="Fy4-lZ-JzE"/>
                 <constraint firstItem="fS6-gE-BIz" firstAttribute="leading" secondItem="trB-ne-IbP" secondAttribute="leading" id="GwL-16-bqz"/>
                 <constraint firstItem="kXp-O7-iKR" firstAttribute="leading" secondItem="trB-ne-IbP" secondAttribute="leading" constant="32" id="IL1-1E-KSU"/>
-                <constraint firstItem="3RL-Ek-N7N" firstAttribute="centerX" secondItem="trB-ne-IbP" secondAttribute="centerX" id="Lfc-7e-17v"/>
-                <constraint firstItem="cPJ-pL-6pi" firstAttribute="top" secondItem="3RL-Ek-N7N" secondAttribute="bottom" constant="10" id="TAX-gd-820"/>
                 <constraint firstAttribute="trailing" secondItem="fS6-gE-BIz" secondAttribute="trailing" id="Tx5-IY-TMA"/>
                 <constraint firstItem="cPJ-pL-6pi" firstAttribute="centerX" secondItem="trB-ne-IbP" secondAttribute="centerX" id="fgb-QS-uOz"/>
                 <constraint firstAttribute="bottom" secondItem="fS6-gE-BIz" secondAttribute="bottom" id="iAW-Ee-p3k"/>
@@ -79,7 +74,6 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="descLabel" destination="kXp-O7-iKR" id="Bl1-wh-n7e"/>
-                <outlet property="iconImageView" destination="3RL-Ek-N7N" id="cCl-Hd-gxc"/>
                 <outlet property="nextPageButton" destination="453-Ce-h0l" id="hik-5m-lf9"/>
                 <outlet property="pageControl" destination="975-6a-cEw" id="d8b-0W-kxQ"/>
                 <outlet property="skipButton" destination="bHU-HC-M9F" id="VcB-cG-kyv"/>
@@ -90,7 +84,6 @@
         </view>
     </objects>
     <resources>
-        <image name="kfc_head" width="120" height="146"/>
         <image name="nextPage" width="200" height="44"/>
     </resources>
 </document>
